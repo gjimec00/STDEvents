@@ -13,8 +13,10 @@ login::~login()
     delete ui;
 }
 
-void login::on_pushButton_clicked()
-{
 
+
+void login::on_exit_clicked()
+{
+    close();
 }
 

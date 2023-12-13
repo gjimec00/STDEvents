@@ -335,7 +335,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="login_2">
          <property name="maximumSize">
           <size>
            <width>92</width>
@@ -358,7 +358,7 @@ background-image: url(:/Files/0-0-255.jpg);</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="exit">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
@@ -425,7 +425,7 @@ background-color: rgb(0, 0, 255);</string>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="register_2">
        <property name="maximumSize">
         <size>
          <width>92</width>
