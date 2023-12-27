@@ -10,7 +10,7 @@ public:
              const QString &passwordUsuario,
              const QString &direccionServidor,
              int puertoConexion);
-
+    bool abreConexion(QString &mensajeError);
 private:
     QSqlDatabase mDb;
 };

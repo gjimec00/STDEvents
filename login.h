@@ -2,6 +2,7 @@
 #define LOGIN_H
 
 #include <QMainWindow>
+#include "database.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,5 +25,6 @@ private slots:
 
 private:
     Ui::login *ui;
+    DataBase mBaseDatos;
 };
 #endif // LOGIN_H
