@@ -2,7 +2,7 @@
 #define LOGIN_H
 
 #include <QMainWindow>
-#include "database.h"
+#include "src/Modelo/database.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
