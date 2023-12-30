@@ -29,5 +29,6 @@ login::~login()
 void login::on_exit_clicked()
 {
     close();
+
 }
 
