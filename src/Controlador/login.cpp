@@ -1,6 +1,10 @@
 #include "login.h"
+#include "registro.h"
+#include "src/Controlador/registro.h"
 #include "ui_login.h"
+#include "qdialog.h"
 #include <QMessageBox>
+
 
 login::login(QWidget *parent)
     : QMainWindow(parent)
@@ -31,4 +35,14 @@ void login::on_exit_clicked()
     close();
 
 }
+
+
+void login::on_register_2_clicked()
+{
+    registro registro;
+    registro.setModal(true);
+    registro.exec();
+}
+
+
 

@@ -9,15 +9,18 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/Controlador/registro.cpp \
     src/Controlador/login.cpp \
     src/Controlador/main.cpp \
     src/Modelo/database.cpp
 
 HEADERS += \
+    src/Controlador/registro.h \
     src/Controlador/login.h \
     src/Modelo/database.h
 
 FORMS += \
+    src/Vista/registro.ui \
     src/Vista/login.ui
 
 QMAKE_CXXFLAGS += -std=gnu++14
