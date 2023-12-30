@@ -2,7 +2,6 @@
 #include "registro.h"
 #include "src/Controlador/registro.h"
 #include "ui_login.h"
-#include "qdialog.h"
 #include <QMessageBox>
 
 
@@ -40,8 +39,10 @@ void login::on_exit_clicked()
 void login::on_register_2_clicked()
 {
     registro registro;
+    registro.setWindowFlags(Qt::FramelessWindowHint);
     registro.setModal(true);
     registro.exec();
+
 }
 
 
