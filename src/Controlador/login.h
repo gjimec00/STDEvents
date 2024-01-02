@@ -25,6 +25,8 @@ private slots:
 
     void on_register_2_clicked();
 
+    void on_login_2_clicked();
+
 private:
     Ui::login *ui;
     DataBase mBaseDatos;

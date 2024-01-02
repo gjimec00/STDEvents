@@ -1,5 +1,6 @@
 #include "login.h"
 #include "registro.h"
+#include "vistacliente.h"
 #include "src/Controlador/registro.h"
 #include "ui_login.h"
 #include <QMessageBox>
@@ -46,4 +47,13 @@ void login::on_register_2_clicked()
 }
 
 
+
+
+void login::on_login_2_clicked()
+{
+    vistaCliente vistaCliente;
+    vistaCliente.setWindowFlags(Qt::FramelessWindowHint);
+    vistaCliente.setModal(true);
+    vistaCliente.exec();
+}
 
