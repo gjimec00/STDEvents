@@ -394,7 +394,7 @@ border-radius: 10px;
 color: white;</string>
               </property>
               <property name="text">
-               <string>Consultar Calendario</string>
+               <string>Check Calendar</string>
               </property>
              </widget>
             </item>
@@ -407,7 +407,7 @@ border-radius: 10px;
 color: white;</string>
               </property>
               <property name="text">
-               <string>Compra de Entradas</string>
+               <string>Ticket Purchase</string>
               </property>
              </widget>
             </item>
@@ -420,7 +420,7 @@ border-radius: 10px;
 color: white;</string>
               </property>
               <property name="text">
-               <string>Compra de Abonos</string>
+               <string>Purchase of Season Tickets</string>
               </property>
              </widget>
             </item>
@@ -433,7 +433,7 @@ border-radius: 10px;
 color: white;</string>
               </property>
               <property name="text">
-               <string>Tienda Oficial</string>
+               <string>Official Store</string>
               </property>
              </widget>
             </item>
@@ -570,7 +570,7 @@ color: white;</string>
                 <enum>QFrame::NoFrame</enum>
                </property>
                <property name="text">
-                <string>INFORMACIÓN</string>
+                <string>INFORMATION</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -663,7 +663,7 @@ color: white;
 </string>
              </property>
              <property name="text">
-              <string>  Mostrar Abono</string>
+              <string>Show Subscriptions</string>
              </property>
              <property name="icon">
               <iconset>
@@ -696,7 +696,7 @@ border-radius: 3px;
 color: white;</string>
              </property>
              <property name="text">
-              <string>  Mostrar Entradas</string>
+              <string>Show Tickets</string>
              </property>
              <property name="icon">
               <iconset>

@@ -14,9 +14,14 @@ class registro : public QDialog
 public:
     explicit registro(QWidget *parent = nullptr);
     ~registro();
+    void verificarContraseñas();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::registro *ui;
+
 };
 
 #endif // REGISTRO_H
