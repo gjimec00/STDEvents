@@ -241,8 +241,8 @@ icon-color: black;</string>
             <string/>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>../../imagenes/minimizar.jpg</normaloff>../../imagenes/minimizar.jpg</iconset>
+            <iconset resource="../../Recursos.qrc">
+             <normaloff>:/Files/imagenes/minimizar.jpg</normaloff>:/Files/imagenes/minimizar.jpg</iconset>
            </property>
            <property name="checkable">
             <bool>false</bool>
@@ -265,8 +265,8 @@ color: rgb(0, 0, 0);</string>
             <string/>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>../../imagenes/window.png</normaloff>../../imagenes/window.png</iconset>
+            <iconset resource="../../Recursos.qrc">
+             <normaloff>:/Files/imagenes/window.png</normaloff>:/Files/imagenes/window.png</iconset>
            </property>
           </widget>
          </item>
@@ -286,8 +286,8 @@ color: rgb(0, 0, 0);</string>
             <string/>
            </property>
            <property name="icon">
-            <iconset>
-             <normaloff>../../imagenes/cerrar.jpg</normaloff>../../imagenes/cerrar.jpg</iconset>
+            <iconset resource="../../Recursos.qrc">
+             <normaloff>:/Files/imagenes/cerrar.jpg</normaloff>:/Files/imagenes/cerrar.jpg</iconset>
            </property>
            <property name="autoRepeat">
             <bool>false</bool>
@@ -666,8 +666,8 @@ color: white;
               <string>Show Subscriptions</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>../../imagenes/abono.jpg</normaloff>../../imagenes/abono.jpg</iconset>
+              <iconset resource="../../Recursos.qrc">
+               <normaloff>:/Files/imagenes/abono.jpg</normaloff>:/Files/imagenes/abono.jpg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -699,8 +699,8 @@ color: white;</string>
               <string>Show Tickets</string>
              </property>
              <property name="icon">
-              <iconset>
-               <normaloff>../../imagenes/entrada.jpg</normaloff>../../imagenes/entrada.jpg</iconset>
+              <iconset resource="../../Recursos.qrc">
+               <normaloff>:/Files/imagenes/entrada.jpg</normaloff>:/Files/imagenes/entrada.jpg</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -720,6 +720,8 @@ color: white;</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

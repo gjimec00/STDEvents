@@ -6,27 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>611</width>
-    <height>681</height>
+    <width>502</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QLineEdit{
+border-radius: 5px;
+}</string>
+  </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>90</y>
-     <width>481</width>
-     <height>612</height>
+     <x>0</x>
+     <y>0</y>
+     <width>502</width>
+     <height>629</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0,0">
     <property name="spacing">
      <number>9</number>
     </property>
     <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
      <number>0</number>
     </property>
     <property name="bottomMargin">
@@ -60,81 +68,216 @@ background-color: rgb(0, 103, 43);</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLineEdit" name="lineEdit">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>25</height>
+       </size>
       </property>
-      <property name="text">
-       <string extracomment="Name"/>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 5px;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
       <property name="placeholderText">
        <string>Name</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLineEdit" name="lineEdit_2">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="placeholderText">
        <string>Surname</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLineEdit" name="lineEdit_3">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="placeholderText">
        <string>DNI</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLineEdit" name="lineEdit_4">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="placeholderText">
        <string>Phone</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLineEdit" name="lineEdit_5">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="placeholderText">
        <string>E-mail</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLineEdit" name="lineEdit_6">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="styleSheet">
-       <string notr="true">qproperty-echoMode: 2;
-background-color: rgb(255, 255, 255);</string>
+       <string notr="true">qproperty-echoMode: 2;</string>
       </property>
       <property name="placeholderText">
        <string>Password</string>
       </property>
      </widget>
     </item>
-    <item>
+    <item alignment="Qt::AlignHCenter">
      <widget class="QLineEdit" name="lineEdit_7">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+        <horstretch>40</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="styleSheet">
-       <string notr="true">qproperty-echoMode: 2;
-background-color: rgb(255, 255, 255);</string>
+       <string notr="true">qproperty-echoMode: 2;</string>
       </property>
       <property name="placeholderText">
        <string>Confirm Password</string>
       </property>
      </widget>
     </item>
-    <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-     <widget class="QPushButton" name="pushButton">
-      <property name="styleSheet">
-       <string notr="true">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="topMargin">
+       <number>18</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
 background-color: rgb(0, 103, 43);
 color: rgb(255, 255, 255);
 font: 900 9pt &quot;Arial Black&quot;;</string>
-      </property>
-      <property name="text">
-       <string>Confirm Registration</string>
-      </property>
-     </widget>
+        </property>
+        <property name="text">
+         <string>Confirm Registration</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>200</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+background-color: rgb(0, 103, 43);
+color: rgb(255, 255, 255);
+font: 900 9pt &quot;Arial Black&quot;;</string>
+        </property>
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
