@@ -21,7 +21,7 @@
    <string>login</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/Files/elion-jashari-ByJvnMS3emY-unsplash2.jpg);</string>
+   <string notr="true">background-image: url(:/Files/imagenes/elion-jashari-ByJvnMS3emY-unsplash2.jpg);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -390,7 +390,7 @@ qproperty-echoMode: 2;</string>
          <property name="styleSheet">
           <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(0, 0, 255);
-background-image: url(:/Files/0-0-255.jpg);</string>
+background-image: url(:/Files/imagenes/0-0-255.jpg);</string>
          </property>
          <property name="text">
           <string>Login</string>

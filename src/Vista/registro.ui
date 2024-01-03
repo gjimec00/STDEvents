@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>502</width>
-    <height>480</height>
+    <width>320</width>
+    <height>432</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,15 +16,18 @@
   <property name="styleSheet">
    <string notr="true">QLineEdit{
 border-radius: 5px;
-}</string>
+border: 20px rgb(0,103,43);
+
+}
+</string>
   </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>502</width>
-     <height>629</height>
+     <width>321</width>
+     <height>631</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0,0">
@@ -70,9 +73,12 @@ background-color: rgb(0, 103, 43);</string>
     </item>
     <item alignment="Qt::AlignHCenter">
      <widget class="QLineEdit" name="lineEdit">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="minimumSize">
        <size>
-        <width>400</width>
+        <width>275</width>
         <height>25</height>
        </size>
       </property>
@@ -84,6 +90,9 @@ background-color: rgb(0, 103, 43);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-radius: 5px;</string>
+      </property>
+      <property name="frame">
+       <bool>true</bool>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -97,7 +106,7 @@ background-color: rgb(0, 103, 43);</string>
      <widget class="QLineEdit" name="lineEdit_2">
       <property name="minimumSize">
        <size>
-        <width>400</width>
+        <width>275</width>
         <height>25</height>
        </size>
       </property>
@@ -116,7 +125,7 @@ background-color: rgb(0, 103, 43);</string>
      <widget class="QLineEdit" name="lineEdit_3">
       <property name="minimumSize">
        <size>
-        <width>400</width>
+        <width>275</width>
         <height>25</height>
        </size>
       </property>
@@ -135,7 +144,7 @@ background-color: rgb(0, 103, 43);</string>
      <widget class="QLineEdit" name="lineEdit_4">
       <property name="minimumSize">
        <size>
-        <width>400</width>
+        <width>275</width>
         <height>25</height>
        </size>
       </property>
@@ -154,7 +163,7 @@ background-color: rgb(0, 103, 43);</string>
      <widget class="QLineEdit" name="lineEdit_5">
       <property name="minimumSize">
        <size>
-        <width>400</width>
+        <width>275</width>
         <height>25</height>
        </size>
       </property>
@@ -173,7 +182,7 @@ background-color: rgb(0, 103, 43);</string>
      <widget class="QLineEdit" name="lineEdit_6">
       <property name="minimumSize">
        <size>
-        <width>400</width>
+        <width>275</width>
         <height>25</height>
        </size>
       </property>
@@ -201,7 +210,7 @@ background-color: rgb(0, 103, 43);</string>
       </property>
       <property name="minimumSize">
        <size>
-        <width>400</width>
+        <width>275</width>
         <height>25</height>
        </size>
       </property>
@@ -221,11 +230,17 @@ background-color: rgb(0, 103, 43);</string>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>11</number>
+      </property>
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
       <property name="topMargin">
        <number>18</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>9</number>
       </property>
       <item>
        <widget class="QPushButton" name="pushButton">
@@ -250,6 +265,12 @@ font: 900 9pt &quot;Arial Black&quot;;</string>
         <property name="text">
          <string>Confirm Registration</string>
         </property>
+        <property name="default">
+         <bool>true</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item>
@@ -266,14 +287,36 @@ font: 900 9pt &quot;Arial Black&quot;;</string>
           <height>50</height>
          </size>
         </property>
+        <property name="palette">
+         <palette>
+          <active/>
+          <inactive/>
+          <disabled/>
+         </palette>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial Black</family>
+          <pointsize>9</pointsize>
+          <italic>false</italic>
+          <underline>true</underline>
+          <fontweight>Black</fontweight>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
         <property name="styleSheet">
-         <string notr="true">
-background-color: rgb(0, 103, 43);
-color: rgb(255, 255, 255);
-font: 900 9pt &quot;Arial Black&quot;;</string>
+         <string notr="true">border: 20px;
+border-color: rgb(0, 103, 43);
+font: 900 9pt &quot;Arial Black&quot;;
+</string>
         </property>
         <property name="text">
          <string>Cancel</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
         </property>
        </widget>
       </item>

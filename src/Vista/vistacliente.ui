@@ -102,7 +102,7 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">image: url(:/Files/Captura de pantalla 2024-01-02 172038.jpg);</string>
+            <string notr="true">image: url(:/Files/imagenes/Captura de pantalla 2024-01-02 172038.jpg);</string>
            </property>
            <property name="frameShape">
             <enum>QFrame::Box</enum>
@@ -353,7 +353,7 @@ color: rgb(0, 0, 0);</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-image: url(:/Files/elion-jashari-ByJvnMS3emY-unsplash2.jpg);
+            <string notr="true">background-image: url(:/Files/imagenes/elion-jashari-ByJvnMS3emY-unsplash2.jpg);
 border: 2px solid white;
 border-radius: 2px;
 color: white;

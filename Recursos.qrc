@@ -1,12 +1,12 @@
 <RCC>
     <qresource prefix="/Files">
-        <file>0-0-255.jpg</file>
-        <file>elion-jashari-ByJvnMS3emY-unsplash2.jpg</file>
-        <file>Captura de pantalla 2024-01-02 172038.jpg</file>
         <file>imagenes/abono.jpg</file>
         <file>imagenes/cerrar.jpg</file>
         <file>imagenes/entrada.jpg</file>
         <file>imagenes/minimizar.jpg</file>
         <file>imagenes/window.png</file>
+        <file>imagenes/0-0-255.jpg</file>
+        <file>imagenes/Captura de pantalla 2024-01-02 172038.jpg</file>
+        <file>imagenes/elion-jashari-ByJvnMS3emY-unsplash2.jpg</file>
     </qresource>
 </RCC>
