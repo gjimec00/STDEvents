@@ -40,7 +40,7 @@ void registro::on_pushButton_clicked()
     query.bindValue(":telefono", ui->lineEdit_4->text());
     query.bindValue(":correo", ui->lineEdit_5->text());
     query.bindValue(":contrasena", ui->lineEdit_6->text());
-    query.bindValue(":abonado", "1");
+
 
     if (query.exec()) {
         qDebug() << "Datos añadidos con éxito.";

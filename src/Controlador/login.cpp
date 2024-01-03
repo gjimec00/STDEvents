@@ -1,9 +1,11 @@
 #include "login.h"
 #include "registro.h"
+#include "administrador.h"
 #include "vistacliente.h"
 #include "src/Controlador/registro.h"
 #include "ui_login.h"
 #include <QMessageBox>
+#include <QtSql>
 
 
 login::login(QWidget *parent)
@@ -46,14 +48,36 @@ void login::on_register_2_clicked()
 
 }
 
-
-
-
 void login::on_login_2_clicked()
 {
-    vistaCliente vistaCliente;
-    vistaCliente.setWindowFlags(Qt::FramelessWindowHint);
-    vistaCliente.setModal(true);
-    vistaCliente.exec();
+    QSqlQuery query;
+    query.prepare("SELECT nombre FROM administrador WHERE nombre = :nombre AND contrasena = :contrasena");
+
+    query.bindValue(":nombre", ui->lineEdit->text());
+    query.bindValue(":contrasena", ui->lineEdit_2->text());
+
+    if (query.exec() && query.next()) {
+        QString nombreEnBaseDeDatos = query.value(0).toString();
+
+        QString nombre = ui->lineEdit->text();
+        if (nombreEnBaseDeDatos == nombre) {
+            administrador administrador;
+            administrador.setWindowFlags(Qt::FramelessWindowHint);
+            administrador.setModal(true);
+            administrador.exec();
+        } else {
+            vistaCliente vistaCliente;
+            vistaCliente.setWindowFlags(Qt::FramelessWindowHint);
+            vistaCliente.setModal(true);
+            vistaCliente.exec();
+        }
+    } else {
+        qDebug() << "Error en el inicio de sesión:" << query.lastError().text();
+        QMessageBox::critical(this, "Error de inicio de sesión", "El usuario o la contraseña no coinciden");
+    }
 }
+
+
+
+
 
