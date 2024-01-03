@@ -24,7 +24,6 @@ private slots:
 
 private:
     Ui::registro *ui;
-
 };
 
 #endif // REGISTRO_H
