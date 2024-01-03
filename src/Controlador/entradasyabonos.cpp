@@ -6,6 +6,7 @@ entradasyabonos::entradasyabonos(QWidget *parent) :
     ui(new Ui::entradasyabonos)
 {
     ui->setupUi(this);
+    ui->quickWidget->setSource(QUrl("qrc:Files/qml/entradasyabonos.qml"));
 }
 
 entradasyabonos::~entradasyabonos()

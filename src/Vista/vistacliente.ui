@@ -241,7 +241,7 @@ icon-color: black;</string>
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../Recursos.qrc">
+            <iconset>
              <normaloff>:/Files/imagenes/minimizar.jpg</normaloff>:/Files/imagenes/minimizar.jpg</iconset>
            </property>
            <property name="checkable">
@@ -265,7 +265,7 @@ color: rgb(0, 0, 0);</string>
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../Recursos.qrc">
+            <iconset>
              <normaloff>:/Files/imagenes/window.png</normaloff>:/Files/imagenes/window.png</iconset>
            </property>
           </widget>
@@ -286,7 +286,7 @@ color: rgb(0, 0, 0);</string>
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../../Recursos.qrc">
+            <iconset>
              <normaloff>:/Files/imagenes/cerrar.jpg</normaloff>:/Files/imagenes/cerrar.jpg</iconset>
            </property>
            <property name="autoRepeat">
@@ -300,9 +300,9 @@ color: rgb(0, 0, 0);</string>
         </layout>
         <zorder>label</zorder>
         <zorder>pushButton</zorder>
-        <zorder>pushButton_4</zorder>
         <zorder>imagen</zorder>
         <zorder>pushButton_3</zorder>
+        <zorder>pushButton_4</zorder>
        </widget>
       </item>
       <item>
@@ -666,7 +666,7 @@ color: white;
               <string>Show Subscriptions</string>
              </property>
              <property name="icon">
-              <iconset resource="../../Recursos.qrc">
+              <iconset>
                <normaloff>:/Files/imagenes/abono.jpg</normaloff>:/Files/imagenes/abono.jpg</iconset>
              </property>
              <property name="iconSize">
@@ -699,7 +699,7 @@ color: white;</string>
               <string>Show Tickets</string>
              </property>
              <property name="icon">
-              <iconset resource="../../Recursos.qrc">
+              <iconset>
                <normaloff>:/Files/imagenes/entrada.jpg</normaloff>:/Files/imagenes/entrada.jpg</iconset>
              </property>
              <property name="iconSize">
@@ -720,8 +720,6 @@ color: white;</string>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../Recursos.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
