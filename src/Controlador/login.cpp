@@ -51,6 +51,8 @@ void login::on_register_2_clicked()
 void login::on_login_2_clicked()
 {
     comprobarUsuario();
+    ui->lineEdit->clear();
+    ui->lineEdit_2->clear();
 }
 
 void login::comprobarUsuario(){
