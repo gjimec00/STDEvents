@@ -265,8 +265,11 @@ font: 900 9pt &quot;Arial Black&quot;;</string>
         <property name="text">
          <string>Confirm Registration</string>
         </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
         <property name="default">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="flat">
          <bool>false</bool>
@@ -296,8 +299,11 @@ font: 900 9pt &quot;Arial Black&quot;;</string>
         <property name="text">
          <string>Cancel</string>
         </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
         <property name="default">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="flat">
          <bool>false</bool>
