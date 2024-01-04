@@ -31,8 +31,9 @@ void registro::on_pushButton_clicked()
 {
     verificarContraseñas();
 
+
     QSqlQuery query;
-    query.prepare("INSERT INTO clientes (dni, nombre, apellidos, telefono, correo, contrasena, abonado) VALUES (:dni, :nombre, :apellidos, :telefono, :correo, :contrasena, :abonado)");
+    query.prepare("INSERT INTO clientes (dni, nombre, apellidos, telefono, correo, contrasena) VALUES (:dni, :nombre, :apellidos, :telefono, :correo, :contrasena)");
 
     query.bindValue(":nombre", ui->lineEdit->text());
     query.bindValue(":apellidos", ui->lineEdit_2->text());
@@ -42,10 +43,13 @@ void registro::on_pushButton_clicked()
     query.bindValue(":contrasena", ui->lineEdit_6->text());
 
 
+
+
     if (query.exec()) {
         qDebug() << "Datos añadidos con éxito.";
     } else {
         qDebug() << "Error al añadir datos:" << query.lastError().text();
+        QMessageBox::critical(this, "Error de registro", "El usuario ya esta registrado");
     }
 
     query.clear();
@@ -57,4 +61,5 @@ void registro::on_pushButton_3_clicked()
 {
     close();
 }
+
 
