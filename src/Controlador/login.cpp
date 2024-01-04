@@ -50,32 +50,52 @@ void login::on_register_2_clicked()
 
 void login::on_login_2_clicked()
 {
-    QSqlQuery query;
-    query.prepare("SELECT nombre FROM administrador WHERE nombre = :nombre AND contrasena = :contrasena");
+    comprobarUsuario();
+}
 
+void login::comprobarUsuario(){
+    QSqlQuery query;
+
+    // Comprobar si es un administrador
+    query.prepare("SELECT nombre FROM administrador WHERE nombre = :nombre AND contrasena = :contrasena");
     query.bindValue(":nombre", ui->lineEdit->text());
     query.bindValue(":contrasena", ui->lineEdit_2->text());
 
     if (query.exec() && query.next()) {
-        QString nombreEnBaseDeDatos = query.value(0).toString();
-
-        QString nombre = ui->lineEdit->text();
-        if (nombreEnBaseDeDatos == nombre) {
-            administrador administrador;
-            administrador.setWindowFlags(Qt::FramelessWindowHint);
-            administrador.setModal(true);
-            administrador.exec();
-        } else {
-            vistaCliente vistaCliente;
-            vistaCliente.setWindowFlags(Qt::FramelessWindowHint);
-            vistaCliente.setModal(true);
-            vistaCliente.exec();
-        }
+        // Es un administrador
+        abrirVistaAdministrador();
     } else {
-        qDebug() << "Error en el inicio de sesión:" << query.lastError().text();
-        QMessageBox::critical(this, "Error de inicio de sesión", "El usuario o la contraseña no coinciden");
+        // No es un administrador, comprobar si es un cliente
+        QSqlQuery query2;
+        query2.prepare("SELECT nombre FROM clientes WHERE nombre = :nombre AND contrasena = :contrasena");
+        query2.bindValue(":nombre", ui->lineEdit->text());
+        query2.bindValue(":contrasena", ui->lineEdit_2->text());
+
+        if(query2.exec() && query2.next()){
+            // Es un cliente
+            abrirVistaCliente();
+        } else {
+            // No es ni administrador ni cliente
+            qDebug() << "Error en el inicio de sesión:" << query.lastError().text();
+            QMessageBox::critical(this, "Error de inicio de sesión", "<font color='white'>El usuario o la contraseña no coinciden</font>");
+        }
     }
 }
+
+void login::abrirVistaAdministrador() {
+    administrador admin;
+    admin.setWindowFlags(Qt::FramelessWindowHint);
+    admin.setModal(true);
+    admin.exec();
+}
+
+void login::abrirVistaCliente() {
+    vistaCliente cliente;
+    cliente.setWindowFlags(Qt::FramelessWindowHint);
+    cliente.setModal(true);
+    cliente.exec();
+}
+
 
 
 

@@ -27,6 +27,12 @@ private slots:
 
     void on_login_2_clicked();
 
+    void comprobarUsuario();
+
+    void abrirVistaAdministrador();
+
+    void abrirVistaCliente();
+
 private:
     Ui::login *ui;
     DataBase mBaseDatos;
