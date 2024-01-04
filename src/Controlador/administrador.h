@@ -15,8 +15,16 @@ public:
     explicit administrador(QWidget *parent = nullptr);
     ~administrador();
 
+private slots:
+    void on_menuBtn_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_accountBtn_clicked();
+
 private:
     Ui::administrador *ui;
+    bool ventanaCerrada;
 };
 
 #endif // ADMINISTRADOR_H

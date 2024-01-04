@@ -76,7 +76,7 @@ void login::comprobarUsuario(){
             abrirVistaCliente();
         } else {
             // No es ni administrador ni cliente
-            qDebug() << "Error en el inicio de sesión:" << query.lastError().text();
+            qDebug() << "Error en el inicio de sesión:" << query2.lastError().text();
             QMessageBox::critical(this, "Error de inicio de sesión", "<font color='white'>El usuario o la contraseña no coinciden</font>");
         }
     }

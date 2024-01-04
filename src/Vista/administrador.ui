@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>administrador</class>
  <widget class="QDialog" name="administrador">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1030</width>
-    <height>549</height>
+    <width>929</width>
+    <height>548</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -83,9 +86,15 @@ text-align:left;
     </property>
     <item>
      <widget class="QWidget" name="leftMenu" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_8">
        <property name="spacing">
         <number>0</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <property name="leftMargin">
         <number>15</number>
