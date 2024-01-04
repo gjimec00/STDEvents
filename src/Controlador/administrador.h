@@ -24,7 +24,6 @@ private slots:
 
 private:
     Ui::administrador *ui;
-    bool ventanaCerrada;
 };
 
 #endif // ADMINISTRADOR_H
