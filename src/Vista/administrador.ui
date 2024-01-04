@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1223</width>
-    <height>399</height>
+    <width>1030</width>
+    <height>549</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,8 +70,8 @@ text-align:left;
     <rect>
      <x>-1</x>
      <y>-1</y>
-     <width>1227</width>
-     <height>397</height>
+     <width>1031</width>
+     <height>551</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="centralWidget">
@@ -222,7 +222,7 @@ text-align:left;
                 <item>
                  <widget class="QPushButton" name="pushButton_3">
                   <property name="text">
-                   <string>PushButton</string>
+                   <string>Savings</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../../Recursos.qrc">
@@ -239,7 +239,7 @@ text-align:left;
                 <item>
                  <widget class="QPushButton" name="pushButton_6">
                   <property name="text">
-                   <string>PushButton</string>
+                   <string>Statistics</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../../Recursos.qrc">
@@ -256,7 +256,7 @@ text-align:left;
                 <item>
                  <widget class="QPushButton" name="pushButton_5">
                   <property name="text">
-                   <string>PushButton</string>
+                   <string>Settings</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../../Recursos.qrc">
@@ -286,7 +286,7 @@ text-align:left;
      <widget class="QWidget" name="mainBody" native="true">
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>0</number>
+        <number>13</number>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -776,7 +776,7 @@ text-align:left;
                    <string/>
                   </property>
                   <property name="pixmap">
-                   <pixmap resource="../../Recursos.qrc">:/greenicons/icons/greenicons/shopping-cart.svg</pixmap>
+                   <pixmap resource="../../Recursos.qrc">:/greenicons/icons/greenicons/users.svg</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>true</bool>
@@ -840,6 +840,12 @@ text-align:left;
                 </item>
                 <item alignment="Qt::AlignRight">
                  <widget class="QPushButton" name="pushButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>View More</string>
                   </property>
@@ -1021,6 +1027,12 @@ text-align:left;
                 </item>
                 <item alignment="Qt::AlignRight">
                  <widget class="QPushButton" name="pushButton_2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>View More</string>
                   </property>
@@ -1138,6 +1150,21 @@ text-align:left;
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_13">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item alignment="Qt::AlignTop">
            <widget class="QLabel" name="label_29">
             <property name="font">
@@ -1199,6 +1226,12 @@ text-align:left;
           </item>
           <item>
            <widget class="QPushButton" name="pushButton_8">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>20</height>
+             </size>
+            </property>
             <property name="text">
              <string>Logout</string>
             </property>
