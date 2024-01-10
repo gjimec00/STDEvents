@@ -11,6 +11,9 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/Controlador/addproducto.cpp \
+    src/Controlador/clients.cpp \
+    src/Controlador/eventos.cpp \
     src/controlador/compraproductos.cpp \
     src/Controlador/entradasyabonos.cpp \
     src/Controlador/calendario.cpp \
@@ -22,16 +25,22 @@ SOURCES += \
     src/Controlador/vistacliente.cpp \
 
 HEADERS += \
+    src/Controlador/addproducto.h \
+    src/Controlador/clients.h \
     src/Controlador/compraproductos.h \
     src/Controlador/entradasyabonos.h \
     src/Controlador/calendario.h \
     src/Controlador/administrador.h \
+    src/Controlador/eventos.h \
     src/Controlador/registro.h \
     src/Controlador/login.h \
     src/Modelo/database.h \
     src/Controlador/vistacliente.h
 
 FORMS += \
+    src/Vista/clients.ui \
+    src/Vista/eventos.ui \
+    src/Vista/addproducto.ui \
     src/Vista/compraproductos.ui \
     src/Vista/entradasyabonos.ui \
     src/Vista/calendario.ui \

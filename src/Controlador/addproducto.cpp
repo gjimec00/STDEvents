@@ -1,25 +1,23 @@
-#include "administrador.h"
-#include <QParallelAnimationGroup>
-#include "qpropertyanimation.h"
-#include "ui_administrador.h"
 #include "addproducto.h"
-#include "eventos.h"
+#include "ui_addproducto.h"
+#include <QPropertyAnimation>
+#include "administrador.h"
 
-//bool ventanaCerrada = true;
-//bool ventanaCerradaP = true;
-administrador::administrador(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::administrador)
+bool ventanaCerrada2 = true;
+bool ventanaCerrada2P = true;
+addproducto::addproducto(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::addproducto)
 {
     ui->setupUi(this);
 }
 
-administrador::~administrador()
+addproducto::~addproducto()
 {
     delete ui;
 }
 
-void administrador::on_menuBtn_clicked()
+void addproducto::on_menuBtn_clicked()
 {
     QPropertyAnimation *animation = new QPropertyAnimation(ui->leftMenu, "pos");
     animation->setDuration(500);
@@ -31,7 +29,7 @@ void administrador::on_menuBtn_clicked()
     animation2->setDuration(500);
 
     QRect geometry = this->geometry();
-    if (ventanaCerrada){
+    if (ventanaCerrada2){
         geometry.setWidth(1150);
         geometry.setHeight(548);
         animationDespl->setEndValue(geometry);
@@ -44,7 +42,7 @@ void administrador::on_menuBtn_clicked()
 
         animation2->setStartValue(QPoint(1030, 0));
         animation2->setEndValue(QPoint(1150, 0));
-        ventanaCerrada = false;
+        ventanaCerrada2 = false;
 
 
     } else{
@@ -60,7 +58,7 @@ void administrador::on_menuBtn_clicked()
 
         animation2->setStartValue(QPoint(1250, 0));
         animation2->setEndValue(QPoint(930, 0));
-        ventanaCerrada = true;
+        ventanaCerrada2 = true;
     }
     animationDespl->start();
 
@@ -73,66 +71,53 @@ void administrador::on_menuBtn_clicked()
 }
 
 
-void administrador::on_pushButton_8_clicked()
+void addproducto::on_pushButton_8_clicked()
 {
     close();
 }
 
 
-void administrador::on_accountBtn_clicked()
+void addproducto::on_accountBtn_clicked()
 {
     QPropertyAnimation *animation = new QPropertyAnimation(this, "geometry");
     animation->setDuration(500);
     QRect geometry = this->geometry();
-    if (ventanaCerrada){
-        if(ventanaCerradaP){
+    if (ventanaCerrada2){
+        if(ventanaCerrada2P){
             geometry.setWidth(1030);
             geometry.setHeight(548);
             animation->setEndValue(geometry);
-            ventanaCerradaP = false;
+            ventanaCerrada2P = false;
         }else{
             geometry.setWidth(930);
             geometry.setHeight(548);
             animation->setEndValue(geometry);
-            ventanaCerradaP = true;
+            ventanaCerrada2P = true;
         }
     } else{
-        if(ventanaCerradaP){
+        if(ventanaCerrada2P){
             geometry.setWidth(1250);
             geometry.setHeight(548);
             animation->setEndValue(geometry);
-            ventanaCerradaP = false;
+            ventanaCerrada2P = false;
         }else{
             geometry.setWidth(1150);
             geometry.setHeight(548);
             animation->setEndValue(geometry);
-            ventanaCerradaP = true;
+            ventanaCerrada2P = true;
         }
     }
     animation->start();
 
 }
 
-
-void administrador::on_pushButton_3_clicked()
+void addproducto::on_pushButton_4_clicked()
 {
-
-    addproducto addproducto;
-    addproducto.setWindowFlags(Qt::FramelessWindowHint);
-    addproducto.setModal(true);
+    administrador admin;
+    admin.setWindowFlags(Qt::FramelessWindowHint);
+    admin.setModal(true);
     hide();
-    addproducto.exec();
-
-
+    admin.exec();
 }
 
-
-void administrador::on_pushButton_6_clicked()
-{
-    eventos evento;
-    evento.setWindowFlags(Qt::FramelessWindowHint);
-    evento.setModal(true);
-    hide();
-    evento.exec();
-}
 
