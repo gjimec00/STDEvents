@@ -16,6 +16,7 @@ public:
     explicit registro(QWidget *parent = nullptr);
     ~registro();
     void verificarContraseñas();
+    void verificarDni();
 
 private slots:
     void on_pushButton_clicked();

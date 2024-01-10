@@ -27,10 +27,29 @@ void registro::verificarContraseñas() {
     }
 }
 
+void registro::verificarDni() {
+    QString dni = ui->lineEdit_3->text();
+    QString letras[23] = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E" };
+    if( dni.length() == 9){
+        QString letra = dni.at(8);
+        dni.removeLast();
+        int nums = dni.toInt();
+        int resto = nums%23;
+        if(letras[resto]!=letra){
+            QMessageBox::warning(this, "Warning", "El DNI no es correcto");
+            ui->lineEdit_3->clear();
+        }
+    }else{
+        QMessageBox::warning(this, "Warning", "El DNI no es correcto");
+        ui->lineEdit_3->clear();
+    }
+
+}
+
 void registro::on_pushButton_clicked()
 {
     verificarContraseñas();
-
+    verificarDni();
 
     QSqlQuery query;
     query.prepare("INSERT INTO clientes (dni, nombre, apellidos, telefono, correo, contrasena) VALUES (:dni, :nombre, :apellidos, :telefono, :correo, :contrasena)");
