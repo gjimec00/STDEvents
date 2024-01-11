@@ -176,3 +176,37 @@ void addproducto::on_pushButton_clicked()
     ui->lineEdit_2->clear();
 }
 
+
+void addproducto::on_pushButton_7_clicked()
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM productos WHERE nombre = :nombre AND cantidad = :cantidad AND talla = :talla AND color = :color");
+
+    query.bindValue(":nombre", ui->lineEdit_18->text());
+    query.bindValue(":cantidad", ui->lineEdit_19->text());
+    query.bindValue(":talla", ui->lineEdit_22->text());
+    query.bindValue(":color", ui->lineEdit_23->text());
+
+
+
+    if (query.exec()) {
+        int numRowsAffected = query.numRowsAffected();
+        if (numRowsAffected > 0) {
+            qDebug() << "Producto eliminado con éxito. Filas afectadas:" << numRowsAffected;
+        } else {
+            qDebug() << "No se encontró ningún producto con los criterios especificados.";
+            QMessageBox::information(this, "Información", "No se encontró ningún producto con los criterios especificados.");
+        }
+    } else {
+        qDebug() << "Error al eliminar el producto:" << query.lastError().text();
+        QMessageBox::critical(this, "Error", "No se pudo eliminar el producto");
+    }
+
+    query.clear();
+    ui->lineEdit_18->clear();
+    ui->lineEdit_19->clear();
+    ui->lineEdit_22->clear();
+    ui->lineEdit_23->clear();
+
+}
+
