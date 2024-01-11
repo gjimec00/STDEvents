@@ -16,7 +16,7 @@ registro::~registro()
     delete ui;
 }
 
-void registro::verificarContraseñas() {
+void registro::verificarContrasenas() {
     QString password = ui->lineEdit_6->text();
     QString confirmedPass = ui->lineEdit_7->text();
 
@@ -48,7 +48,7 @@ void registro::verificarDni() {
 
 void registro::on_pushButton_clicked()
 {
-    verificarContraseñas();
+    verificarContrasenas();
     verificarDni();
 
     QSqlQuery query;

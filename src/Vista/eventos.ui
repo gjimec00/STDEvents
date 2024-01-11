@@ -26,7 +26,7 @@ background-color: #eff9fe;
 background-color: rgb(1, 176, 83);
 
 }
-QLineEdit, QTextEdit{
+QLineEdit, QTextEdit, QTimeEdit, QDateEdit{
 background:transparent;
 border: 0.5px solid grey;
 
@@ -647,9 +647,32 @@ border-radius: 20px;
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_11">
-                 <property name="placeholderText">
-                  <string>Date</string>
+                <widget class="QDateEdit" name="dateEdit">
+                 <property name="frame">
+                  <bool>true</bool>
+                 </property>
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                 <property name="minimumDate">
+                  <date>
+                   <year>1752</year>
+                   <month>10</month>
+                   <day>14</day>
+                  </date>
+                 </property>
+                 <property name="displayFormat">
+                  <string>yyyy-MM-dd</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                 <property name="date">
+                  <date>
+                   <year>2024</year>
+                   <month>1</month>
+                   <day>15</day>
+                  </date>
                  </property>
                 </widget>
                </item>
@@ -679,9 +702,15 @@ border-radius: 20px;
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_7">
-                 <property name="placeholderText">
-                  <string>Time</string>
+                <widget class="QTimeEdit" name="timeEdit">
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                 <property name="displayFormat">
+                  <string>HH:mm</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -871,9 +900,32 @@ border-radius: 20px;
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_19">
-                 <property name="placeholderText">
-                  <string>Date</string>
+                <widget class="QDateEdit" name="dateEdit_2">
+                 <property name="frame">
+                  <bool>true</bool>
+                 </property>
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                 <property name="minimumDate">
+                  <date>
+                   <year>1752</year>
+                   <month>10</month>
+                   <day>14</day>
+                  </date>
+                 </property>
+                 <property name="displayFormat">
+                  <string>yyyy-MM-dd</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
+                 </property>
+                 <property name="date">
+                  <date>
+                   <year>2024</year>
+                   <month>1</month>
+                   <day>15</day>
+                  </date>
                  </property>
                 </widget>
                </item>
@@ -903,9 +955,15 @@ border-radius: 20px;
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_22">
-                 <property name="placeholderText">
-                  <string>Time</string>
+                <widget class="QTimeEdit" name="timeEdit_2">
+                 <property name="buttonSymbols">
+                  <enum>QAbstractSpinBox::NoButtons</enum>
+                 </property>
+                 <property name="displayFormat">
+                  <string>HH:mm</string>
+                 </property>
+                 <property name="calendarPopup">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>

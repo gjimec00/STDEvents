@@ -4,6 +4,8 @@
 #include "administrador.h"
 #include "clients.h"
 #include "addproducto.h"
+#include <QMessageBox>
+#include <QtSql>
 
 bool ventanaCerrada3 = true;
 bool ventanaCerrada3P = true;
@@ -139,5 +141,35 @@ void eventos::on_pushButton_5_clicked()
     cliente.setModal(true);
     hide();
     cliente.exec();
+}
+
+
+void eventos::on_pushButton_clicked()
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO eventos (nombre, fecha, hora, descripcion, tipo) VALUES (:nombre, :fecha, :hora, :descripcion, :tipo)");
+
+    query.bindValue(":nombre", ui->lineEdit_10->text());
+    query.bindValue(":fecha", ui->dateEdit->text());
+    query.bindValue(":hora", ui->timeEdit->text());
+    query.bindValue(":descripcion", ui->lineEdit_12->text());
+    query.bindValue(":tipo", ui->lineEdit_9->text());
+
+
+
+    if (query.exec()) {
+        qDebug() << "Evento añadido con éxito.";
+    } else {
+        qDebug() << "Error al añadir el evento:" << query.lastError().text();
+        QMessageBox::critical(this, "Error", "No se pudo añadir el evento");
+    }
+
+    query.clear();
+    ui->lineEdit_10->clear();
+    //ui->dateEdit->clear();
+    //ui->timeEdit->clear();
+    ui->lineEdit_12->clear();
+    ui->lineEdit_9->clear();
+
 }
 

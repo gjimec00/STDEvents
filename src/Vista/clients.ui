@@ -67,7 +67,7 @@ padding: 10px 5px;
 text-align:left;
 
 }
-#frame_5, #frame, #frame_2, #frame_4 , #frame_3,  #frame_6,  #frame_7, #frame_20, #frame_21, #frame_22, #frame_23, #frame_24, #frame_25, #frame_19{
+#frame_5, #frame, #frame_2, #frame_4 , #frame_3,  #frame_6,  #frame_7, #frame_20, #frame_21, #frame_22, #frame_23, #frame_24, #frame_25, #frame_19, #frame_8{
 background-color: #fefeff;
 border-radius: 20px;
 }</string>
@@ -344,6 +344,38 @@ border-radius: 20px;
                 <widget class="QLineEdit" name="lineEdit_7">
                  <property name="placeholderText">
                   <string>NIF</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_8">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <widget class="QLabel" name="label_12">
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Introduce el telefono del cliente:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_13">
+                 <property name="placeholderText">
+                  <string>Telephone number</string>
                  </property>
                 </widget>
                </item>

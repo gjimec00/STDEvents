@@ -4,6 +4,8 @@
 #include "administrador.h"
 #include "eventos.h"
 #include "clients.h"
+#include <QMessageBox>
+#include <QtSql>
 
 bool ventanaCerrada2 = true;
 bool ventanaCerrada2P = true;
@@ -141,5 +143,36 @@ void addproducto::on_pushButton_5_clicked()
     cliente.setModal(true);
     hide();
     cliente.exec();
+}
+
+
+void addproducto::on_pushButton_clicked()
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO productos (nombre, cantidad, precio, descripcion, talla, color) VALUES (:nombre, :cantidad, :precio, :descripcion, :talla, :color)");
+
+    query.bindValue(":nombre", ui->lineEdit_10->text());
+    query.bindValue(":cantidad", ui->lineEdit_11->text());
+    query.bindValue(":precio", ui->lineEdit_7->text());
+    query.bindValue(":descripcion", ui->lineEdit_12->text());
+    query.bindValue(":talla", ui->lineEdit_9->text());
+    query.bindValue(":color", ui->lineEdit_2->text());
+
+
+
+    if (query.exec()) {
+        qDebug() << "Producto añadido con éxito.";
+    } else {
+        qDebug() << "Error al añadir el producto:" << query.lastError().text();
+        QMessageBox::critical(this, "Error", "No se pudo añadir el producto");
+    }
+
+    query.clear();
+    ui->lineEdit_10->clear();
+    ui->lineEdit_11->clear();
+    ui->lineEdit_7->clear();
+    ui->lineEdit_12->clear();
+    ui->lineEdit_9->clear();
+    ui->lineEdit_2->clear();
 }
 

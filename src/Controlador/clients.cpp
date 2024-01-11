@@ -4,6 +4,8 @@
 #include "administrador.h"
 #include "addproducto.h"
 #include "eventos.h"
+#include <QMessageBox>
+#include <QtSql>
 
 bool ventanaCerrada4 = true;
 bool ventanaCerrada4P = true;
@@ -138,5 +140,58 @@ void clients::on_pushButton_6_clicked()
     evento.setModal(true);
     hide();
     evento.exec();
+}
+
+
+void clients::verificarDni() {
+    QString dni = ui->lineEdit_7->text();
+    QString letras[23] = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E" };
+    if( dni.length() == 9){
+        QString letra = dni.at(8);
+        dni.removeLast();
+        int nums = dni.toInt();
+        int resto = nums%23;
+        if(letras[resto]!=letra){
+            QMessageBox::warning(this, "Warning", "El DNI no es correcto");
+            ui->lineEdit_7->clear();
+        }
+    }else{
+        QMessageBox::warning(this, "Warning", "El DNI no es correcto");
+        ui->lineEdit_7->clear();
+    }
+
+}
+
+void clients::on_pushButton_clicked()
+{
+
+    verificarDni();
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO clientes (nombre, apellidos, dni, correo, contrasena, telefono) VALUES (:nombre, :apellidos, :dni, :correo, :contrasena, :telefono)");
+
+    query.bindValue(":nombre", ui->lineEdit_10->text());
+    query.bindValue(":apellidos", ui->lineEdit_11->text());
+    query.bindValue(":dni", ui->lineEdit_7->text());
+    query.bindValue(":correo", ui->lineEdit_12->text());
+    query.bindValue(":contrasena", ui->lineEdit_9->text());
+    query.bindValue(":telefono", ui->lineEdit_13->text());
+
+
+
+    if (query.exec()) {
+        qDebug() << "Cliente añadido con éxito.";
+    } else {
+        qDebug() << "Error al añadir el cliente:" << query.lastError().text();
+        QMessageBox::critical(this, "Error", "No se pudo añadir el cliente");
+    }
+
+    query.clear();
+    ui->lineEdit_10->clear();
+    ui->lineEdit_11->clear();
+    ui->lineEdit_7->clear();
+    ui->lineEdit_12->clear();
+    ui->lineEdit_9->clear();
+    ui->lineEdit_13->clear();
 }
 
