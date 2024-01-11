@@ -27,6 +27,7 @@ private slots:
     void on_pushButton_3_clicked();
     void on_pushButton_5_clicked();
     void on_pushButton_clicked();
+    void on_pushButton_7_clicked();
 };
 
 #endif // EVENTOS_H

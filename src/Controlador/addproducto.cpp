@@ -180,26 +180,58 @@ void addproducto::on_pushButton_clicked()
 void addproducto::on_pushButton_7_clicked()
 {
     QSqlQuery query;
-    query.prepare("DELETE FROM productos WHERE nombre = :nombre AND cantidad = :cantidad AND talla = :talla AND color = :color");
+    query.prepare("SELECT idProducto,cantidad FROM productos WHERE nombre = :nombre AND talla = :talla AND color = :color");
+
 
     query.bindValue(":nombre", ui->lineEdit_18->text());
     query.bindValue(":cantidad", ui->lineEdit_19->text());
     query.bindValue(":talla", ui->lineEdit_22->text());
     query.bindValue(":color", ui->lineEdit_23->text());
 
+    if (query.exec() && query.next()) {
 
+        int idProducto = query.value(0).toInt();
+        int cantidad = query.value(1).toInt();
 
-    if (query.exec()) {
-        int numRowsAffected = query.numRowsAffected();
-        if (numRowsAffected > 0) {
-            qDebug() << "Producto eliminado con éxito. Filas afectadas:" << numRowsAffected;
-        } else {
-            qDebug() << "No se encontró ningún producto con los criterios especificados.";
-            QMessageBox::information(this, "Información", "No se encontró ningún producto con los criterios especificados.");
+        if(cantidad <= ui->lineEdit_19->text().toInt()){
+            query.prepare("DELETE FROM productos WHERE idProducto = :idProducto");
+            query.bindValue(":idProducto", idProducto);
+
+            if (query.exec()) {
+                int numRowsAffected = query.numRowsAffected();
+                if (numRowsAffected > 0) {
+                    qDebug() << "Producto eliminado con éxito. Filas afectadas:" << numRowsAffected;
+                } else {
+                    qDebug() << "No se encontró ningún producto con los criterios especificados.";
+                    QMessageBox::information(this, "Información", "No se encontró ningún producto con los criterios especificados.");
+                }
+            } else {
+                qDebug() << "Error al eliminar el producto:" << query.lastError().text();
+                QMessageBox::critical(this, "Error", "No se pudo eliminar el producto");
+            }
+        }else{
+            cantidad -=  ui->lineEdit_19->text().toInt();
+            query.prepare("UPDATE productos SET cantidad= :cantidad WHERE idProducto = :idProducto");
+            query.bindValue(":idProducto", idProducto);
+            query.bindValue(":cantidad", cantidad);
+
+            if (query.exec()) {
+                int numRowsAffected = query.numRowsAffected();
+                if (numRowsAffected > 0) {
+                    qDebug() << "Cantidad del producto eliminada con éxito. Filas afectadas:" << numRowsAffected;
+                } else {
+                    qDebug() << "No se encontró ningún producto con los criterios especificados.";
+                    QMessageBox::information(this, "Información", "No se encontró ningún producto con los criterios especificados.");
+                }
+            } else {
+                qDebug() << "Error al eliminar el producto:" << query.lastError().text();
+                QMessageBox::critical(this, "Error", "No se pudo eliminar el producto");
+            }
         }
+
     } else {
-        qDebug() << "Error al eliminar el producto:" << query.lastError().text();
-        QMessageBox::critical(this, "Error", "No se pudo eliminar el producto");
+        qDebug() << "Error al obtener el idProducto:" << query.lastError().text();
+        QMessageBox::critical(this, "Error", "No se pudo obtener el idProducto");
     }
 
     query.clear();
