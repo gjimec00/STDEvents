@@ -4,6 +4,7 @@
 #include "ui_administrador.h"
 #include "addproducto.h"
 #include "eventos.h"
+#include "clients.h"
 
 //bool ventanaCerrada = true;
 //bool ventanaCerradaP = true;
@@ -122,8 +123,6 @@ void administrador::on_pushButton_3_clicked()
     addproducto.setModal(true);
     hide();
     addproducto.exec();
-
-
 }
 
 
@@ -134,5 +133,15 @@ void administrador::on_pushButton_6_clicked()
     evento.setModal(true);
     hide();
     evento.exec();
+}
+
+
+void administrador::on_pushButton_5_clicked()
+{
+    clients clientes;
+    clientes.setWindowFlags(Qt::FramelessWindowHint);
+    clientes.setModal(true);
+    hide();
+    clientes.exec();
 }
 

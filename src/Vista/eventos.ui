@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1298</width>
-    <height>587</height>
+    <width>931</width>
+    <height>542</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -260,7 +260,7 @@ border-radius: 20px;
              <item>
               <widget class="QPushButton" name="pushButton_5">
                <property name="text">
-                <string>Users</string>
+                <string>Clients</string>
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
@@ -476,7 +476,7 @@ border-radius: 20px;
              </font>
             </property>
             <property name="text">
-             <string>Dashboard</string>
+             <string>Events</string>
             </property>
            </widget>
           </item>

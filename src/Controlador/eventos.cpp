@@ -2,6 +2,8 @@
 #include "ui_eventos.h"
 #include <QPropertyAnimation>
 #include "administrador.h"
+#include "clients.h"
+#include "addproducto.h"
 
 bool ventanaCerrada3 = true;
 bool ventanaCerrada3P = true;
@@ -119,3 +121,23 @@ void eventos::on_pushButton_4_clicked()
     hide();
     admin.exec();
 }
+
+void eventos::on_pushButton_3_clicked()
+{
+    addproducto producto;
+    producto.setWindowFlags(Qt::FramelessWindowHint);
+    producto.setModal(true);
+    hide();
+    producto.exec();
+}
+
+
+void eventos::on_pushButton_5_clicked()
+{
+    clients cliente;
+    cliente.setWindowFlags(Qt::FramelessWindowHint);
+    cliente.setModal(true);
+    hide();
+    cliente.exec();
+}
+

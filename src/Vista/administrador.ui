@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1273</width>
-    <height>574</height>
+    <width>929</width>
+    <height>552</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -256,7 +256,7 @@ text-align:left;
              <item>
               <widget class="QPushButton" name="pushButton_5">
                <property name="text">
-                <string>Users</string>
+                <string>Clients</string>
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
@@ -472,7 +472,7 @@ text-align:left;
              </font>
             </property>
             <property name="text">
-             <string>Dashboard</string>
+             <string>Home</string>
             </property>
            </widget>
           </item>

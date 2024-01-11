@@ -24,6 +24,8 @@ private slots:
 
     void on_accountBtn_clicked();
     void on_pushButton_4_clicked();
+    void on_pushButton_3_clicked();
+    void on_pushButton_6_clicked();
 };
 
 #endif // CLIENTS_H
