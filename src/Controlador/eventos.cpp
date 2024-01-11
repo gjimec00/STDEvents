@@ -147,27 +147,36 @@ void eventos::on_pushButton_5_clicked()
 void eventos::on_pushButton_clicked()
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO eventos (nombre, fecha, hora, descripcion, tipo) VALUES (:nombre, :fecha, :hora, :descripcion, :tipo)");
+    query.prepare("SELECT dni FROM administrador WHERE nombre='admin'");
 
-    query.bindValue(":nombre", ui->lineEdit_10->text());
-    query.bindValue(":fecha", ui->dateEdit->text());
-    query.bindValue(":hora", ui->timeEdit->text());
-    query.bindValue(":descripcion", ui->lineEdit_12->text());
-    query.bindValue(":tipo", ui->lineEdit_9->text());
+    if (query.exec() && query.next()) {
+        QChar dniAdmin = query.value(0).toChar();
+
+        query.prepare("INSERT INTO eventos (nombre, fecha, hora, descripcion, tipo) VALUES (:nombre, :fecha, :hora, :descripcion, :tipo)");
+
+        query.bindValue(":nombre", ui->lineEdit_10->text());
+        query.bindValue(":fecha", ui->dateEdit->text());
+        query.bindValue(":hora", ui->timeEdit->text());
+        query.bindValue(":descripcion", ui->lineEdit_12->text());
+        query.bindValue(":tipo", ui->lineEdit_9->text());
+        //query.bindValue(":dniAdmin", dniAdmin);
 
 
 
-    if (query.exec()) {
-        qDebug() << "Evento añadido con éxito.";
+        if (query.exec()) {
+            qDebug() << "Evento añadido con éxito.";
+        } else {
+            qDebug() << "Error al añadir el evento:" << query.lastError().text();
+            QMessageBox::critical(this, "Error", "No se pudo añadir el evento");
+        }
     } else {
-        qDebug() << "Error al añadir el evento:" << query.lastError().text();
-        QMessageBox::critical(this, "Error", "No se pudo añadir el evento");
+        qDebug() << "Error al obtener el idEvento:" << query.lastError().text();
+        QMessageBox::critical(this, "Error", "No se pudo obtener el idEvento");
     }
+
 
     query.clear();
     ui->lineEdit_10->clear();
-    //ui->dateEdit->clear();
-    //ui->timeEdit->clear();
     ui->lineEdit_12->clear();
     ui->lineEdit_9->clear();
 
@@ -177,64 +186,85 @@ void eventos::on_pushButton_clicked()
 void eventos::on_pushButton_7_clicked()
 {
     QSqlQuery query;
-    query.prepare("SELECT idEvento FROM productos WHERE nombre = :nombre AND talla = :talla AND color = :color");
-
+    query.prepare("SELECT idEvento, fecha, hora, descripcion FROM eventos WHERE nombre = :nombre");
 
     query.bindValue(":nombre", ui->lineEdit_18->text());
-    query.bindValue(":cantidad", ui->lineEdit_19->text());
-    query.bindValue(":talla", ui->lineEdit_22->text());
-    query.bindValue(":color", ui->lineEdit_23->text());
 
     if (query.exec() && query.next()) {
 
-        int idProducto = query.value(0).toInt();
-        int cantidad = query.value(1).toInt();
+        int idEvento = query.value(0).toInt();
+        QString fecha = query.value(1).toString();
+        QString hora = query.value(2).toString();
+        QString descripcion = query.value(3).toString();
 
-        if(cantidad <= ui->lineEdit_19->text().toInt()){
-            query.prepare("DELETE FROM productos WHERE idProducto = :idProducto");
-            query.bindValue(":idProducto", idProducto);
+
+        //Query de modificacion de la fecha
+        if(ui->dateEdit_2->text() != fecha){
+            query.prepare("UPDATE eventos SET fecha= :fecha WHERE idEvento = :idEvento");
+            query.bindValue(":idEvento", idEvento);
+            query.bindValue(":fecha", ui->dateEdit_2->text());
 
             if (query.exec()) {
                 int numRowsAffected = query.numRowsAffected();
                 if (numRowsAffected > 0) {
-                    qDebug() << "Producto eliminado con éxito. Filas afectadas:" << numRowsAffected;
+                    qDebug() << "Fecha del evento modificada con éxito. Filas afectadas:" << numRowsAffected;
                 } else {
-                    qDebug() << "No se encontró ningún producto con los criterios especificados.";
-                    QMessageBox::information(this, "Información", "No se encontró ningún producto con los criterios especificados.");
+                    qDebug() << "No se encontró ningún evento con los criterios especificados. FECHA";
+                    QMessageBox::information(this, "Información", "No se encontró ningún evento con los criterios especificados.");
                 }
             } else {
-                qDebug() << "Error al eliminar el producto:" << query.lastError().text();
-                QMessageBox::critical(this, "Error", "No se pudo eliminar el producto");
+                qDebug() << "Error al modificar la fecha del evento:" << query.lastError().text();
+                QMessageBox::critical(this, "Error", "No se pudo modificar el evento");
             }
-        }else{
-            cantidad -=  ui->lineEdit_19->text().toInt();
-            query.prepare("UPDATE productos SET cantidad= :cantidad WHERE idProducto = :idProducto");
-            query.bindValue(":idProducto", idProducto);
-            query.bindValue(":cantidad", cantidad);
+        }
+
+        //Query de modificacion de la hora
+        if(ui->timeEdit_2->text() != hora){
+            query.prepare("UPDATE eventos SET hora= :hora WHERE idEvento = :idEvento");
+            query.bindValue(":idEvento", idEvento);
+            query.bindValue(":hora", ui->timeEdit_2->text());
 
             if (query.exec()) {
                 int numRowsAffected = query.numRowsAffected();
                 if (numRowsAffected > 0) {
-                    qDebug() << "Cantidad del producto eliminada con éxito. Filas afectadas:" << numRowsAffected;
+                    qDebug() << "Hora del evento modificada con éxito. Filas afectadas:" << numRowsAffected;
                 } else {
-                    qDebug() << "No se encontró ningún producto con los criterios especificados.";
-                    QMessageBox::information(this, "Información", "No se encontró ningún producto con los criterios especificados.");
+                    qDebug() << "No se encontró ningún evento con los criterios especificados. HORA";
+                    QMessageBox::information(this, "Información", "No se encontró ningún evento con los criterios especificados.");
                 }
             } else {
-                qDebug() << "Error al eliminar el producto:" << query.lastError().text();
-                QMessageBox::critical(this, "Error", "No se pudo eliminar el producto");
+                qDebug() << "Error al modificar la hora del evento:" << query.lastError().text();
+                QMessageBox::critical(this, "Error", "No se pudo modificar el evento");
+            }
+        }
+
+        //Query de modificacion de la descripción
+        if(ui->lineEdit_23->text() != descripcion){
+            query.prepare("UPDATE eventos SET descripcion= :descripcion WHERE idEvento = :idEvento");
+            query.bindValue(":idEvento", idEvento);
+            query.bindValue(":descripcion", ui->lineEdit_23->text());
+
+            if (query.exec()) {
+                int numRowsAffected = query.numRowsAffected();
+                if (numRowsAffected > 0) {
+                    qDebug() << "Descripción del evento modificada con éxito. Filas afectadas:" << numRowsAffected;
+                } else {
+                    qDebug() << "No se encontró ningún evento con los criterios especificados. DESCRIPCION";
+                    QMessageBox::information(this, "Información", "No se encontró ningún evento con los criterios especificados.");
+                }
+            } else {
+                qDebug() << "Error al modificar la descripción del evento:" << query.lastError().text();
+                QMessageBox::critical(this, "Error", "No se pudo modificar el evento");
             }
         }
 
     } else {
-        qDebug() << "Error al obtener el idProducto:" << query.lastError().text();
-        QMessageBox::critical(this, "Error", "No se pudo obtener el idProducto");
+        qDebug() << "Error al obtener el idEvento:" << query.lastError().text();
+        QMessageBox::critical(this, "Error", "No se pudo obtener el idEvento");
     }
 
     query.clear();
     ui->lineEdit_18->clear();
-    ui->lineEdit_19->clear();
-    ui->lineEdit_22->clear();
     ui->lineEdit_23->clear();
 
 }
