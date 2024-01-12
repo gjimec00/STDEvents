@@ -15,6 +15,7 @@ public:
     explicit vistaCliente(QWidget *parent = nullptr);
     ~vistaCliente();
     void mostrarVistaEventos();
+    void mostrarProductos();
 
 private slots:
     void on_menuBtn_clicked();

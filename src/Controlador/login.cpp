@@ -86,14 +86,10 @@ void login::comprobarUsuario(){
 }
 
 void login::abrirVistaAdministrador() {
-    /*administrador admin;
+    administrador admin;
     admin.setWindowFlags(Qt::FramelessWindowHint);
     admin.setModal(true);
-    admin.exec();*/
-    vistaCliente cliente;
-    cliente.setWindowFlags(Qt::FramelessWindowHint);
-    cliente.setModal(true);
-    cliente.exec();
+    admin.exec();
 }
 
 void login::abrirVistaCliente() {

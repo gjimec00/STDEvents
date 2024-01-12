@@ -1,4 +1,5 @@
 #include "vistacliente.h"
+#include "qcombobox.h"
 #include "ui_vistacliente.h"
 #include "qpropertyanimation.h"
 #include "calendario.h"
@@ -17,6 +18,7 @@ vistaCliente::vistaCliente(QWidget *parent) :
 {
     ui->setupUi(this);
     mostrarVistaEventos();
+    mostrarProductos();
 }
 
 vistaCliente::~vistaCliente()
@@ -121,39 +123,118 @@ void vistaCliente::on_accountBtn_clicked()
 
 void vistaCliente::mostrarVistaEventos(){
     int numeroDeFilas = 0;
-    QSqlQuery query;
-    query.prepare("SELECT COUNT(*) FROM eventos");
+    QSqlQuery queryCount;
+    queryCount.prepare("SELECT COUNT(*) FROM eventos");
 
-    if (!query.exec()) {
+    if (!queryCount.exec()) {
         return;
     }
-    // Obtener el resultado
-    if (query.next()) {
-        numeroDeFilas = query.value(0).toInt();
+
+    if (queryCount.next()) {
+        numeroDeFilas = queryCount.value(0).toInt();
     }
 
     QVBoxLayout *menuDesp = new QVBoxLayout();
-    for (int i = 0; i < numeroDeFilas; i++){
-        QWidget * wid = new QWidget();
-        QHBoxLayout * hor = new QHBoxLayout();
-        QFrame * frame = new QFrame();
+
+    QSqlQuery queryEventos;
+    queryEventos.prepare("SELECT nombre, descripcion, fecha, hora, tipo FROM eventos");
+
+    if (!queryEventos.exec()) {
+        return;
+    }
+
+    while (queryEventos.next()) {
+        QWidget *wid = new QWidget();
+        QHBoxLayout *hor = new QHBoxLayout();
+        QFrame *frame = new QFrame();
         QVBoxLayout *menuDesp2 = new QVBoxLayout();
-        QLabel * label1 = new QLabel("Prueba1");
-        QLabel * label2 = new QLabel("Prueba2");
-        QLabel * label3 = new QLabel("Prueba3");
-        QLabel * label4 = new QLabel("Prueba4");
-        QLabel * label5 = new QLabel("Prueba5");
-        QPushButton * button = new QPushButton("Comprar");
-        wid->setLayout(hor);
-        frame->setLayout(menuDesp2);
+
+        QLabel *label1 = new QLabel(queryEventos.value("nombre").toString());
+        QLabel *label2 = new QLabel(queryEventos.value("descripcion").toString());
+        QLabel *label3 = new QLabel(queryEventos.value("fecha").toString());
+        QLabel *label4 = new QLabel(queryEventos.value("hora").toString());
+        QLabel *label5 = new QLabel(queryEventos.value("tipo").toString());
+
+        QPushButton *button = new QPushButton("Comprar");
+
         menuDesp2->addWidget(label1);
         menuDesp2->addWidget(label2);
         menuDesp2->addWidget(label3);
         menuDesp2->addWidget(label4);
         menuDesp2->addWidget(label5);
+        button->setStyleSheet("background-color:#01ff78; color:#fff; border-radius:10px;");
+        button->setFixedSize(85,30);
+        frame->setLayout(menuDesp2);
         hor->addWidget(frame);
         hor->addWidget(button);
+        wid->setStyleSheet("border:1px solid #01ff78;");
+        wid->setLayout(hor);
         menuDesp->addWidget(wid);
     }
+
     ui->scrollAreaWidgetContents->setLayout(menuDesp);
+}
+
+
+void vistaCliente::mostrarProductos(){
+    int numeroDeFilas = 0;
+    int cantidad=0;
+    QSqlQuery queryCount;
+    queryCount.prepare("SELECT COUNT(*) FROM eventos");
+
+    if (!queryCount.exec()) {
+        return;
+    }
+
+    if (queryCount.next()) {
+        numeroDeFilas = queryCount.value(0).toInt();
+    }
+
+    QVBoxLayout *menuDesp = new QVBoxLayout();
+
+    QSqlQuery queryProductos;
+    queryProductos.prepare("SELECT nombre, cantidad, precio, descripcion, talla, color FROM productos");
+
+    if (!queryProductos.exec()) {
+        return;
+    }
+
+    while (queryProductos.next()) {
+        QWidget *wid = new QWidget();
+        QHBoxLayout *hor = new QHBoxLayout();
+        QFrame *frame = new QFrame();
+        QVBoxLayout *menuDesp2 = new QVBoxLayout();
+        QComboBox *combo = new QComboBox();
+
+        cantidad=queryProductos.value(1).toInt();
+        for(int i=1; i<=cantidad; i++){
+            combo->addItem(QString::number(i));
+        }
+
+        QLabel *label1 = new QLabel(queryProductos.value("nombre").toString());
+        QLabel *label2 = new QLabel(queryProductos.value("precio").toString());
+        QLabel *label3 = new QLabel(queryProductos.value("descripcion").toString());
+        QLabel *label4 = new QLabel(queryProductos.value("talla").toString());
+        QLabel *label5 = new QLabel(queryProductos.value("color").toString());
+
+        QPushButton *button = new QPushButton("Comprar");
+
+        menuDesp2->addWidget(label1);
+        menuDesp2->addWidget(label2);
+        menuDesp2->addWidget(label3);
+        menuDesp2->addWidget(label4);
+        menuDesp2->addWidget(label5);
+        button->setStyleSheet("background-color:#01ff78; color:#fff; border-radius:10px;");
+        button->setFixedSize(85,30);
+        frame->setLayout(menuDesp2);
+        hor->addWidget(frame);
+        combo->setFixedSize(65,15);
+        hor->addWidget(combo);
+        hor->addWidget(button);
+        wid->setStyleSheet("border:1px solid grey;");
+        wid->setLayout(hor);
+        menuDesp->addWidget(wid);
+    }
+
+    ui->scrollAreaWidgetContents_3->setLayout(menuDesp);
 }
