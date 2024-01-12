@@ -939,6 +939,13 @@ text-align:left;
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout">
+             <item row="3" column="1">
+              <widget class="QLabel" name="label_25">
+               <property name="text">
+                <string>€</string>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="0">
               <widget class="QLabel" name="label_15">
                <property name="font">
@@ -952,19 +959,6 @@ text-align:left;
                </property>
               </widget>
              </item>
-             <item row="0" column="2">
-              <widget class="QLabel" name="label_17">
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Store</string>
-               </property>
-              </widget>
-             </item>
              <item row="1" column="0">
               <widget class="QLabel" name="label_20">
                <property name="text">
@@ -972,15 +966,22 @@ text-align:left;
                </property>
               </widget>
              </item>
-             <item row="2" column="2">
-              <widget class="QLabel" name="label_23">
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_21">
                <property name="text">
-                <string>ciudad</string>
+                <string>producto</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="label_22">
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_24">
+               <property name="text">
+                <string>producto</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_19">
                <property name="text">
                 <string>€</string>
                </property>
@@ -999,45 +1000,10 @@ text-align:left;
                </property>
               </widget>
              </item>
-             <item row="1" column="2">
-              <widget class="QLabel" name="label_18">
-               <property name="text">
-                <string>ciudad</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_21">
-               <property name="text">
-                <string>producto</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLabel" name="label_19">
+             <item row="2" column="1">
+              <widget class="QLabel" name="label_22">
                <property name="text">
                 <string>€</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_24">
-               <property name="text">
-                <string>producto</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="label_25">
-               <property name="text">
-                <string>€</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="2">
-              <widget class="QLabel" name="label_26">
-               <property name="text">
-                <string>ciudad</string>
                </property>
               </widget>
              </item>

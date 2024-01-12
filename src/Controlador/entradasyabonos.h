@@ -14,6 +14,7 @@ class entradasyabonos : public QDialog
 public:
     explicit entradasyabonos(QWidget *parent = nullptr);
     ~entradasyabonos();
+    void mostrarVista();
 
 private:
     Ui::entradasyabonos *ui;

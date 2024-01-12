@@ -17,6 +17,7 @@ class login : public QMainWindow
 public:
     login(QWidget *parent = nullptr);
     ~login();
+    Ui::login *ui;
 
 private slots:
 
@@ -34,7 +35,7 @@ private slots:
     void abrirVistaCliente();
 
 private:
-    Ui::login *ui;
+
     DataBase mBaseDatos;
 };
 #endif // LOGIN_H

@@ -14,6 +14,7 @@ class vistaCliente : public QDialog
 public:
     explicit vistaCliente(QWidget *parent = nullptr);
     ~vistaCliente();
+    void mostrarVistaEventos();
 
 private slots:
     void on_menuBtn_clicked();

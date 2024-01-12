@@ -5,6 +5,7 @@
 #include "addproducto.h"
 #include "eventos.h"
 #include "clients.h"
+#include "login.h"
 
 //bool ventanaCerrada = true;
 //bool ventanaCerradaP = true;
@@ -70,6 +71,7 @@ void administrador::on_menuBtn_clicked()
     animationMenu->start();
 
     animation2->start();
+
 
 }
 

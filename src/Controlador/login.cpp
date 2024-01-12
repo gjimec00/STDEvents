@@ -6,6 +6,7 @@
 #include "ui_login.h"
 #include <QMessageBox>
 #include <QtSql>
+#include "entradasyabonos.h"
 
 
 login::login(QWidget *parent)
@@ -85,10 +86,14 @@ void login::comprobarUsuario(){
 }
 
 void login::abrirVistaAdministrador() {
-    administrador admin;
+    /*administrador admin;
     admin.setWindowFlags(Qt::FramelessWindowHint);
     admin.setModal(true);
-    admin.exec();
+    admin.exec();*/
+    vistaCliente cliente;
+    cliente.setWindowFlags(Qt::FramelessWindowHint);
+    cliente.setModal(true);
+    cliente.exec();
 }
 
 void login::abrirVistaCliente() {

@@ -2,8 +2,11 @@
 #include "ui_vistacliente.h"
 #include "qpropertyanimation.h"
 #include "calendario.h"
-#include "entradasyabonos.h"
-#include "compraproductos.h"
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QDebug>
+//#include "entradasyabonos.h"
+//#include "compraproductos.h"
 
 bool ventanaCerradaC = true;
 bool ventanaCerradaCP = true;
@@ -13,6 +16,7 @@ vistaCliente::vistaCliente(QWidget *parent) :
     ui(new Ui::vistaCliente)
 {
     ui->setupUi(this);
+    mostrarVistaEventos();
 }
 
 vistaCliente::~vistaCliente()
@@ -113,63 +117,43 @@ void vistaCliente::on_accountBtn_clicked()
     animation->start();
 
 }
-/*
-void vistaCliente::on_pushButton_clicked()
-{
-    this->close();
+
+
+void vistaCliente::mostrarVistaEventos(){
+    int numeroDeFilas = 0;
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM eventos");
+
+    if (!query.exec()) {
+        return;
+    }
+    // Obtener el resultado
+    if (query.next()) {
+        numeroDeFilas = query.value(0).toInt();
+    }
+
+    QVBoxLayout *menuDesp = new QVBoxLayout();
+    for (int i = 0; i < numeroDeFilas; i++){
+        QWidget * wid = new QWidget();
+        QHBoxLayout * hor = new QHBoxLayout();
+        QFrame * frame = new QFrame();
+        QVBoxLayout *menuDesp2 = new QVBoxLayout();
+        QLabel * label1 = new QLabel("Prueba1");
+        QLabel * label2 = new QLabel("Prueba2");
+        QLabel * label3 = new QLabel("Prueba3");
+        QLabel * label4 = new QLabel("Prueba4");
+        QLabel * label5 = new QLabel("Prueba5");
+        QPushButton * button = new QPushButton("Comprar");
+        wid->setLayout(hor);
+        frame->setLayout(menuDesp2);
+        menuDesp2->addWidget(label1);
+        menuDesp2->addWidget(label2);
+        menuDesp2->addWidget(label3);
+        menuDesp2->addWidget(label4);
+        menuDesp2->addWidget(label5);
+        hor->addWidget(frame);
+        hor->addWidget(button);
+        menuDesp->addWidget(wid);
+    }
+    ui->scrollAreaWidgetContents->setLayout(menuDesp);
 }
-
-void vistaCliente::on_pushButton_4_clicked()
-{
-
-    if (isFullScreen()) {
-        showNormal();
-    } else {
-        showFullScreen();
-      }
-}
-
-
-void vistaCliente::on_pushButton_3_clicked()
-{
-    showMinimized();
-}
-
-
-
-void vistaCliente::on_pushButton_7_clicked()
-{
-    Calendario calendario;
-    calendario.setWindowFlags(Qt::FramelessWindowHint);
-    calendario.setModal(true);
-    calendario.exec();
-}
-
-
-void vistaCliente::on_pushButton_8_clicked()
-{
-    entradasyabonos compraEntradas;
-    compraEntradas.setWindowFlags(Qt::FramelessWindowHint);
-    compraEntradas.setModal(true);
-    compraEntradas.exec();
-}
-
-
-void vistaCliente::on_pushButton_5_clicked()
-{
-    entradasyabonos compraAbonos;
-    compraAbonos.setWindowFlags(Qt::FramelessWindowHint);
-    compraAbonos.setModal(true);
-    compraAbonos.exec();
-
-}
-
-
-void vistaCliente::on_pushButton_6_clicked()
-{
-    compraProductos compraProductos;
-    compraProductos.setWindowFlags(Qt::FramelessWindowHint);
-    compraProductos.setModal(true);
-    compraProductos.exec();
-}
-*/
