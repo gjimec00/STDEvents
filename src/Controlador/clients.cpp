@@ -121,6 +121,8 @@ void clients::on_pushButton_4_clicked()
     admin.setWindowFlags(Qt::FramelessWindowHint);
     admin.setModal(true);
     hide();
+    ventanaCerrada4 = true;
+    ventanaCerrada4P = true;
     admin.exec();
 }
 
@@ -130,6 +132,8 @@ void clients::on_pushButton_3_clicked()
     producto.setWindowFlags(Qt::FramelessWindowHint);
     producto.setModal(true);
     hide();
+    ventanaCerrada4 = true;
+    ventanaCerrada4P = true;
     producto.exec();
 }
 
@@ -139,6 +143,8 @@ void clients::on_pushButton_6_clicked()
     evento.setWindowFlags(Qt::FramelessWindowHint);
     evento.setModal(true);
     hide();
+    ventanaCerrada4 = true;
+    ventanaCerrada4P = true;
     evento.exec();
 }
 

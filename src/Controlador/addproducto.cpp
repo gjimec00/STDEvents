@@ -121,6 +121,8 @@ void addproducto::on_pushButton_4_clicked()
     admin.setWindowFlags(Qt::FramelessWindowHint);
     admin.setModal(true);
     hide();
+    ventanaCerrada2 = true;
+    ventanaCerrada2P = true;
     admin.exec();
 }
 
@@ -132,6 +134,8 @@ void addproducto::on_pushButton_6_clicked()
     evento.setWindowFlags(Qt::FramelessWindowHint);
     evento.setModal(true);
     hide();
+    ventanaCerrada2 = true;
+    ventanaCerrada2P = true;
     evento.exec();
 }
 
@@ -142,6 +146,8 @@ void addproducto::on_pushButton_5_clicked()
     cliente.setWindowFlags(Qt::FramelessWindowHint);
     cliente.setModal(true);
     hide();
+    ventanaCerrada2 = true;
+    ventanaCerrada2P = true;
     cliente.exec();
 }
 

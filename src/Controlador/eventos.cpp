@@ -6,6 +6,7 @@
 #include "addproducto.h"
 #include <QMessageBox>
 #include <QtSql>
+#include "calendario.h"
 
 bool ventanaCerrada3 = true;
 bool ventanaCerrada3P = true;
@@ -121,6 +122,8 @@ void eventos::on_pushButton_4_clicked()
     admin.setWindowFlags(Qt::FramelessWindowHint);
     admin.setModal(true);
     hide();
+    ventanaCerrada3 = true;
+    ventanaCerrada3P = true;
     admin.exec();
 }
 
@@ -130,6 +133,8 @@ void eventos::on_pushButton_3_clicked()
     producto.setWindowFlags(Qt::FramelessWindowHint);
     producto.setModal(true);
     hide();
+    ventanaCerrada3 = true;
+    ventanaCerrada3P = true;
     producto.exec();
 }
 
@@ -140,6 +145,8 @@ void eventos::on_pushButton_5_clicked()
     cliente.setWindowFlags(Qt::FramelessWindowHint);
     cliente.setModal(true);
     hide();
+    ventanaCerrada3 = true;
+    ventanaCerrada3P = true;
     cliente.exec();
 }
 
@@ -150,7 +157,7 @@ void eventos::on_pushButton_clicked()
     query.prepare("SELECT dni FROM administrador WHERE nombre='admin'");
 
     if (query.exec() && query.next()) {
-        QChar dniAdmin = query.value(0).toChar();
+        //QChar dniAdmin = query.value(0).toChar();
 
         query.prepare("INSERT INTO eventos (nombre, fecha, hora, descripcion, tipo) VALUES (:nombre, :fecha, :hora, :descripcion, :tipo)");
 
@@ -267,5 +274,16 @@ void eventos::on_pushButton_7_clicked()
     ui->lineEdit_18->clear();
     ui->lineEdit_23->clear();
 
+}
+
+
+void eventos::on_pushButton_9_clicked()
+{
+    Calendario calendario;
+    calendario.setWindowFlags(Qt::FramelessWindowHint);
+    calendario.setModal(true);
+    ventanaCerrada3 = true;
+    ventanaCerrada3P = true;
+    calendario.exec();
 }
 
