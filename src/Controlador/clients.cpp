@@ -195,3 +195,50 @@ void clients::on_pushButton_clicked()
     ui->lineEdit_13->clear();
 }
 
+
+void clients::on_pushButton_7_clicked()
+{
+    QSqlQuery query;
+    query.prepare("SELECT nombre, apellidos FROM clientes WHERE dni = :dni");
+
+    query.bindValue(":dni", ui->lineEdit_22->text());
+
+    if(query.exec() && query.next()){
+
+        QString nombre= query.value(0).toString();
+        QString apellidos= query.value(1).toString();
+
+        if((nombre==ui->lineEdit_18->text())&&(apellidos==ui->lineEdit_19->text())){
+            query.prepare("DELETE FROM clientes WHERE dni = :dni");
+            query.bindValue(":dni", ui->lineEdit_22->text());
+
+            if (query.exec()) {
+                int numRowsAffected = query.numRowsAffected();
+                if (numRowsAffected > 0) {
+                    qDebug() << "Liente eliminado con éxito. Filas afectadas:" << numRowsAffected;
+                } else {
+                    qDebug() << "No se encontró ningún cliente con los criterios especificados.";
+                    QMessageBox::information(this, "Información", "No se encontró ningún cliente con los criterios especificados.");
+                }
+            } else {
+                qDebug() << "Error al eliminar el producto:" << query.lastError().text();
+                QMessageBox::critical(this, "Error", "No se pudo eliminar el cliente");
+            }
+        }else{
+            qDebug() << "El nombre no coincide en base de datos:" << query.lastError().text();
+            QMessageBox::critical(this, "Error", "No se pudo eliminar el cliente");
+        }
+
+    } else {
+    qDebug() << "Error al obtener los datos en bbdd:" << query.lastError().text();
+    QMessageBox::critical(this, "Error", "No se pudo obtener el cliente");
+    }
+
+    query.clear();
+    ui->lineEdit_18->clear();
+    ui->lineEdit_19->clear();
+    ui->lineEdit_22->clear();
+
+
+}
+
