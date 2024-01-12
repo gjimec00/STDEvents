@@ -11,6 +11,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/Controlador/carrito.cpp \
     src/Controlador/addproducto.cpp \
     src/Controlador/clients.cpp \
     src/Controlador/eventos.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
     src/Controlador/vistacliente.cpp \
 
 HEADERS += \
+    src/Controlador/carrito.h \
     src/Controlador/addproducto.h \
     src/Controlador/clients.h \
     src/Controlador/compraproductos.h \
@@ -38,6 +40,7 @@ HEADERS += \
     src/Controlador/vistacliente.h
 
 FORMS += \
+    src/Vista/carrito.ui \
     src/Vista/clients.ui \
     src/Vista/eventos.ui \
     src/Vista/addproducto.ui \

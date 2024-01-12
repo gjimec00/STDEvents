@@ -16,6 +16,10 @@ public:
     ~vistaCliente();
     void mostrarVistaEventos();
     void mostrarProductos();
+    void on_comprarProducto();
+    QStringList añadirCarrito;
+    void setCarrito(QStringList);
+    QStringList getCarrito();
 
 private slots:
     void on_menuBtn_clicked();
@@ -23,6 +27,7 @@ private slots:
     void on_pushButton_8_clicked();
 
     void on_accountBtn_clicked();
+    void on_pushButton_3_clicked();
     /*
     void on_pushButton_clicked();
 

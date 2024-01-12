@@ -3,6 +3,7 @@
 #include "ui_vistacliente.h"
 #include "qpropertyanimation.h"
 #include "calendario.h"
+#include "carrito.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
@@ -199,6 +200,7 @@ void vistaCliente::mostrarProductos(){
         return;
     }
 
+
     while (queryProductos.next()) {
         QWidget *wid = new QWidget();
         QHBoxLayout *hor = new QHBoxLayout();
@@ -234,7 +236,42 @@ void vistaCliente::mostrarProductos(){
         wid->setStyleSheet("border:1px solid grey;");
         wid->setLayout(hor);
         menuDesp->addWidget(wid);
-    }
 
+
+
+        connect(button, &QPushButton::clicked, [=]() {
+            QString nombre = label1->text();
+            QString cantidad = combo->currentText();
+            QString precio = label2->text();
+            QString talla = label4->text();
+            QString color = label5->text();
+            añadirCarrito.append(nombre);
+            añadirCarrito.append(cantidad);
+            añadirCarrito.append(precio);
+            añadirCarrito.append(talla);
+            añadirCarrito.append(color);
+
+        });
+    }
+    setCarrito(añadirCarrito);
     ui->scrollAreaWidgetContents_3->setLayout(menuDesp);
+
+}
+
+void vistaCliente::setCarrito(QStringList añadirCarrito){
+    this->añadirCarrito= añadirCarrito;
+}
+
+QStringList vistaCliente::getCarrito(){
+    return this->añadirCarrito;
+}
+
+
+void vistaCliente::on_pushButton_3_clicked()
+{
+    carrito carrito;
+    carrito.setWindowFlags(Qt::FramelessWindowHint);
+    carrito.setModal(true);
+    hide();
+    carrito.exec();
 }
