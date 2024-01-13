@@ -45,6 +45,8 @@ private slots:
     void on_pushButton_6_clicked();
 */
 
+    void on_calendarWidget_activated(const QDate &date);
+
 private:
     Ui::vistaCliente *ui;
 

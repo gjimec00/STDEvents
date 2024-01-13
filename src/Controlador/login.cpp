@@ -6,7 +6,6 @@
 #include "ui_login.h"
 #include <QMessageBox>
 #include <QtSql>
-#include "entradasyabonos.h"
 #include "cliente.h"
 
 

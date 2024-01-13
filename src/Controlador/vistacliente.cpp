@@ -20,8 +20,6 @@ vistaCliente::vistaCliente(QWidget *parent) :
     ui(new Ui::vistaCliente)
 {
     ui->setupUi(this);
-    mostrarVistaEventos();
-    mostrarProductos();
 }
 
 vistaCliente::~vistaCliente()
@@ -123,149 +121,6 @@ void vistaCliente::on_accountBtn_clicked()
 
 }
 
-
-void vistaCliente::mostrarVistaEventos(){
-    int numeroDeFilas = 0;
-    QSqlQuery queryCount;
-    queryCount.prepare("SELECT COUNT(*) FROM eventos");
-
-    if (!queryCount.exec()) {
-        return;
-    }
-
-    if (queryCount.next()) {
-        numeroDeFilas = queryCount.value(0).toInt();
-    }
-
-    QVBoxLayout *menuDesp = new QVBoxLayout();
-
-    QSqlQuery queryEventos;
-    queryEventos.prepare("SELECT nombre, descripcion, fecha, hora, tipo FROM eventos");
-
-    if (!queryEventos.exec()) {
-        return;
-    }
-
-    while (queryEventos.next()) {
-        QWidget *wid = new QWidget();
-        QHBoxLayout *hor = new QHBoxLayout();
-        QFrame *frame = new QFrame();
-        QVBoxLayout *menuDesp2 = new QVBoxLayout();
-
-        QLabel *label1 = new QLabel("Nombre: " +queryEventos.value("nombre").toString());
-        QLabel *label2 = new QLabel("Descripción: " +queryEventos.value("descripcion").toString());
-        QLabel *label3 = new QLabel("Fecha: " +queryEventos.value("fecha").toString());
-        QLabel *label4 = new QLabel("Hora: " +queryEventos.value("hora").toString());
-        QLabel *label5 = new QLabel("Tipo: " +queryEventos.value("tipo").toString());
-
-        QPushButton *button = new QPushButton("Comprar");
-
-        menuDesp2->addWidget(label1);
-        menuDesp2->addWidget(label2);
-        menuDesp2->addWidget(label3);
-        menuDesp2->addWidget(label4);
-        menuDesp2->addWidget(label5);
-        button->setStyleSheet("background-color:#01ff78; color:#fff; border-radius:10px;");
-        button->setFixedSize(85,30);
-        frame->setLayout(menuDesp2);
-        hor->addWidget(frame);
-        hor->addWidget(button);
-        wid->setStyleSheet("border:1px solid #01ff78;");
-        wid->setLayout(hor);
-        menuDesp->addWidget(wid);
-    }
-
-    ui->scrollAreaWidgetContents->setLayout(menuDesp);
-}
-
-
-void vistaCliente::mostrarProductos(){
-    int numeroDeFilas = 0;
-    int cantidad=0;
-    QSqlQuery queryCount;
-    queryCount.prepare("SELECT COUNT(*) FROM eventos");
-
-    if (!queryCount.exec()) {
-        return;
-    }
-
-    if (queryCount.next()) {
-        numeroDeFilas = queryCount.value(0).toInt();
-    }
-
-    QVBoxLayout *menuDesp = new QVBoxLayout();
-
-    QSqlQuery queryProductos;
-    queryProductos.prepare("SELECT nombre, cantidad, precio, descripcion, talla, color FROM productos");
-
-    if (!queryProductos.exec()) {
-        return;
-    }
-
-
-    while (queryProductos.next()) {
-        QWidget *wid = new QWidget();
-        QHBoxLayout *hor = new QHBoxLayout();
-        QFrame *frame = new QFrame();
-        QVBoxLayout *menuDesp2 = new QVBoxLayout();
-        QComboBox *combo = new QComboBox();
-
-        cantidad=queryProductos.value(1).toInt();
-        for(int i=1; i<=cantidad; i++){
-            combo->addItem(QString::number(i));
-        }
-
-        QLabel *label1 = new QLabel("Nombre: " + queryProductos.value("nombre").toString());
-        QLabel *label2 = new QLabel("Precio: " + queryProductos.value("precio").toString());
-        QLabel *label3 = new QLabel("Descripción: " +queryProductos.value("descripcion").toString());
-        QLabel *label4 = new QLabel("Talla: " +queryProductos.value("talla").toString());
-        QLabel *label5 = new QLabel("Color: " +queryProductos.value("color").toString());
-
-        QPushButton *button = new QPushButton("Comprar");
-
-        menuDesp2->addWidget(label1);
-        menuDesp2->addWidget(label2);
-        menuDesp2->addWidget(label3);
-        menuDesp2->addWidget(label4);
-        menuDesp2->addWidget(label5);
-        button->setStyleSheet("background-color:#01ff78; color:#fff; border-radius:10px;");
-        button->setFixedSize(85,30);
-        frame->setLayout(menuDesp2);
-        hor->addWidget(frame);
-        combo->setFixedSize(65,15);
-        hor->addWidget(combo);
-        hor->addWidget(button);
-        wid->setStyleSheet("border:1px solid grey;");
-        wid->setLayout(hor);
-        menuDesp->addWidget(wid);
-
-
-
-        connect(button, &QPushButton::clicked, [=]() {
-            int idProducto= 0;
-            QString nombre = label1->text();
-            QString cantidad = combo->currentText();
-            QString precio = label2->text();
-            QString talla = label4->text();
-            QString color = label5->text();
-            Producto *nuevoProducto = new Producto(idProducto, nombre, cantidad.toInt(), precio.toDouble(), "", talla, color);
-            //listaProductos.push_back(nuevoProducto);
-
-        });
-    }
-    ui->scrollAreaWidgetContents_3->setLayout(menuDesp);
-
-}
-
-void vistaCliente::setCarrito(QStringList añadirCarrito){
-    this->añadirCarrito = añadirCarrito;
-}
-
-QStringList vistaCliente::getCarrito(){
-    return añadirCarrito;
-}
-
-
 void vistaCliente::on_pushButton_3_clicked()
 {
     carrito carrito;
@@ -274,3 +129,32 @@ void vistaCliente::on_pushButton_3_clicked()
     hide();
     carrito.exec();
 }
+
+void vistaCliente::on_calendarWidget_activated(const QDate &date)
+{
+    QSqlQuery query;
+    query.prepare("SELECT nombre, fecha, hora, descripcion, tipo FROM eventos WHERE fecha = :fecha");
+    query.bindValue(":fecha", date);
+
+    if (!query.exec()) {
+        return;
+    }
+    QStringList resultados;
+    // Procesar los resultados
+    while (query.next()) {
+        QString col1 = query.value(0).toString();
+        QString col2 = query.value(1).toString();
+        QString col3 = query.value(2).toString();
+        QString col4 = query.value(3).toString();
+        QString col5 = query.value(4).toString();
+        QString resultado = "Nombre del evento: " + col1 + ", fecha: " + col2 + ", hora: " + col3 + ", descripcion: " + col4 + ", tipo: " + col5;
+        resultados.append(resultado);
+    }
+    if (!resultados.isEmpty())    {
+        QString resultadosStr = resultados.join("\n");
+        ui->label_2->setText(resultadosStr);
+    }else{
+        ui->label_2->setText("No hay eventos programados disponibles para este día");
+    }
+}
+

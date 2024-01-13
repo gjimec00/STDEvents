@@ -20,7 +20,6 @@ SOURCES += \
     src/Controlador/eventos.cpp \
     src/Controlador/inventario.cpp \
     src/Controlador/producto.cpp \
-    src/controlador/compraproductos.cpp \
     src/Controlador/calendario.cpp \
     src/Controlador/administrador.cpp \
     src/Controlador/registro.cpp \
