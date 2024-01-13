@@ -249,7 +249,7 @@ void vistaCliente::mostrarProductos(){
             QString talla = label4->text();
             QString color = label5->text();
             Producto *nuevoProducto = new Producto(idProducto, nombre, cantidad.toInt(), precio.toDouble(), "", talla, color);
-            listaProductos.push_back(nuevoProducto);
+            //listaProductos.push_back(nuevoProducto);
 
         });
     }

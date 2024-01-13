@@ -16,6 +16,9 @@ public:
     ~administrador();
     bool ventanaCerrada = true;
     bool ventanaCerradaP = true;
+    void mostrarResumenes();
+    void mostrarUltProductos();
+    void mostrarUltEventos();
 private slots:
     void on_menuBtn_clicked();
 

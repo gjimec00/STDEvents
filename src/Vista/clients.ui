@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>929</width>
-    <height>541</height>
+    <width>930</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -817,7 +817,7 @@ border-radius: 20px;
           </font>
          </property>
          <property name="text">
-          <string>Learn Programming</string>
+          <string>STD Events</string>
          </property>
         </widget>
        </item>
