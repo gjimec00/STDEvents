@@ -1039,7 +1039,7 @@ text-align:left;
                 </font>
                </property>
                <property name="text">
-                <string>Phone</string>
+                <string>Hour</string>
                </property>
               </widget>
              </item>
@@ -1079,7 +1079,7 @@ text-align:left;
                 </font>
                </property>
                <property name="text">
-                <string>Surname</string>
+                <string>Date</string>
                </property>
               </widget>
              </item>
@@ -1120,7 +1120,7 @@ text-align:left;
                 </font>
                </property>
                <property name="text">
-                <string>Email</string>
+                <string>Type</string>
                </property>
               </widget>
              </item>
