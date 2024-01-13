@@ -1,4 +1,5 @@
 #include "login.h"
+#include "cliente.h"
 
 #include <QApplication>
 

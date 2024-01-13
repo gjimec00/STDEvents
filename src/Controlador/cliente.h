@@ -1,8 +1,10 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 #include <QString>
+#include <vector>
 #include "producto.h"
 using namespace std;
+
 class Cliente
 {
 public:
@@ -26,7 +28,6 @@ public:
     void setTelefono(int telefono);
     void setNumAsientoAb(int numAsientoAb);
     void setAbonado(bool abonado);
-
     vector <Producto *> listaProductos;
 private:
     QString nombre;

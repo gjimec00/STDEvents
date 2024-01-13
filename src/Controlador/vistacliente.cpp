@@ -3,7 +3,9 @@
 #include "ui_vistacliente.h"
 #include "qpropertyanimation.h"
 #include "calendario.h"
+#include "producto.h"
 #include "carrito.h"
+#include "cliente.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
@@ -150,11 +152,11 @@ void vistaCliente::mostrarVistaEventos(){
         QFrame *frame = new QFrame();
         QVBoxLayout *menuDesp2 = new QVBoxLayout();
 
-        QLabel *label1 = new QLabel(queryEventos.value("nombre").toString());
-        QLabel *label2 = new QLabel(queryEventos.value("descripcion").toString());
-        QLabel *label3 = new QLabel(queryEventos.value("fecha").toString());
-        QLabel *label4 = new QLabel(queryEventos.value("hora").toString());
-        QLabel *label5 = new QLabel(queryEventos.value("tipo").toString());
+        QLabel *label1 = new QLabel("Nombre: " +queryEventos.value("nombre").toString());
+        QLabel *label2 = new QLabel("Descripción: " +queryEventos.value("descripcion").toString());
+        QLabel *label3 = new QLabel("Fecha: " +queryEventos.value("fecha").toString());
+        QLabel *label4 = new QLabel("Hora: " +queryEventos.value("hora").toString());
+        QLabel *label5 = new QLabel("Tipo: " +queryEventos.value("tipo").toString());
 
         QPushButton *button = new QPushButton("Comprar");
 
@@ -213,11 +215,11 @@ void vistaCliente::mostrarProductos(){
             combo->addItem(QString::number(i));
         }
 
-        QLabel *label1 = new QLabel(queryProductos.value("nombre").toString());
-        QLabel *label2 = new QLabel(queryProductos.value("precio").toString());
-        QLabel *label3 = new QLabel(queryProductos.value("descripcion").toString());
-        QLabel *label4 = new QLabel(queryProductos.value("talla").toString());
-        QLabel *label5 = new QLabel(queryProductos.value("color").toString());
+        QLabel *label1 = new QLabel("Nombre: " + queryProductos.value("nombre").toString());
+        QLabel *label2 = new QLabel("Precio: " + queryProductos.value("precio").toString());
+        QLabel *label3 = new QLabel("Descripción: " +queryProductos.value("descripcion").toString());
+        QLabel *label4 = new QLabel("Talla: " +queryProductos.value("talla").toString());
+        QLabel *label5 = new QLabel("Color: " +queryProductos.value("color").toString());
 
         QPushButton *button = new QPushButton("Comprar");
 
@@ -240,20 +242,17 @@ void vistaCliente::mostrarProductos(){
 
 
         connect(button, &QPushButton::clicked, [=]() {
+            int idProducto= 0;
             QString nombre = label1->text();
             QString cantidad = combo->currentText();
             QString precio = label2->text();
             QString talla = label4->text();
             QString color = label5->text();
-            añadirCarrito.append(nombre);
-            añadirCarrito.append(cantidad);
-            añadirCarrito.append(precio);
-            añadirCarrito.append(talla);
-            añadirCarrito.append(color);
+            Producto *nuevoProducto = new Producto(idProducto, nombre, cantidad.toInt(), precio.toDouble(), "", talla, color);
+            listaProductos.push_back(nuevoProducto);
 
         });
     }
-    setCarrito(añadirCarrito);
     ui->scrollAreaWidgetContents_3->setLayout(menuDesp);
 
 }

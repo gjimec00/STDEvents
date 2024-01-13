@@ -1,7 +1,8 @@
 #include "carrito.h"
 #include "ui_carrito.h"
+#include "cliente.h"
+#include "producto.h"
 #include "vistacliente.h"
-
 
 carrito::carrito(QWidget *parent) :
     QDialog(parent),
