@@ -20,11 +20,22 @@ vistaCliente::vistaCliente(QWidget *parent) :
     ui(new Ui::vistaCliente)
 {
     ui->setupUi(this);
+
 }
 
 vistaCliente::~vistaCliente()
 {
     delete ui;
+}
+
+//Getters & Setters
+
+void vistaCliente::setCliente(Cliente cliente){
+    this->cliente=cliente;
+}
+
+Cliente vistaCliente::getCliente(){
+    return cliente;
 }
 
 void vistaCliente::on_menuBtn_clicked()

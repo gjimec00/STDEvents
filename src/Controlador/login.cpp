@@ -2,11 +2,12 @@
 #include "registro.h"
 #include "administrador.h"
 #include "vistacliente.h"
+#include "cliente.h"
 #include "src/Controlador/registro.h"
 #include "ui_login.h"
 #include <QMessageBox>
 #include <QtSql>
-#include "cliente.h"
+
 
 
 login::login(QWidget *parent)
@@ -93,10 +94,33 @@ void login::abrirVistaAdministrador() {
 }
 
 void login::abrirVistaCliente() {
-    vistaCliente cliente;
-    cliente.setWindowFlags(Qt::FramelessWindowHint);
-    cliente.setModal(true);
-    cliente.exec();
+    vistaCliente vistaClt;
+
+
+    // Seleccionamos toda la información del cliente para poder crear el objeto cliente y setearlo en la vista
+    QSqlQuery clientQuery;
+    clientQuery.prepare("SELECT apellidos, dni, telefono, correo, abonado, numAsiento FROM clientes WHERE nombre = :nombre AND contrasena = :contrasena");
+    clientQuery.bindValue(":nombre", ui->lineEdit->text());
+    clientQuery.bindValue(":contrasena", ui->lineEdit_2->text());
+
+    if(clientQuery.exec()){
+        //Creo variables con todo lo recibido del SELECT
+        QString apellidos = clientQuery.value(0).toString();
+        QString dni = clientQuery.value(1).toString();
+        int telefono = clientQuery.value(2).toInt();
+        QString correo = clientQuery.value(3).toString();
+        bool abonado = clientQuery.value(4).toBool();
+        int numAsientoAbonado = clientQuery.value(5).toInt();
+
+        //Creo el cliente y le doy todos los valores que posee en base de datos
+        Cliente cliente(ui->lineEdit->text(), apellidos, dni, telefono, correo, ui->lineEdit_2->text(),abonado, numAsientoAbonado);
+        vistaClt.setCliente(cliente);
+    }
+
+
+    vistaClt.setWindowFlags(Qt::FramelessWindowHint);
+    vistaClt.setModal(true);
+    vistaClt.exec();
 }
 
 

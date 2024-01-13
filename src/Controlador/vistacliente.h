@@ -2,6 +2,7 @@
 #define VISTACLIENTE_H
 
 #include <QDialog>
+#include "cliente.h"
 
 namespace Ui {
 class vistaCliente;
@@ -12,6 +13,7 @@ class vistaCliente : public QDialog
     Q_OBJECT
 
 public:
+    Cliente cliente;
     explicit vistaCliente(QWidget *parent = nullptr);
     ~vistaCliente();
     void mostrarVistaEventos();
@@ -20,6 +22,8 @@ public:
     QStringList añadirCarrito;
     void setCarrito(QStringList);
     QStringList getCarrito();
+    void setCliente(Cliente);
+    Cliente getCliente();
 
 private slots:
     void on_menuBtn_clicked();
@@ -49,6 +53,7 @@ private slots:
 
 private:
     Ui::vistaCliente *ui;
+
 
 };
 
