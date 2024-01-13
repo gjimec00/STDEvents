@@ -16,6 +16,7 @@ SOURCES += \
     src/Controlador/cliente.cpp \
     src/Controlador/clients.cpp \
     src/Controlador/eventos.cpp \
+    src/Controlador/inventario.cpp \
     src/Controlador/producto.cpp \
     src/controlador/compraproductos.cpp \
     src/Controlador/entradasyabonos.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     src/Controlador/calendario.h \
     src/Controlador/administrador.h \
     src/Controlador/eventos.h \
+    src/Controlador/inventario.h \
     src/Controlador/producto.h \
     src/Controlador/registro.h \
     src/Controlador/login.h \
@@ -44,6 +46,7 @@ HEADERS += \
     src/Controlador/vistacliente.h
 
 FORMS += \
+    src/Vista/inventario.ui \
     src/Vista/carrito.ui \
     src/Vista/clients.ui \
     src/Vista/eventos.ui \

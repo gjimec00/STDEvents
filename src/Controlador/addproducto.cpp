@@ -6,6 +6,7 @@
 #include "clients.h"
 #include <QMessageBox>
 #include <QtSql>
+#include "inventario.h"
 
 bool ventanaCerrada2 = true;
 bool ventanaCerrada2P = true;
@@ -246,5 +247,17 @@ void addproducto::on_pushButton_7_clicked()
     ui->lineEdit_22->clear();
     ui->lineEdit_23->clear();
 
+}
+
+
+void addproducto::on_pushButton_9_clicked()
+{
+    inventario inv;
+    inv.setWindowFlags(Qt::FramelessWindowHint);
+    inv.setModal(true);
+    hide();
+    ventanaCerrada2 = true;
+    ventanaCerrada2P = true;
+    inv.exec();
 }
 

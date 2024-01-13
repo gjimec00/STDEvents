@@ -1378,7 +1378,7 @@ border-radius: 20px;
                  </property>
                  <property name="minimumDate">
                   <date>
-                   <year>1752</year>
+                   <year>2023</year>
                    <month>10</month>
                    <day>14</day>
                   </date>
@@ -1391,9 +1391,9 @@ border-radius: 20px;
                  </property>
                  <property name="date">
                   <date>
-                   <year>2024</year>
-                   <month>1</month>
-                   <day>15</day>
+                   <year>2023</year>
+                   <month>10</month>
+                   <day>14</day>
                   </date>
                  </property>
                 </widget>
