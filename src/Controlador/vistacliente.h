@@ -13,7 +13,7 @@ class vistaCliente : public QDialog
     Q_OBJECT
 
 public:
-    Cliente cliente;
+
     explicit vistaCliente(QWidget *parent = nullptr);
     ~vistaCliente();
     void mostrarVistaEventos();
@@ -24,6 +24,7 @@ public:
     QStringList getCarrito();
     void setCliente(Cliente);
     Cliente getCliente();
+
 
 private slots:
     void on_menuBtn_clicked();
@@ -53,6 +54,8 @@ private slots:
 
 private:
     Ui::vistaCliente *ui;
+    Cliente cliente;
+
 
 
 };

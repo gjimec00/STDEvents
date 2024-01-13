@@ -17,7 +17,13 @@ carrito::~carrito()
     delete ui;
 }
 
+void carrito::setCliente(Cliente cliente){
+    this->cliente=cliente;
+}
 
+Cliente carrito::getCliente(){
+    return cliente;
+}
 void carrito::imprimirCarrito(){
 
 }

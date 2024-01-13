@@ -99,11 +99,11 @@ void login::abrirVistaCliente() {
 
     // Seleccionamos toda la información del cliente para poder crear el objeto cliente y setearlo en la vista
     QSqlQuery clientQuery;
-    clientQuery.prepare("SELECT apellidos, dni, telefono, correo, abonado, numAsiento FROM clientes WHERE nombre = :nombre AND contrasena = :contrasena");
+    clientQuery.prepare("SELECT apellidos, dni, telefono, correo, abonado, numAsientoAbonado FROM clientes WHERE nombre = :nombre AND contrasena = :contrasena");
     clientQuery.bindValue(":nombre", ui->lineEdit->text());
     clientQuery.bindValue(":contrasena", ui->lineEdit_2->text());
 
-    if(clientQuery.exec()){
+    if(clientQuery.exec() && clientQuery.next()){
         //Creo variables con todo lo recibido del SELECT
         QString apellidos = clientQuery.value(0).toString();
         QString dni = clientQuery.value(1).toString();

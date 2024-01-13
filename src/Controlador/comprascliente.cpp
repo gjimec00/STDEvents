@@ -27,7 +27,13 @@ comprasCliente::~comprasCliente()
 
 }
 
+void comprasCliente::setCliente(Cliente cliente){
+    this->cliente=cliente;
+}
 
+Cliente comprasCliente::getCliente(){
+    return cliente;
+}
 void comprasCliente::on_menuBtn_clicked()
 {
     QPropertyAnimation *animation = new QPropertyAnimation(ui->leftMenu, "pos");

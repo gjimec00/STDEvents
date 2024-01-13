@@ -21,6 +21,7 @@ vistaCliente::vistaCliente(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
 }
 
 vistaCliente::~vistaCliente()
@@ -135,6 +136,7 @@ void vistaCliente::on_accountBtn_clicked()
 void vistaCliente::on_pushButton_3_clicked()
 {
     carrito carrito;
+    carrito.setCliente(cliente);
     carrito.setWindowFlags(Qt::FramelessWindowHint);
     carrito.setModal(true);
     hide();
