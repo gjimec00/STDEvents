@@ -15,6 +15,10 @@ public:
     explicit asientos(QWidget *parent = nullptr);
     ~asientos();
 
+private slots:
+    void on_pushButton_4_clicked();
+    int generarAsientos();
+
 private:
     Ui::asientos *ui;
 };

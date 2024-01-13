@@ -6,6 +6,7 @@
 #include "producto.h"
 #include "carrito.h"
 #include "cliente.h"
+#include "comprascliente.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
@@ -169,5 +170,16 @@ void vistaCliente::on_calendarWidget_activated(const QDate &date)
     }else{
         ui->label_2->setText("No hay eventos programados disponibles para este día");
     }
+}
+
+
+void vistaCliente::on_pushButton_6_clicked()
+{
+    comprasCliente compras;
+    compras.setCliente(cliente);
+    compras.setWindowFlags(Qt::FramelessWindowHint);
+    compras.setModal(true);
+    hide();
+    compras.exec();
 }
 

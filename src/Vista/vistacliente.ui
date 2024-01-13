@@ -247,11 +247,11 @@ background:transparent;
              <item>
               <widget class="QPushButton" name="pushButton_6">
                <property name="text">
-                <string>Statistics</string>
+                <string>Shop</string>
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/whiteicons/icons/whiteicons/bar-chart.svg</normaloff>:/whiteicons/icons/whiteicons/bar-chart.svg</iconset>
+                 <normaloff>:/whiteicons/icons/whiteicons/shopping-bag.svg</normaloff>:/whiteicons/icons/whiteicons/shopping-bag.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>

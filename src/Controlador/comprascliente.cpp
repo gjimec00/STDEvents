@@ -5,6 +5,7 @@
 #include "producto.h"
 #include "carrito.h"
 #include "cliente.h"
+#include "asientos.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
@@ -164,6 +165,13 @@ void comprasCliente::mostrarVistaEventos(){
         QLabel *label5 = new QLabel("Tipo: " +queryEventos.value("tipo").toString());
 
         QPushButton *button = new QPushButton("Comprar");
+        connect(button, &QPushButton::clicked, [=]() {
+            asientos asientos;
+            asientos.setWindowFlags(Qt::FramelessWindowHint);
+            asientos.setModal(true);
+            hide();
+            asientos.exec();
+        });
 
         menuDesp2->addWidget(label1);
         menuDesp2->addWidget(label2);
@@ -254,7 +262,7 @@ void comprasCliente::mostrarProductos(){
             QString talla = label4->text();
             QString color = label5->text();
             Producto *nuevoProducto = new Producto(idProducto, nombre, cantidad.toInt(), precio.toDouble(), "", talla, color);
-            //listaProductos.push_back(nuevoProducto);
+            cliente.listaProductos.push_back(nuevoProducto);
 
         });
     }
