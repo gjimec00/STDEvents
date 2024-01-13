@@ -259,11 +259,11 @@ void vistaCliente::mostrarProductos(){
 }
 
 void vistaCliente::setCarrito(QStringList añadirCarrito){
-    this->añadirCarrito= añadirCarrito;
+    this->añadirCarrito = añadirCarrito;
 }
 
 QStringList vistaCliente::getCarrito(){
-    return this->añadirCarrito;
+    return añadirCarrito;
 }
 
 

@@ -13,8 +13,10 @@ CONFIG += c++17
 SOURCES += \
     src/Controlador/carrito.cpp \
     src/Controlador/addproducto.cpp \
+    src/Controlador/cliente.cpp \
     src/Controlador/clients.cpp \
     src/Controlador/eventos.cpp \
+    src/Controlador/producto.cpp \
     src/controlador/compraproductos.cpp \
     src/Controlador/entradasyabonos.cpp \
     src/Controlador/calendario.cpp \
@@ -28,12 +30,14 @@ SOURCES += \
 HEADERS += \
     src/Controlador/carrito.h \
     src/Controlador/addproducto.h \
+    src/Controlador/cliente.h \
     src/Controlador/clients.h \
     src/Controlador/compraproductos.h \
     src/Controlador/entradasyabonos.h \
     src/Controlador/calendario.h \
     src/Controlador/administrador.h \
     src/Controlador/eventos.h \
+    src/Controlador/producto.h \
     src/Controlador/registro.h \
     src/Controlador/login.h \
     src/Modelo/database.h \

@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QtSql>
 #include "entradasyabonos.h"
+#include "cliente.h"
 
 
 login::login(QWidget *parent)

@@ -18,8 +18,6 @@ carrito::~carrito()
 
 
 void carrito::imprimirCarrito(){
-    vistaCliente vistaCliente;
-    QString carrito = vistaCliente.getCarrito().join("\n");
-    ui->label->setText(carrito);
+
 }
 
