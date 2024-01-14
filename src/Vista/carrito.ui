@@ -18,7 +18,7 @@
 color: #000;
 border: none;
 }
-#vistaCliente{
+#carrito{
 background-color: #eff9fe;
 }
 
@@ -546,6 +546,18 @@ background:transparent;
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QScrollArea" name="scrollArea">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>500</width>
@@ -561,18 +573,13 @@ background:transparent;
                <x>0</x>
                <y>0</y>
                <width>500</width>
-               <height>427</height>
+               <height>445</height>
               </rect>
              </property>
             </widget>
            </widget>
           </item>
          </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QWidget" name="widget_5" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_7"/>
         </widget>
        </item>
       </layout>
