@@ -7,6 +7,7 @@
 #include "carrito.h"
 #include "cliente.h"
 #include "asientos.h"
+#include "vistacliente.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
@@ -293,3 +294,15 @@ void comprasCliente::on_pushButton_3_clicked()
     carrito.exec();
 
 }
+
+void comprasCliente::on_pushButton_4_clicked()
+{
+    vistaCliente vistaC;
+    vistaC.setWindowFlags(Qt::FramelessWindowHint);
+    vistaC.setModal(true);
+    hide();
+    ventanaCerrada2C = true;
+    ventanaCerrada2CP = true;
+    vistaC.exec();
+}
+

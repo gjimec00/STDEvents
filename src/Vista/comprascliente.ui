@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>930</width>
+    <width>928</width>
     <height>540</height>
    </rect>
   </property>
@@ -53,13 +53,13 @@ border-radius: 20px;
 #headerFrame{
 background-color: #fefeff;
 }
-#pushButton_4{
+#pushButton_6{
 background-color: #fefeff;
 padding: 10px 5px;
 text-align:left;
 border-top-left-radius: 20px
 }
-#pushButton_3, #pushButton_5, #pushButton_6{
+#pushButton_3, #pushButton_5, #pushButton_4{
 padding: 10px 5px;
 text-align:left;
 
@@ -211,7 +211,7 @@ background:transparent;
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/greenicons/icons/greenicons/home.svg</normaloff>:/greenicons/icons/greenicons/home.svg</iconset>
+                 <normaloff>:/whiteicons/icons/whiteicons/home.svg</normaloff>:/whiteicons/icons/whiteicons/home.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -241,11 +241,11 @@ background:transparent;
              <item>
               <widget class="QPushButton" name="pushButton_6">
                <property name="text">
-                <string>Statistics</string>
+                <string>Shop</string>
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/whiteicons/icons/whiteicons/bar-chart.svg</normaloff>:/whiteicons/icons/whiteicons/bar-chart.svg</iconset>
+                 <normaloff>:/greenicons/icons/greenicons/shopping-bag.svg</normaloff>:/greenicons/icons/greenicons/shopping-bag.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -561,8 +561,8 @@ background:transparent;
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>435</width>
-               <height>445</height>
+               <width>428</width>
+               <height>427</height>
               </rect>
              </property>
             </widget>
@@ -584,8 +584,8 @@ background:transparent;
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>434</width>
-               <height>445</height>
+               <width>428</width>
+               <height>427</height>
               </rect>
              </property>
             </widget>

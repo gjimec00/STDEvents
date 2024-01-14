@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>928</width>
+    <width>927</width>
     <height>549</height>
    </rect>
   </property>
@@ -53,13 +53,13 @@ border-radius: 20px;
 #headerFrame{
 background-color: #fefeff;
 }
-#pushButton_4{
+#pushButton_3{
 background-color: #fefeff;
 padding: 10px 5px;
 text-align:left;
 border-top-left-radius: 20px
 }
-#pushButton_3, #pushButton_5, #pushButton_6{
+#pushButton_4, #pushButton_5, #pushButton_6{
 padding: 10px 5px;
 text-align:left;
 
@@ -346,7 +346,7 @@ background:transparent;
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/greenicons/icons/greenicons/home.svg</normaloff>:/greenicons/icons/greenicons/home.svg</iconset>
+                 <normaloff>:/whiteicons/icons/whiteicons/home.svg</normaloff>:/whiteicons/icons/whiteicons/home.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -363,7 +363,7 @@ background:transparent;
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/whiteicons/icons/whiteicons/shopping-cart.svg</normaloff>:/whiteicons/icons/whiteicons/shopping-cart.svg</iconset>
+                 <normaloff>:/greenicons/icons/greenicons/shopping-cart.svg</normaloff>:/greenicons/icons/greenicons/shopping-cart.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -376,11 +376,11 @@ background:transparent;
              <item>
               <widget class="QPushButton" name="pushButton_6">
                <property name="text">
-                <string>Statistics</string>
+                <string>Shop</string>
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/whiteicons/icons/whiteicons/bar-chart.svg</normaloff>:/whiteicons/icons/whiteicons/bar-chart.svg</iconset>
+                 <normaloff>:/whiteicons/icons/whiteicons/shopping-bag.svg</normaloff>:/whiteicons/icons/whiteicons/shopping-bag.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -561,7 +561,7 @@ background:transparent;
                <x>0</x>
                <y>0</y>
                <width>500</width>
-               <height>445</height>
+               <height>427</height>
               </rect>
              </property>
             </widget>

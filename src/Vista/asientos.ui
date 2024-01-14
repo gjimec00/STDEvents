@@ -61,6 +61,13 @@ border-radius: 20px;
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="text">
+       <string>Exit</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QFrame" name="frame">
       <property name="maximumSize">
        <size>
@@ -86,7 +93,7 @@ color: #fff;
 border-radius: 10px;</string>
          </property>
          <property name="text">
-          <string>PushButton</string>
+          <string>TRIBUNA</string>
          </property>
         </widget>
        </item>
@@ -98,21 +105,21 @@ color: #fff;
 border-radius: 10px;</string>
          </property>
          <property name="text">
-          <string>PushButton</string>
+          <string>PREFERENTE</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_2">
          <property name="text">
-          <string>PushButton</string>
+          <string>FONDO NORTE</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>PushButton</string>
+          <string>FONDO SUR</string>
          </property>
         </widget>
        </item>

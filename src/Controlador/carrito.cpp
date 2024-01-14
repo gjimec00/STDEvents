@@ -4,6 +4,7 @@
 #include "cliente.h"
 #include "producto.h"
 #include "vistacliente.h"
+#include "comprascliente.h"
 #include <QTimer>
 #include <iostream>
 
@@ -161,4 +162,28 @@ void carrito::imprimirCarrito(){
 }
 
 
+
+
+void carrito::on_pushButton_4_clicked() //implementar metodos para los flags de ventanCerrada
+{
+    vistaCliente vistaC;
+    vistaC.setWindowFlags(Qt::FramelessWindowHint);
+    vistaC.setModal(true);
+    hide();
+    //ventanaCerrada2C = true;
+    //ventanaCerrada2CP = true;
+    vistaC.exec();
+}
+
+
+void carrito::on_pushButton_6_clicked() //mismo que anterior
+{
+    comprasCliente comprasC;
+    comprasC.setWindowFlags(Qt::FramelessWindowHint);
+    comprasC.setModal(true);
+    hide();
+    //ventanaCerrada2C = true;
+    //ventanaCerrada2CP = true;
+    comprasC.exec();
+}
 
