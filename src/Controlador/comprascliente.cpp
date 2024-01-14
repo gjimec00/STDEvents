@@ -1,4 +1,5 @@
 #include "comprascliente.h"
+#include "qtimer.h"
 #include "ui_comprascliente.h"
 #include "qcombobox.h"
 #include "qpropertyanimation.h"
@@ -282,10 +283,13 @@ QStringList comprasCliente::getCarrito(){
 void comprasCliente::on_pushButton_3_clicked()
 {
     carrito carrito;
+    carrito.setCliente(cliente);
     carrito.setWindowFlags(Qt::FramelessWindowHint);
     carrito.setModal(true);
     hide();
     ventanaCerrada2C = true;
     ventanaCerrada2CP = true;
+    carrito.imprimirCarrito();
     carrito.exec();
+
 }

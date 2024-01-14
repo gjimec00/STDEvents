@@ -16,9 +16,20 @@ public:
 
     explicit carrito(QWidget *parent = nullptr);
     ~carrito();
+    bool ventanaCerrada = true;
+    bool ventanaCerradaP = true;
     void imprimirCarrito();
     void setCliente(Cliente);
     Cliente getCliente();
+
+private slots:
+    void on_menuBtn_clicked();
+
+    void on_pushButton_8_clicked();
+
+    void on_accountBtn_clicked();
+
+
 
 private:
     Ui::carrito *ui;
