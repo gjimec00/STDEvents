@@ -8,6 +8,7 @@
 #include "cliente.h"
 #include "asientos.h"
 #include "vistacliente.h"
+#include "abonos.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
@@ -317,5 +318,16 @@ void comprasCliente::on_pushButton_4_clicked()
     ventanaCerrada2C = true;
     ventanaCerrada2CP = true;
     vistaC.exec();
+}
+
+
+void comprasCliente::on_pushButton_clicked()
+{
+    abonos abonos;
+    abonos.setCliente(cliente);
+    abonos.setWindowFlags(Qt::FramelessWindowHint);
+    abonos.setModal(true);
+    hide();
+    abonos.exec();
 }
 

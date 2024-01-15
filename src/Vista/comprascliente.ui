@@ -518,6 +518,13 @@ background:transparent;
         <widget class="QWidget" name="widget_4" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>Compra tu abono aquí</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="label">
             <property name="font">
              <font>
@@ -546,8 +553,8 @@ background:transparent;
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>435</width>
-               <height>418</height>
+               <width>428</width>
+               <height>366</height>
               </rect>
              </property>
             </widget>
@@ -582,8 +589,8 @@ background:transparent;
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>434</width>
-               <height>418</height>
+               <width>428</width>
+               <height>393</height>
               </rect>
              </property>
             </widget>

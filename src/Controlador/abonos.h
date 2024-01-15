@@ -23,20 +23,20 @@ public:
 private slots:
     void on_pushButton_4_clicked();
 
-    QVector<int> generarAsientos(int min, int max, int cantidadEntradas);
+    int generarAsientos(int min, int max);
 
-    void on_pushButton_3_clicked();
+    //void on_pushButton_3_clicked();
 
-    void on_pushButton_2_clicked();
+    //void on_pushButton_2_clicked();
 
-    void on_pushButton_clicked();
+    //void on_pushButton_clicked();
 
     void on_pushButton_5_clicked();
-    Evento evento;
-    Cliente cliente;
 
 private:
     Ui::abonos *ui;
+    Evento evento;
+    Cliente cliente;
 };
 
 #endif // ABONOS_H
