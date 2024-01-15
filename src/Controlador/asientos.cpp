@@ -33,7 +33,7 @@ Evento asientos::getEvento(){
 int asientos::generarAsientos() {
     QSqlQuery asientosQuery;
     QVector<int> asientosOcupados;
-    int numAsiento;
+    QVector<int> asientosAnteriores;
 
     asientosQuery.prepare("SELECT numAsiento FROM asientos");
     if (asientosQuery.exec()) {
@@ -41,12 +41,68 @@ int asientos::generarAsientos() {
             asientosOcupados.append(asientosQuery.value("numAsiento").toInt());
         }
     }
+
+    int numAsiento;
+    int numAux;
     do {
         numAsiento = QRandomGenerator::global()->bounded(1, 125);
-    } while (asientosOcupados.contains(numAsiento));
+        asientosAnteriores.append(numAsiento);
+        for(int i=0; i<asientosAnteriores.size(); i++){
+            if(numAsiento!=asientosAnteriores[i]){
+                numAux=numAsiento;
+            }else{
+                numAsiento = QRandomGenerator::global()->bounded(1, 125);
+                asientosAnteriores.append(numAsiento);
+            }
+        }
+    } while (asientosOcupados.contains(numAux));
 
-    return numAsiento;
+    asientosOcupados.append(numAux);
+
+    return numAux;
 }
+
+/*
+int asientos::generarAsientos() {
+    QSqlQuery asientosQuery;
+    QVector<int> asientosOcupados;
+    QVector<int> asientosAnteriores;
+
+    asientosQuery.prepare("SELECT numAsiento FROM asientos");
+    if (asientosQuery.exec()) {
+        while (asientosQuery.next()) {
+            asientosOcupados.append(asientosQuery.value("numAsiento").toInt());
+        }
+    }
+
+    int numAsiento;
+    int numAux;
+    do {
+        numAsiento = QRandomGenerator::global()->bounded(1, 125);
+        numAux = numAsiento;
+
+        bool esUnico = true;
+        for(int i = 0; i < asientosAnteriores.size(); i++) {
+            if (numAsiento == asientosAnteriores.at(i)) {
+                esUnico = false;
+                break;
+            }
+        }
+
+        if (!esUnico) {
+            continue;
+        }
+
+        asientosAnteriores.append(numAsiento);
+
+    } while (asientosOcupados.contains(numAux));
+
+    asientosOcupados.append(numAux);
+
+    return numAux;
+}
+*/
+
 
 void asientos::on_pushButton_4_clicked()
 {
