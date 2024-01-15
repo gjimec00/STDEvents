@@ -22,6 +22,13 @@ asientos::~asientos()
     delete ui;
 }
 
+void asientos::setEvento(Evento evento){
+    this->evento = evento;
+}
+
+Evento asientos::getEvento(){
+    return evento;
+}
 int asientos::generarAsientos() {
     QSqlQuery asientosQuery;
     QVector<int> asientosOcupados;

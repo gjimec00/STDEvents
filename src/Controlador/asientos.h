@@ -2,6 +2,7 @@
 #define ASIENTOS_H
 
 #include <QDialog>
+#include "evento.h"
 
 namespace Ui {
 class asientos;
@@ -14,6 +15,8 @@ class asientos : public QDialog
 public:
     explicit asientos(QWidget *parent = nullptr);
     ~asientos();
+    void setEvento(Evento);
+    Evento getEvento();
 
 private slots:
     void on_pushButton_4_clicked();
@@ -28,7 +31,9 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+
 private:
+    Evento evento;
     Ui::asientos *ui;
 };
 

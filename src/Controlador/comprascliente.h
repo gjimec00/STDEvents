@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "cliente.h"
+#include "evento.h"
 
 namespace Ui {
 class comprasCliente;
@@ -24,10 +25,13 @@ public:
     QStringList getCarrito();
     void setCliente(Cliente);
     Cliente getCliente();
+    void setEvento(Evento);
+    Evento getEvento();
 
 private:
     Ui::comprasCliente *ui;
     Cliente cliente;
+
 private slots:
     void on_menuBtn_clicked();
 

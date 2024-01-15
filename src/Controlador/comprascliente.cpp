@@ -37,6 +37,14 @@ void comprasCliente::setCliente(Cliente cliente){
 Cliente comprasCliente::getCliente(){
     return cliente;
 }
+
+void comprasCliente::setEvento(Evento evento){
+    this->evento = evento;
+}
+
+Evento comprasCliente::getEvento(){
+    return evento;
+}
 void comprasCliente::on_menuBtn_clicked()
 {
     QPropertyAnimation *animation = new QPropertyAnimation(ui->leftMenu, "pos");
@@ -148,7 +156,7 @@ void comprasCliente::mostrarVistaEventos(){
     QVBoxLayout *menuDesp = new QVBoxLayout();
 
     QSqlQuery queryEventos;
-    queryEventos.prepare("SELECT nombre, descripcion, fecha, hora, tipo FROM eventos");
+    queryEventos.prepare("SELECT idEvento, nombre, descripcion, fecha, hora, tipo FROM eventos");
 
     if (!queryEventos.exec()) {
         return;
@@ -169,6 +177,8 @@ void comprasCliente::mostrarVistaEventos(){
         QPushButton *button = new QPushButton("Comprar");
         connect(button, &QPushButton::clicked, [=]() {
             asientos asientos;
+            Evento evento(queryEventos.value("idEvento").toInt(), label1->text(), label2->text(), label3->text(), label4->text(), label5->text());
+            asientos.setEvento(evento);
             asientos.setWindowFlags(Qt::FramelessWindowHint);
             asientos.setModal(true);
             hide();
