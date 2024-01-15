@@ -5,9 +5,9 @@ class Producto
 {
 public:
     Producto();
-    Producto(int idProducto, QString nombre, int cantidad, double precio, QString descripcion, QString talla, QString color);
+    Producto(QString idProducto, QString nombre, int cantidad, double precio, QString descripcion, QString talla, QString color);
 
-    int getIdProducto();
+    QString getIdProducto();
     QString getNombre();
     int getCantidad();
     double getPrecio();
@@ -15,7 +15,7 @@ public:
     QString getTalla();
     QString getColor();
 
-    void setIdProducto(int idProducto);
+    void setIdProducto(QString idProducto);
     void setNombre(QString nombre);
     void setCantidad(int cantidad);
     void setPrecio(double precio);
@@ -24,7 +24,7 @@ public:
     void setColor(QString color);
 
 private:
-    int idProducto;
+    QString idProducto;
     QString nombre;
     int cantidad;
     double precio;

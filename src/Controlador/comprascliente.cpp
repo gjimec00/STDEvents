@@ -221,7 +221,7 @@ void comprasCliente::mostrarProductos(){
     QVBoxLayout *menuDesp = new QVBoxLayout();
 
     QSqlQuery queryProductos;
-    queryProductos.prepare("SELECT nombre, cantidad, precio, descripcion, talla, color FROM productos");
+    queryProductos.prepare("SELECT idProducto, nombre, cantidad, precio, descripcion, talla, color FROM productos");
 
     if (!queryProductos.exec()) {
         return;
@@ -235,7 +235,7 @@ void comprasCliente::mostrarProductos(){
         QVBoxLayout *menuDesp2 = new QVBoxLayout();
         QComboBox *combo = new QComboBox();
 
-        cantidad=queryProductos.value(1).toInt();
+        cantidad=queryProductos.value(2).toInt();
         for(int i=1; i<=cantidad; i++){
             combo->addItem(QString::number(i));
         }
@@ -245,6 +245,7 @@ void comprasCliente::mostrarProductos(){
         QLabel *label3 = new QLabel("Descripción: " +queryProductos.value("descripcion").toString());
         QLabel *label4 = new QLabel("Talla: " +queryProductos.value("talla").toString());
         QLabel *label5 = new QLabel("Color: " +queryProductos.value("color").toString());
+        QLabel *label6 = new QLabel(queryProductos.value("idProducto").toString());
 
         QPushButton *button = new QPushButton("Comprar");
 
@@ -267,7 +268,7 @@ void comprasCliente::mostrarProductos(){
 
 
         connect(button, &QPushButton::clicked, [=]() {
-            int idProducto= 0;
+            QString idProducto= label6->text();
             QString nombre = label3->text();
             QString cantidad = combo->currentText();
             QString precio = label2->text();

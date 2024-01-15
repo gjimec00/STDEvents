@@ -3,10 +3,11 @@
 #include "ui_carrito.h"
 #include "cliente.h"
 #include "producto.h"
+#include "evento.h"
 #include "vistacliente.h"
 #include "comprascliente.h"
-#include <QTimer>
-#include <iostream>
+#include <QtSql>
+#include <QDateTime>
 
 bool ventanaCerrada3C = true;
 bool ventanaCerrada3CP = true;
@@ -29,6 +30,22 @@ void carrito::setCliente(Cliente cliente){
 
 Cliente carrito::getCliente(){
     return cliente;
+}
+
+void carrito::setProducto(Producto producto){
+    this->producto=producto;
+}
+
+Producto carrito::getProducto(){
+    return producto;
+}
+
+void carrito::setEvento(Evento evento){
+    this->evento=evento;
+}
+
+Evento carrito::getEvento(){
+    return evento;
 }
 
 
@@ -193,6 +210,34 @@ void carrito::on_pushButton_6_clicked() //mismo que anterior
 void carrito::on_pushButton_2_clicked()
 {
 
+    //int idPago= 0;
+
+    QDateTime dateTimeActual = QDateTime::currentDateTime();
+    QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
+    QString horaActual = dateTimeActual.toString("hh:mm:ss");      // Formato de hora: Hora:Minuto:Segundo
+
+    for(size_t i = 0; i < cliente.listaProductos.size(); i++){
+        QSqlQuery insertQuery;
+        insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto)");
+        //insertQuery.bindValue(":idPago", idPago);
+        insertQuery.bindValue(":fecha", fechaActual);
+        insertQuery.bindValue(":hora", horaActual);
+        insertQuery.bindValue(":dniCliente", cliente.getDNI());
+        //insertQuery.bindValue(":idEvento", "0");
+        insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
+
+        if (insertQuery.exec()) {
+            qDebug() << "Pago insertado con éxito";
+        } else {
+            qDebug() << "Error al insertar pago." << insertQuery.lastError().text();
+        }
+    }
+    QDialog dialogoPago(this);
+    QLabel *labelPago = new QLabel(" Se han pagado los productos del carrito.");
+    QVBoxLayout *layoutPago = new QVBoxLayout;
+    layoutPago->addWidget(labelPago);
+    dialogoPago.setLayout(layoutPago);
+    dialogoPago.exec();
 }
 
 

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "cliente.h"
+#include "src/Controlador/evento.h"
 
 namespace Ui {
 class carrito;
@@ -21,6 +22,10 @@ public:
     void imprimirCarrito();
     void setCliente(Cliente);
     Cliente getCliente();
+    void setProducto(Producto);
+    Producto getProducto();
+    void setEvento(Evento);
+    Evento getEvento();
 
 private slots:
     void on_menuBtn_clicked();
@@ -42,6 +47,8 @@ private slots:
 private:
     Ui::carrito *ui;
     Cliente cliente;
+    Producto producto;
+    Evento evento;
 };
 
 #endif // CARRITO_H

@@ -2,7 +2,7 @@
 
 Producto::Producto() {}
 
-Producto::Producto(int idProducto, QString nombre, int cantidad, double precio, QString descripcion, QString talla, QString color){
+Producto::Producto(QString idProducto, QString nombre, int cantidad, double precio, QString descripcion, QString talla, QString color){
     this->idProducto = idProducto;
     this->nombre = nombre;
     this->cantidad = cantidad;
@@ -12,7 +12,7 @@ Producto::Producto(int idProducto, QString nombre, int cantidad, double precio, 
     this->color = color;
 }
 
-int Producto::getIdProducto(){
+QString Producto::getIdProducto(){
     return idProducto;
 }
 QString Producto::getNombre(){
@@ -34,7 +34,7 @@ QString Producto::getColor(){
     return color;
 }
 
-void Producto::setIdProducto(int idProducto){
+void Producto::setIdProducto(QString idProducto){
     this->idProducto = idProducto;
 }
 void Producto::setNombre(QString nombre){
