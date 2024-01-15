@@ -189,3 +189,37 @@ void carrito::on_pushButton_6_clicked() //mismo que anterior
     comprasC.exec();
 }
 
+
+void carrito::on_pushButton_2_clicked()
+{
+
+}
+
+
+void carrito::on_pushButton_clicked()
+{
+    cliente.listaProductos.clear();
+
+    QLayout *layout = ui->scrollAreaWidgetContents_4->layout();
+
+    // Verificar si hay un layout asignado
+    if (layout) {
+        // Eliminar y liberar los widgets contenidos en el layout
+        QLayoutItem *child;
+        while ((child = layout->takeAt(0)) != nullptr) {
+            delete child->widget();
+            delete child;
+        }
+
+        // Asignar un nuevo layout vacío al scrollAreaWidgetContents_4
+        ui->scrollAreaWidgetContents_4->setLayout(new QVBoxLayout());
+    }
+
+    QDialog dialogoVaciar(this);
+    QLabel *labelVaciar = new QLabel(" Se han borrado los productos del carrito.");
+    QVBoxLayout *layoutVaciar = new QVBoxLayout;
+    layoutVaciar->addWidget(labelVaciar);
+    dialogoVaciar.setLayout(layoutVaciar);
+    dialogoVaciar.exec();
+}
+
