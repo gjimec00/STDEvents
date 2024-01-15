@@ -24,7 +24,7 @@ public:
 private slots:
     void on_pushButton_4_clicked();
 
-    QVector<int> generarAsientos(int min, int max, int cantidadEntradas);
+    QVector<int> generarAsientos(int min, int max, int cantidadEntradas, int j);
 
     void mostrarMensajeNoAsientosDisponibles();
 

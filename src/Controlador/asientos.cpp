@@ -77,13 +77,16 @@ void asientos::mostrarMensajeNoAsientosDisponibles() {
 }
 
 // Modifica la función generarAsientos para llamar a esta función cuando sea necesario
-QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas) {
+QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas, int j) {
     QSqlQuery asientosQuery;
     QVector<int> asientosOcupados;
     QVector<int> asientosDisponibles;
     QVector<int> asientosGenerados;
 
-    asientosQuery.prepare("SELECT numAsiento FROM asientos");
+    asientosQuery.prepare("SELECT numAsiento FROM asientos WHERE idEvento = :idEvento");
+
+    asientosQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
+
     if (asientosQuery.exec()) {
         while (asientosQuery.next()) {
             asientosOcupados.append(asientosQuery.value("numAsiento").toInt());
@@ -166,7 +169,7 @@ void asientos::on_pushButton_4_clicked()
         QVector<int> asientosGenerados;
         //QVector<int> asientosAnteriores;
 
-        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas);
+        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas, j);
         for (int i = 0; i < cantidadEntradas; ++i) {
 
             QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientos[i]));
@@ -285,7 +288,7 @@ void asientos::on_pushButton_3_clicked()
         layoutAsientos->addWidget(labelSector);
 
         QVector<int> asientosGenerados;
-        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas);
+        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas, j);
         for (int i = 0; i < cantidadEntradas; ++i) {
 
             QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientos[i]));
@@ -405,7 +408,7 @@ void asientos::on_pushButton_2_clicked()
         layoutAsientos->addWidget(labelSector);
 
         QVector<int> asientosGenerados;
-        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas);
+        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas, j);
         for (int i = 0; i < cantidadEntradas; ++i) {
 
             QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientos[i]));
@@ -522,7 +525,7 @@ void asientos::on_pushButton_clicked()
         layoutAsientos->addWidget(labelSector);
 
         QVector<int> asientosGenerados;
-        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas);
+        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas, j);
         for (int i = 0; i < cantidadEntradas; ++i) {
 
             QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientos[i]));
