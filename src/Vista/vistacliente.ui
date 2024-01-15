@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>927</width>
+    <width>930</width>
     <height>540</height>
    </rect>
   </property>
@@ -261,23 +261,6 @@ background:transparent;
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_5">
-               <property name="text">
-                <string>Settings</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/whiteicons/icons/whiteicons/settings.svg</normaloff>:/whiteicons/icons/whiteicons/settings.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>24</width>
-                 <height>24</height>
-                </size>
-               </property>
-              </widget>
-             </item>
             </layout>
            </widget>
           </item>
@@ -355,7 +338,7 @@ background:transparent;
              </font>
             </property>
             <property name="text">
-             <string>Dashboard</string>
+             <string>Bienvenido</string>
             </property>
            </widget>
           </item>
@@ -550,17 +533,6 @@ background:transparent;
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_7">
-         <property name="text">
-          <string>My Profile</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../Recursos.qrc">
-           <normaloff>:/greenicons/icons/greenicons/user.svg</normaloff>:/greenicons/icons/greenicons/user.svg</iconset>
          </property>
         </widget>
        </item>

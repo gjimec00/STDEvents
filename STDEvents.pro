@@ -17,6 +17,7 @@ SOURCES += \
     src/Controlador/cliente.cpp \
     src/Controlador/clients.cpp \
     src/Controlador/comprascliente.cpp \
+    src/Controlador/evento.cpp \
     src/Controlador/eventos.cpp \
     src/Controlador/inventario.cpp \
     src/Controlador/producto.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     src/Controlador/calendario.h \
     src/Controlador/administrador.h \
     src/Controlador/comprascliente.h \
+    src/Controlador/evento.h \
     src/Controlador/eventos.h \
     src/Controlador/inventario.h \
     src/Controlador/producto.h \

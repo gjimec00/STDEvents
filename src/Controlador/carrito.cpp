@@ -8,6 +8,8 @@
 #include <QTimer>
 #include <iostream>
 
+bool ventanaCerrada3C = true;
+bool ventanaCerrada3CP = true;
 carrito::carrito(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::carrito)
@@ -42,7 +44,7 @@ void carrito::on_menuBtn_clicked()
     animation2->setDuration(500);
 
     QRect geometry = this->geometry();
-    if (ventanaCerrada){
+    if (ventanaCerrada3C){
         geometry.setWidth(1150);
         geometry.setHeight(548);
         animationDespl->setEndValue(geometry);
@@ -55,7 +57,7 @@ void carrito::on_menuBtn_clicked()
 
         animation2->setStartValue(QPoint(1030, 0));
         animation2->setEndValue(QPoint(1150, 0));
-        ventanaCerrada = false;
+        ventanaCerrada3C = false;
 
 
     } else{
@@ -71,7 +73,7 @@ void carrito::on_menuBtn_clicked()
 
         animation2->setStartValue(QPoint(1250, 0));
         animation2->setEndValue(QPoint(930, 0));
-        ventanaCerrada = true;
+        ventanaCerrada3C = true;
     }
     animationDespl->start();
 
@@ -96,29 +98,29 @@ void carrito::on_accountBtn_clicked()
     QPropertyAnimation *animation = new QPropertyAnimation(this, "geometry");
     animation->setDuration(500);
     QRect geometry = this->geometry();
-    if (ventanaCerrada){
-        if(ventanaCerradaP){
+    if (ventanaCerrada3C){
+        if(ventanaCerrada3CP){
             geometry.setWidth(1030);
             geometry.setHeight(548);
             animation->setEndValue(geometry);
-            ventanaCerradaP = false;
+            ventanaCerrada3CP = false;
         }else{
             geometry.setWidth(930);
             geometry.setHeight(548);
             animation->setEndValue(geometry);
-            ventanaCerradaP = true;
+            ventanaCerrada3CP = true;
         }
     } else{
-        if(ventanaCerradaP){
+        if(ventanaCerrada3CP){
             geometry.setWidth(1250);
             geometry.setHeight(548);
             animation->setEndValue(geometry);
-            ventanaCerradaP = false;
+            ventanaCerrada3CP = false;
         }else{
             geometry.setWidth(1150);
             geometry.setHeight(548);
             animation->setEndValue(geometry);
-            ventanaCerradaP = true;
+            ventanaCerrada3CP = true;
         }
     }
     animation->start();
@@ -139,10 +141,10 @@ void carrito::imprimirCarrito(){
         Producto *producto = cliente.listaProductos[i];
         double precio1 = producto->getPrecio();
         QString valorQString = QString::number(precio1);
+        QLabel *label1 = new QLabel(producto->getDescrpicion());
 
-        QLabel *label1 = new QLabel(producto->getNombre());
-        QLabel *label2 = new QLabel("Precio: " + QString::number(precio1));
-        QLabel *label3 = new QLabel("Descripción: " + producto->getDescrpicion());
+        QLabel *label2 = new QLabel("Precio total: " + QString::number(precio1 * producto->getCantidad()) + "€");
+        QLabel *label3 = new QLabel("Cantidad: " + QString::number(producto->getCantidad()));
         QLabel *label4 = new QLabel(producto->getTalla());
         QLabel *label5 = new QLabel(producto->getColor());
 
@@ -170,8 +172,8 @@ void carrito::on_pushButton_4_clicked() //implementar metodos para los flags de 
     vistaC.setWindowFlags(Qt::FramelessWindowHint);
     vistaC.setModal(true);
     hide();
-    //ventanaCerrada2C = true;
-    //ventanaCerrada2CP = true;
+    ventanaCerrada3C = true;
+    ventanaCerrada3CP = true;
     vistaC.exec();
 }
 
@@ -182,8 +184,8 @@ void carrito::on_pushButton_6_clicked() //mismo que anterior
     comprasC.setWindowFlags(Qt::FramelessWindowHint);
     comprasC.setModal(true);
     hide();
-    //ventanaCerrada2C = true;
-    //ventanaCerrada2CP = true;
+    ventanaCerrada3C = true;
+    ventanaCerrada3CP = true;
     comprasC.exec();
 }
 

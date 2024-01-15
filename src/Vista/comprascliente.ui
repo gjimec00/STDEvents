@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>928</width>
+    <width>930</width>
     <height>540</height>
    </rect>
   </property>
@@ -255,23 +255,6 @@ background:transparent;
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_5">
-               <property name="text">
-                <string>Settings</string>
-               </property>
-               <property name="icon">
-                <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/whiteicons/icons/whiteicons/settings.svg</normaloff>:/whiteicons/icons/whiteicons/settings.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>24</width>
-                 <height>24</height>
-                </size>
-               </property>
-              </widget>
-             </item>
             </layout>
            </widget>
           </item>
@@ -387,17 +370,6 @@ background:transparent;
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_7">
-         <property name="text">
-          <string>My Profile</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../Recursos.qrc">
-           <normaloff>:/greenicons/icons/greenicons/user.svg</normaloff>:/greenicons/icons/greenicons/user.svg</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="pushButton_8">
          <property name="minimumSize">
           <size>
@@ -485,7 +457,7 @@ background:transparent;
              </font>
             </property>
             <property name="text">
-             <string>Dashboard</string>
+             <string>Compra tus entradas y productos</string>
             </property>
            </widget>
           </item>
@@ -546,6 +518,19 @@ background:transparent;
         <widget class="QWidget" name="widget_4" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Entradas para tus eventos favoritos</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QScrollArea" name="scrollArea">
             <property name="maximumSize">
              <size>
@@ -561,8 +546,8 @@ background:transparent;
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>428</width>
-               <height>427</height>
+               <width>435</width>
+               <height>418</height>
               </rect>
              </property>
             </widget>
@@ -575,6 +560,19 @@ background:transparent;
         <widget class="QWidget" name="widget_5" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
+           <widget class="QLabel" name="label_2">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Compra los productos que más te gusten</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QScrollArea" name="scrollArea_2">
             <property name="widgetResizable">
              <bool>true</bool>
@@ -584,8 +582,8 @@ background:transparent;
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>428</width>
-               <height>427</height>
+               <width>434</width>
+               <height>418</height>
               </rect>
              </property>
             </widget>

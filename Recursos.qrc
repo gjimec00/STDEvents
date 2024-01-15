@@ -9,6 +9,7 @@
         <file>imagenes/Captura de pantalla 2024-01-02 172038.jpg</file>
         <file>imagenes/elion-jashari-ByJvnMS3emY-unsplash2.jpg</file>
         <file>qml/entradasyabonos.qml</file>
+        <file>imagenes/estadio.png</file>
     </qresource>
     <qresource prefix="/whiteicons">
         <file>icons/whiteicons/activity.svg</file>

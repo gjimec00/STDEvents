@@ -141,6 +141,8 @@ void vistaCliente::on_pushButton_3_clicked()
     carrito.setWindowFlags(Qt::FramelessWindowHint);
     carrito.setModal(true);
     hide();
+    ventanaCerradaC = true;
+    ventanaCerradaCP = true;
     carrito.exec();
 }
 
@@ -180,6 +182,8 @@ void vistaCliente::on_pushButton_6_clicked()
     compras.setWindowFlags(Qt::FramelessWindowHint);
     compras.setModal(true);
     hide();
+    ventanaCerradaC = true;
+    ventanaCerradaCP = true;
     compras.exec();
 }
 

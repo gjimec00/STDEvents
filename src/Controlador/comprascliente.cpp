@@ -258,13 +258,20 @@ void comprasCliente::mostrarProductos(){
 
         connect(button, &QPushButton::clicked, [=]() {
             int idProducto= 0;
-            QString nombre = label1->text();
+            QString nombre = label3->text();
             QString cantidad = combo->currentText();
             QString precio = label2->text();
+            precio = precio.mid(8);
             QString talla = label4->text();
             QString color = label5->text();
-            Producto *nuevoProducto = new Producto(idProducto, nombre, cantidad.toInt(), precio.toDouble(), "", talla, color);
+            Producto *nuevoProducto = new Producto(idProducto, "", cantidad.toInt(), precio.toDouble(), nombre, talla, color);
             cliente.listaProductos.push_back(nuevoProducto);
+            QDialog dialogoConfirmar(this);
+            QLabel *labelConfirmar = new QLabel(" Producto añadido correctamente al carrito.");
+            QVBoxLayout *layoutConfirmar = new QVBoxLayout;
+            layoutConfirmar->addWidget(labelConfirmar);
+            dialogoConfirmar.setLayout(layoutConfirmar);
+            dialogoConfirmar.exec();
 
         });
     }
