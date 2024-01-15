@@ -38,13 +38,6 @@ Cliente comprasCliente::getCliente(){
     return cliente;
 }
 
-void comprasCliente::setEvento(Evento evento){
-    this->evento = evento;
-}
-
-Evento comprasCliente::getEvento(){
-    return evento;
-}
 void comprasCliente::on_menuBtn_clicked()
 {
     QPropertyAnimation *animation = new QPropertyAnimation(ui->leftMenu, "pos");
@@ -173,12 +166,14 @@ void comprasCliente::mostrarVistaEventos(){
         QLabel *label3 = new QLabel("Fecha: " +queryEventos.value("fecha").toString());
         QLabel *label4 = new QLabel("Hora: " +queryEventos.value("hora").toString());
         QLabel *label5 = new QLabel("Tipo: " +queryEventos.value("tipo").toString());
+        QLabel *label6 = new QLabel(queryEventos.value("idEvento").toString());
 
         QPushButton *button = new QPushButton("Comprar");
         connect(button, &QPushButton::clicked, [=]() {
             asientos asientos;
-            Evento evento(queryEventos.value("idEvento").toInt(), label1->text(), label2->text(), label3->text(), label4->text(), label5->text());
-            asientos.setEvento(evento);
+            Evento *evento = new Evento(label6->text(), label1->text(), label2->text(), label3->text(), label4->text(), label5->text());
+            cliente.listaEventos.push_back(evento);
+            asientos.setCliente(cliente);
             asientos.setWindowFlags(Qt::FramelessWindowHint);
             asientos.setModal(true);
             hide();

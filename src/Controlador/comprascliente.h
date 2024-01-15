@@ -25,13 +25,10 @@ public:
     QStringList getCarrito();
     void setCliente(Cliente);
     Cliente getCliente();
-    void setEvento(Evento);
-    Evento getEvento();
 
 private:
     Ui::comprasCliente *ui;
     Cliente cliente;
-    Evento evento;
 
 private slots:
     void on_menuBtn_clicked();

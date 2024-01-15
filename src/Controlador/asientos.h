@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "evento.h"
+#include "cliente.h"
 
 namespace Ui {
 class asientos;
@@ -17,11 +18,13 @@ public:
     ~asientos();
     void setEvento(Evento);
     Evento getEvento();
+    void setCliente(Cliente);
+    Cliente getCliente();
 
 private slots:
     void on_pushButton_4_clicked();
 
-    int generarAsientos();
+    QVector<int> generarAsientos(int min, int max, int cantidadEntradas);
 
     void on_pushButton_3_clicked();
 
@@ -34,6 +37,7 @@ private slots:
 
 private:
     Evento evento;
+    Cliente cliente;
     Ui::asientos *ui;
 };
 

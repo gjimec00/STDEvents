@@ -7,10 +7,10 @@ class Evento
 {
 public:
     Evento();
-    Evento(int idEvento, QString nombre, QString descripcion, QString fecha, QString hora, QString tipo);
+    Evento(QString idEvento, QString nombre, QString descripcion, QString fecha, QString hora, QString tipo);
 
-    int getIdEvento();
-    void setIdEvento(int idEvento);
+    QString getIdEvento();
+    void setIdEvento(QString idEvento);
 
     QString getNombre();
     QString getDescripcion();
@@ -26,7 +26,7 @@ public:
 
 
 private:
-    int idEvento;
+    QString idEvento;
     QString nombre;
     QString descripcion;
     QString fecha;

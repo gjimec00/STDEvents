@@ -2,7 +2,7 @@
 
 Evento::Evento() {}
 
-Evento::Evento(int idEvento, QString nombre, QString descripcion, QString fecha, QString hora, QString tipo){
+Evento::Evento(QString idEvento, QString nombre, QString descripcion, QString fecha, QString hora, QString tipo){
     this->idEvento = idEvento;
     this->nombre = nombre;
     this->descripcion = descripcion;
@@ -11,11 +11,11 @@ Evento::Evento(int idEvento, QString nombre, QString descripcion, QString fecha,
     this->tipo = tipo;
 }
 
-int Evento::getIdEvento(){
+QString Evento::getIdEvento(){
     return idEvento;
 }
 
-void Evento::setIdEvento(int idEvento){
+void Evento::setIdEvento(QString idEvento){
     this->idEvento = idEvento;
 }
 

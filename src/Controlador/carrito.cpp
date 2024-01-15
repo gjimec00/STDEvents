@@ -218,13 +218,14 @@ void carrito::on_pushButton_2_clicked()
 
     for(size_t i = 0; i < cliente.listaProductos.size(); i++){
         QSqlQuery insertQuery;
-        insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto)");
+        insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
         //insertQuery.bindValue(":idPago", idPago);
         insertQuery.bindValue(":fecha", fechaActual);
         insertQuery.bindValue(":hora", horaActual);
         insertQuery.bindValue(":dniCliente", cliente.getDNI());
         //insertQuery.bindValue(":idEvento", "0");
         insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
+        insertQuery.bindValue(":precioTotal", cliente.listaProductos[i]->getPrecio() * cliente.listaProductos[i]->getCantidad());
 
         if (insertQuery.exec()) {
             qDebug() << "Pago insertado con éxito";
@@ -232,6 +233,24 @@ void carrito::on_pushButton_2_clicked()
             qDebug() << "Error al insertar pago." << insertQuery.lastError().text();
         }
     }
+
+    cliente.listaProductos.clear();
+
+    QLayout *layout = ui->scrollAreaWidgetContents_4->layout();
+
+    // Verificar si hay un layout asignado
+    if (layout) {
+        // Eliminar y liberar los widgets contenidos en el layout
+        QLayoutItem *child;
+        while ((child = layout->takeAt(0)) != nullptr) {
+            delete child->widget();
+            delete child;
+        }
+
+        // Asignar un nuevo layout vacío al scrollAreaWidgetContents_4
+        ui->scrollAreaWidgetContents_4->setLayout(new QVBoxLayout());
+    }
+
     QDialog dialogoPago(this);
     QLabel *labelPago = new QLabel(" Se han pagado los productos del carrito.");
     QVBoxLayout *layoutPago = new QVBoxLayout;

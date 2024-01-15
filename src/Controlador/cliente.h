@@ -3,6 +3,7 @@
 #include <QString>
 #include <vector>
 #include "producto.h"
+#include "evento.h"
 using namespace std;
 
 class Cliente
@@ -29,6 +30,7 @@ public:
     void setNumAsientoAb(int numAsientoAb);
     void setAbonado(bool abonado);
     vector <Producto *> listaProductos;
+    vector <Evento *> listaEventos;
 private:
     QString nombre;
     QString apellidos;

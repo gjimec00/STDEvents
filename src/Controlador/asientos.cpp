@@ -10,6 +10,8 @@
 #include <QRandomGenerator>
 #include <QtSql>
 
+
+
 asientos::asientos(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::asientos)
@@ -30,10 +32,20 @@ Evento asientos::getEvento(){
     return evento;
 }
 
-int asientos::generarAsientos() {
+void asientos::setCliente(Cliente cliente){
+    this->cliente=cliente;
+}
+
+Cliente asientos::getCliente(){
+    return cliente;
+}
+
+QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas) {
     QSqlQuery asientosQuery;
     QVector<int> asientosOcupados;
-    QVector<int> asientosAnteriores;
+    QVector<int> asientosGenerados;
+    int numAsiento;
+
 
     asientosQuery.prepare("SELECT numAsiento FROM asientos");
     if (asientosQuery.exec()) {
@@ -42,71 +54,24 @@ int asientos::generarAsientos() {
         }
     }
 
-    int numAsiento;
-    int numAux;
-    do {
-        numAsiento = QRandomGenerator::global()->bounded(1, 125);
-        asientosAnteriores.append(numAsiento);
-        for(int i=0; i<asientosAnteriores.size(); i++){
-            if(numAsiento!=asientosAnteriores[i]){
-                numAux=numAsiento;
-            }else{
-                numAsiento = QRandomGenerator::global()->bounded(1, 125);
-                asientosAnteriores.append(numAsiento);
-            }
-        }
-    } while (asientosOcupados.contains(numAux));
+    while (asientosGenerados.size() < cantidadEntradas){
+        numAsiento = QRandomGenerator::global()->bounded(min, max);
 
-    asientosOcupados.append(numAux);
-
-    return numAux;
-}
-
-/*
-int asientos::generarAsientos() {
-    QSqlQuery asientosQuery;
-    QVector<int> asientosOcupados;
-    QVector<int> asientosAnteriores;
-
-    asientosQuery.prepare("SELECT numAsiento FROM asientos");
-    if (asientosQuery.exec()) {
-        while (asientosQuery.next()) {
-            asientosOcupados.append(asientosQuery.value("numAsiento").toInt());
+        if(!asientosGenerados.contains(numAsiento) && !asientosOcupados.contains(numAsiento)){
+            asientosGenerados.append(numAsiento);
         }
     }
+    return asientosGenerados;
 
-    int numAsiento;
-    int numAux;
-    do {
-        numAsiento = QRandomGenerator::global()->bounded(1, 125);
-        numAux = numAsiento;
-
-        bool esUnico = true;
-        for(int i = 0; i < asientosAnteriores.size(); i++) {
-            if (numAsiento == asientosAnteriores.at(i)) {
-                esUnico = false;
-                break;
-            }
-        }
-
-        if (!esUnico) {
-            continue;
-        }
-
-        asientosAnteriores.append(numAsiento);
-
-    } while (asientosOcupados.contains(numAux));
-
-    asientosOcupados.append(numAux);
-
-    return numAux;
 }
-*/
 
 
 void asientos::on_pushButton_4_clicked()
 {
+    int j = 0;
     int precio = 50;
+    int max = 125;
+    int min = 1;
 
     QDialog dialogoEntradas(this);
 
@@ -140,13 +105,15 @@ void asientos::on_pushButton_4_clicked()
         layoutAsientos->addWidget(labelSector);
 
         QVector<int> asientosGenerados;
-        for (int i = 0; i < cantidadEntradas; ++i) {
-            int asiento = generarAsientos();
+        //QVector<int> asientosAnteriores;
 
-            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asiento));
+        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas);
+        for (int i = 0; i < cantidadEntradas; ++i) {
+
+            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientos[i]));
             layoutAsientos->addWidget(labelAsiento);
 
-            asientosGenerados.append(asiento);
+            asientosGenerados.append(asientos[i]);
         }
 
         layoutAsientos->addWidget(labelPrecioTotal);
@@ -174,7 +141,7 @@ void asientos::on_pushButton_4_clicked()
                 insertQuery.prepare("INSERT INTO asientos (numAsiento, precio, idEvento)  VALUES (:numAsiento, :precio, :idEvento)");
                 insertQuery.bindValue(":numAsiento", asientosGenerados.at(i));
                 insertQuery.bindValue(":precio", precio);
-                insertQuery.bindValue(":idEvento", evento.getIdEvento());
+                insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
 
                 if (insertQuery.exec()) {
                     qDebug() << "Asiento y precio guardados en la base de datos.";
@@ -182,8 +149,29 @@ void asientos::on_pushButton_4_clicked()
                     qDebug() << "Error al guardar en la base de datos:" << insertQuery.lastError().text();
                 }
             }
+            QDateTime dateTimeActual = QDateTime::currentDateTime();
+            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
+            QString horaActual = dateTimeActual.toString("hh:mm:ss");
+            QSqlQuery insertQuery;
+            insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
+            //insertQuery.bindValue(":idPago", idPago);
+            insertQuery.bindValue(":fecha", fechaActual);
+            insertQuery.bindValue(":hora", horaActual);
+            insertQuery.bindValue(":dniCliente", cliente.getDNI());
+            insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
+            //insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
+            insertQuery.bindValue(":precioTotal", precioTotal);
+
+            if (insertQuery.exec()) {
+                qDebug() << "Pago insertado con éxito";
+            } else {
+                qDebug() << "Error al insertar pago." << insertQuery.lastError().text();
+            }
+
             nuevaVentana->accept();
+
         });
+        j++;
 
         connect(botonCancelar, &QPushButton::clicked, nuevaVentana, &QDialog::reject);
 
@@ -200,7 +188,10 @@ void asientos::on_pushButton_4_clicked()
 
 void asientos::on_pushButton_3_clicked()
 {
+    int j = 0;
     int precio = 40;
+    int min = 126;
+    int max = 250;
 
     QDialog dialogoEntradas(this);
 
@@ -234,13 +225,13 @@ void asientos::on_pushButton_3_clicked()
         layoutAsientos->addWidget(labelSector);
 
         QVector<int> asientosGenerados;
+        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas);
         for (int i = 0; i < cantidadEntradas; ++i) {
-            int asiento = generarAsientos();
 
-            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asiento));
+            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientos[i]));
             layoutAsientos->addWidget(labelAsiento);
 
-            asientosGenerados.append(asiento);
+            asientosGenerados.append(asientos[i]);
         }
 
         layoutAsientos->addWidget(labelPrecioTotal);
@@ -265,9 +256,10 @@ void asientos::on_pushButton_3_clicked()
         connect(botonComprar, &QPushButton::clicked, [=]() {
             for (int i = 0; i < cantidadEntradas; ++i) {
                 QSqlQuery insertQuery;
-                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio) VALUES (:numAsiento, :precio)");
+                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio, idEvento) VALUES (:numAsiento, :precio, :idEvento)");
                 insertQuery.bindValue(":numAsiento", asientosGenerados.at(i));
                 insertQuery.bindValue(":precio", precio);
+                insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
 
                 if (insertQuery.exec()) {
                     qDebug() << "Asiento y precio guardados en la base de datos.";
@@ -275,9 +267,28 @@ void asientos::on_pushButton_3_clicked()
                     qDebug() << "Error al guardar en la base de datos:" << insertQuery.lastError().text();
                 }
             }
+            QDateTime dateTimeActual = QDateTime::currentDateTime();
+            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
+            QString horaActual = dateTimeActual.toString("hh:mm:ss");
+            QSqlQuery insertQuery;
+            insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
+            //insertQuery.bindValue(":idPago", idPago);
+            insertQuery.bindValue(":fecha", fechaActual);
+            insertQuery.bindValue(":hora", horaActual);
+            insertQuery.bindValue(":dniCliente", cliente.getDNI());
+            insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
+            //insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
+            insertQuery.bindValue(":precioTotal", precioTotal);
+
+            if (insertQuery.exec()) {
+                qDebug() << "Pago insertado con éxito";
+            } else {
+                qDebug() << "Error al insertar pago." << insertQuery.lastError().text();
+            }
+
             nuevaVentana->accept();
         });
-
+        j++;
         connect(botonCancelar, &QPushButton::clicked, nuevaVentana, &QDialog::reject);
 
         if (nuevaVentana->exec() == QDialog::Accepted) {
@@ -297,7 +308,10 @@ void asientos::on_pushButton_3_clicked()
 
 void asientos::on_pushButton_2_clicked()
 {
+    int j = 0;
     int precio = 25;
+    int min = 251;
+    int max = 375;
 
     QDialog dialogoEntradas(this);
 
@@ -331,13 +345,13 @@ void asientos::on_pushButton_2_clicked()
         layoutAsientos->addWidget(labelSector);
 
         QVector<int> asientosGenerados;
+        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas);
         for (int i = 0; i < cantidadEntradas; ++i) {
-            int asiento = generarAsientos();
 
-            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asiento));
+            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientos[i]));
             layoutAsientos->addWidget(labelAsiento);
 
-            asientosGenerados.append(asiento);
+            asientosGenerados.append(asientos[i]);
         }
 
         layoutAsientos->addWidget(labelPrecioTotal);
@@ -362,9 +376,10 @@ void asientos::on_pushButton_2_clicked()
         connect(botonComprar, &QPushButton::clicked, [=]() {
             for (int i = 0; i < cantidadEntradas; ++i) {
                 QSqlQuery insertQuery;
-                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio) VALUES (:numAsiento, :precio)");
+                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio, idEvento) VALUES (:numAsiento, :precio, :idEvento)");
                 insertQuery.bindValue(":numAsiento", asientosGenerados.at(i));
                 insertQuery.bindValue(":precio", precio);
+                insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
 
                 if (insertQuery.exec()) {
                     qDebug() << "Asiento y precio guardados en la base de datos.";
@@ -372,8 +387,28 @@ void asientos::on_pushButton_2_clicked()
                     qDebug() << "Error al guardar en la base de datos:" << insertQuery.lastError().text();
                 }
             }
+            QDateTime dateTimeActual = QDateTime::currentDateTime();
+            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
+            QString horaActual = dateTimeActual.toString("hh:mm:ss");
+            QSqlQuery insertQuery;
+            insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
+            //insertQuery.bindValue(":idPago", idPago);
+            insertQuery.bindValue(":fecha", fechaActual);
+            insertQuery.bindValue(":hora", horaActual);
+            insertQuery.bindValue(":dniCliente", cliente.getDNI());
+            insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
+            //insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
+            insertQuery.bindValue(":precioTotal", precioTotal);
+
+            if (insertQuery.exec()) {
+                qDebug() << "Pago insertado con éxito";
+            } else {
+                qDebug() << "Error al insertar pago." << insertQuery.lastError().text();
+            }
+
             nuevaVentana->accept();
         });
+        j++;
 
         connect(botonCancelar, &QPushButton::clicked, nuevaVentana, &QDialog::reject);
 
@@ -390,7 +425,10 @@ void asientos::on_pushButton_2_clicked()
 
 void asientos::on_pushButton_clicked()
 {
+    int j = 0;
     int precio = 25;
+    int min = 376;
+    int max = 500;
 
     QDialog dialogoEntradas(this);
 
@@ -424,13 +462,13 @@ void asientos::on_pushButton_clicked()
         layoutAsientos->addWidget(labelSector);
 
         QVector<int> asientosGenerados;
+        QVector<int> asientos = generarAsientos(min,max, cantidadEntradas);
         for (int i = 0; i < cantidadEntradas; ++i) {
-            int asiento = generarAsientos();
 
-            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asiento));
+            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientos[i]));
             layoutAsientos->addWidget(labelAsiento);
 
-            asientosGenerados.append(asiento);
+            asientosGenerados.append(asientos[i]);
         }
 
         layoutAsientos->addWidget(labelPrecioTotal);
@@ -455,9 +493,10 @@ void asientos::on_pushButton_clicked()
         connect(botonComprar, &QPushButton::clicked, [=]() {
             for (int i = 0; i < cantidadEntradas; ++i) {
                 QSqlQuery insertQuery;
-                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio) VALUES (:numAsiento, :precio)");
+                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio, idEvento) VALUES (:numAsiento, :precio, :idEvento)");
                 insertQuery.bindValue(":numAsiento", asientosGenerados.at(i));
                 insertQuery.bindValue(":precio", precio);
+                insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
 
                 if (insertQuery.exec()) {
                     qDebug() << "Asiento y precio guardados en la base de datos.";
@@ -465,8 +504,28 @@ void asientos::on_pushButton_clicked()
                     qDebug() << "Error al guardar en la base de datos:" << insertQuery.lastError().text();
                 }
             }
+            QDateTime dateTimeActual = QDateTime::currentDateTime();
+            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
+            QString horaActual = dateTimeActual.toString("hh:mm:ss");
+            QSqlQuery insertQuery;
+            insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
+            //insertQuery.bindValue(":idPago", idPago);
+            insertQuery.bindValue(":fecha", fechaActual);
+            insertQuery.bindValue(":hora", horaActual);
+            insertQuery.bindValue(":dniCliente", cliente.getDNI());
+            insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
+            //insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
+            insertQuery.bindValue(":precioTotal", precioTotal);
+
+            if (insertQuery.exec()) {
+                qDebug() << "Pago insertado con éxito";
+            } else {
+                qDebug() << "Error al insertar pago." << insertQuery.lastError().text();
+            }
+
             nuevaVentana->accept();
         });
+        j++;
 
         connect(botonCancelar, &QPushButton::clicked, nuevaVentana, &QDialog::reject);
 
@@ -490,4 +549,5 @@ void asientos::on_pushButton_5_clicked()
     volver.exec();
 
 }
+
 
