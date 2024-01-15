@@ -206,7 +206,7 @@ void eventos::on_pushButton_7_clicked()
 
 
         //Query de modificacion de la fecha
-        if(ui->dateEdit_2->text() != fecha){
+        if(ui->dateEdit_2->text() != fecha && ui->dateEdit_2->text()!= ""){
             query.prepare("UPDATE eventos SET fecha= :fecha WHERE idEvento = :idEvento");
             query.bindValue(":idEvento", idEvento);
             query.bindValue(":fecha", ui->dateEdit_2->text());
@@ -226,7 +226,7 @@ void eventos::on_pushButton_7_clicked()
         }
 
         //Query de modificacion de la hora
-        if(ui->timeEdit_2->text() != hora){
+        if(ui->timeEdit_2->text() != hora && ui->timeEdit_2->text()!="00:00:00"){
             query.prepare("UPDATE eventos SET hora= :hora WHERE idEvento = :idEvento");
             query.bindValue(":idEvento", idEvento);
             query.bindValue(":hora", ui->timeEdit_2->text());
@@ -246,7 +246,7 @@ void eventos::on_pushButton_7_clicked()
         }
 
         //Query de modificacion de la descripción
-        if(ui->lineEdit_23->text() != descripcion){
+        if(ui->lineEdit_23->text() != descripcion && ui->lineEdit_23->text()!=""){
             query.prepare("UPDATE eventos SET descripcion= :descripcion WHERE idEvento = :idEvento");
             query.bindValue(":idEvento", idEvento);
             query.bindValue(":descripcion", ui->lineEdit_23->text());
