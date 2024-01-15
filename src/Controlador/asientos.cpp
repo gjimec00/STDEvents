@@ -9,6 +9,7 @@
 #include <QDialogButtonBox>
 #include <QRandomGenerator>
 #include <QtSql>
+#include <QMessageBox>
 
 
 
@@ -66,6 +67,16 @@ QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas) {
 
 }*/
 
+// Agrega esta función a tu clase asientos
+void asientos::mostrarMensajeNoAsientosDisponibles() {
+    QMessageBox mensaje;
+    mensaje.setIcon(QMessageBox::Warning);
+    mensaje.setText("No hay suficientes asientos disponibles.");
+    mensaje.setWindowTitle("Asientos no disponibles");
+    mensaje.exec();
+}
+
+// Modifica la función generarAsientos para llamar a esta función cuando sea necesario
 QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas) {
     QSqlQuery asientosQuery;
     QVector<int> asientosOcupados;
@@ -93,9 +104,8 @@ QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas) {
                 asientosGenerados.append(asientosDisponibles[i]);
             }
         } else {
-            // Manejar el caso en que no hay suficientes asientos disponibles
-            // Puedes emitir una señal o manejar la situación de alguna otra manera
-            qDebug() << "No hay suficientes asientos disponibles.";
+            // Mostrar mensaje indicando que no hay suficientes asientos disponibles
+            mostrarMensajeNoAsientosDisponibles();
         }
     } else {
         // Si es solo una entrada, generamos un asiento aleatorio
@@ -103,14 +113,14 @@ QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas) {
             int numAsiento = QRandomGenerator::global()->bounded(asientosDisponibles.size());
             asientosGenerados.append(asientosDisponibles[numAsiento]);
         } else {
-            // Manejar el caso en que no hay asientos disponibles
-            // Puedes emitir una señal o manejar la situación de alguna otra manera
-            qDebug() << "No hay asientos disponibles.";
+            // Mostrar mensaje indicando que no hay asientos disponibles
+            mostrarMensajeNoAsientosDisponibles();
         }
     }
 
     return asientosGenerados;
 }
+
 
 
 
@@ -234,100 +244,6 @@ void asientos::on_pushButton_4_clicked()
     }
 }
 
-/*
-void asientos::on_pushButton_4_clicked()
-{
-    int j = 0;
-    int precio = 50;
-    int max = 125;
-    int min = 1;
-
-    QDialog dialogoEntradas(this);
-
-    QLabel *labelCantidad = new QLabel("Número de Entradas: ");
-    QSpinBox *spinBoxEntradas = new QSpinBox();
-    QLabel *labelZona = new QLabel("Usted ha seleccionado Tribuna ");
-    QLabel *labelCoste = new QLabel("El coste de las Entradas en este sector es de 50€ ");
-    spinBoxEntradas->setRange(1, 10);
-    labelCantidad->setBuddy(spinBoxEntradas);
-
-    QVBoxLayout *layoutEntradas = new QVBoxLayout;
-    layoutEntradas->addWidget(labelZona);
-    layoutEntradas->addWidget(labelCoste);
-    layoutEntradas->addWidget(labelCantidad);
-    layoutEntradas->addWidget(spinBoxEntradas);
-
-    QDialogButtonBox *botonesEntradas = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    layoutEntradas->addWidget(botonesEntradas);
-    connect(botonesEntradas, &QDialogButtonBox::accepted, &dialogoEntradas, &QDialog::accept);
-    connect(botonesEntradas, &QDialogButtonBox::rejected, &dialogoEntradas, &QDialog::reject);
-
-    dialogoEntradas.setLayout(layoutEntradas);
-
-    if (dialogoEntradas.exec() == QDialog::Accepted) {
-        int cantidadEntradas = spinBoxEntradas->value();
-        int precioTotal = precio * cantidadEntradas;
-
-        QLabel *labelPrecioTotal = new QLabel("Precio Total: " + QString::number(precioTotal) + "€");
-        QVBoxLayout *layoutAsientos = new QVBoxLayout;
-        QLabel *labelSector = new QLabel("Sector: Tribuna");
-        layoutAsientos->addWidget(labelSector);
-
-        QVector<int> asientosGenerados = generarAsientosOrdenados(min, max, cantidadEntradas);
-
-        for (int i = 0; i < cantidadEntradas; ++i) {
-            QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asientosGenerados[i]));
-            layoutAsientos->addWidget(labelAsiento);
-        }
-
-        layoutAsientos->addWidget(labelPrecioTotal);
-
-        QHBoxLayout *layoutBotones = new QHBoxLayout;
-
-        QPushButton *botonComprar = new QPushButton("Comprar");
-        botonComprar->setStyleSheet("background-color:#01ff78; color:#fff; border-radius:10px;");
-        botonComprar->setFixedSize(120,30);
-        layoutBotones->addWidget(botonComprar);
-
-        QPushButton *botonCancelar = new QPushButton("Cancelar Compra");
-        botonCancelar->setStyleSheet("background-color:#ff6347; color:#fff; border-radius:10px;");
-        botonCancelar->setFixedSize(120,30);
-        layoutBotones->addWidget(botonCancelar);
-
-        layoutAsientos->addLayout(layoutBotones);
-
-        QDialog *nuevaVentana = new QDialog(this);
-        nuevaVentana->setLayout(layoutAsientos);
-
-        connect(botonComprar, &QPushButton::clicked, [=]() {
-            for (int i = 0; i < cantidadEntradas; ++i) {
-                QSqlQuery insertQuery;
-                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio, idEvento) VALUES (:numAsiento, :precio, :idEvento)");
-                insertQuery.bindValue(":numAsiento", asientosGenerados[i]);
-                insertQuery.bindValue(":precio", precio);
-                insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
-
-                if (insertQuery.exec()) {
-                    qDebug() << "Asiento y precio guardados en la base de datos.";
-                } else {
-                    qDebug() << "Error al guardar en la base de datos:" << insertQuery.lastError().text();
-                }
-            }
-            // Resto del código para insertar el pago en la base de datos
-            nuevaVentana->accept();
-        });
-
-        connect(botonCancelar, &QPushButton::clicked, nuevaVentana, &QDialog::reject);
-
-        if (nuevaVentana->exec() == QDialog::Accepted) {
-            qDebug() << "Compra realizada con éxito.";
-        } else {
-            qDebug() << "Se canceló la compra. No se guardará en la base de datos.";
-        }
-    } else {
-        qDebug() << "No se seleccionaron entradas.";
-    }
-}*/
 
 
 void asientos::on_pushButton_3_clicked()
