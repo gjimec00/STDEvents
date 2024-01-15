@@ -206,7 +206,7 @@ void eventos::on_pushButton_7_clicked()
 
 
         //Query de modificacion de la fecha
-        if(ui->dateEdit_2->text() != fecha && ui->dateEdit_2->text()!= ""){
+        if(ui->dateEdit_2->text() != fecha && ui->dateEdit_2->text()!= "2023-10-14"){
             query.prepare("UPDATE eventos SET fecha= :fecha WHERE idEvento = :idEvento");
             query.bindValue(":idEvento", idEvento);
             query.bindValue(":fecha", ui->dateEdit_2->text());

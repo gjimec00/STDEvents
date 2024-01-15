@@ -114,19 +114,17 @@ void abonos::on_pushButton_4_clicked()
             QSqlQuery insertQuery;
             insertQuery.prepare("SELECT idEvento FROM eventos WHERE tipo = 'Deportivo'");
             insertQuery.exec();
-            QString eventos;
-            QVector <QString> string;
-            QLabel *label1 = new QLabel(insertQuery.value(0).toString());
-            eventos=label1->text();
-            for(int i=0; i<=insertQuery.size(); i++){
-                string[i]=eventos.at(i);
+            QVector<int> listaId;
+            while (insertQuery.next()) {
+                int id = insertQuery.value(0).toInt();
+                listaId.push_back(id);
             }
 
-            for(int i=0; i < eventos.size(); i++ ){
+            for(int i=0; i < listaId.size(); i++ ){
                 insertQuery.prepare("INSERT INTO asientos (numAsiento, precio, idEvento) VALUES (:numAsiento, :precio, :idEvento)");
                 insertQuery.bindValue(":numAsiento", asiento);
                 insertQuery.bindValue(":precio", precio);
-                insertQuery.bindValue(":idEvento", string[i]);
+                insertQuery.bindValue(":idEvento", listaId[i]);
 
                 if (insertQuery.exec()) {
                     qDebug() << "Asiento y precio guardados en la base de datos.";
