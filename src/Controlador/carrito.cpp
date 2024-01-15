@@ -1,9 +1,9 @@
 #include "carrito.h"
 #include "qpropertyanimation.h"
 #include "ui_carrito.h"
-#include "cliente.h"
-#include "producto.h"
-#include "evento.h"
+#include "src/Modelo/dao/cliente.h"
+#include "src/Modelo/dao/producto.h"
+#include "src/Modelo/dao/evento.h"
 #include "vistacliente.h"
 #include "comprascliente.h"
 #include <QtSql>
@@ -186,6 +186,7 @@ void carrito::imprimirCarrito(){
 void carrito::on_pushButton_4_clicked() //implementar metodos para los flags de ventanCerrada
 {
     vistaCliente vistaC;
+    vistaC.setCliente(cliente);
     vistaC.setWindowFlags(Qt::FramelessWindowHint);
     vistaC.setModal(true);
     hide();
@@ -198,6 +199,7 @@ void carrito::on_pushButton_4_clicked() //implementar metodos para los flags de 
 void carrito::on_pushButton_6_clicked() //mismo que anterior
 {
     comprasCliente comprasC;
+    comprasC.setCliente(cliente);
     comprasC.setWindowFlags(Qt::FramelessWindowHint);
     comprasC.setModal(true);
     hide();

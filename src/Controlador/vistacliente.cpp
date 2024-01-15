@@ -3,9 +3,9 @@
 #include "ui_vistacliente.h"
 #include "qpropertyanimation.h"
 #include "calendario.h"
-#include "producto.h"
+#include "src/Modelo/dao/producto.h"
 #include "carrito.h"
-#include "cliente.h"
+#include "src/Modelo/dao/cliente.h"
 #include "comprascliente.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>

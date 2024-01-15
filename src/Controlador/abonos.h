@@ -2,8 +2,8 @@
 #define ABONOS_H
 
 #include <QDialog>
-#include "cliente.h"
-#include "evento.h"
+#include "src/Modelo/dao/cliente.h"
+#include "src/Modelo/dao/evento.h"
 namespace Ui {
 class abonos;
 }
@@ -25,11 +25,11 @@ private slots:
 
     int generarAsientos(int min, int max);
 
-    //void on_pushButton_3_clicked();
+    void on_pushButton_3_clicked();
 
-    //void on_pushButton_2_clicked();
+    void on_pushButton_2_clicked();
 
-    //void on_pushButton_clicked();
+    void on_pushButton_clicked();
 
     void on_pushButton_5_clicked();
 

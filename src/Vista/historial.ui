@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>vistaCliente</class>
- <widget class="QDialog" name="vistaCliente">
+ <class>historial</class>
+ <widget class="QDialog" name="historial">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>930</width>
-    <height>540</height>
+    <width>1295</width>
+    <height>657</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -24,7 +18,7 @@
 color: #000;
 border: none;
 }
-#vistaCliente{
+#historial{
 background-color: #eff9fe;
 }
 
@@ -59,13 +53,13 @@ border-radius: 20px;
 #headerFrame{
 background-color: #fefeff;
 }
-#pushButton_4{
+#pushButton_7{
 background-color: #fefeff;
 padding: 10px 5px;
 text-align:left;
 border-top-left-radius: 20px
 }
-#pushButton_3, #pushButton_5, #pushButton_6{
+#pushButton_3, #pushButton_4, #pushButton_6{
 padding: 10px 5px;
 text-align:left;
 
@@ -76,13 +70,138 @@ background:transparent;
 
 </string>
   </property>
+  <widget class="QWidget" name="profileCont" native="true">
+   <property name="geometry">
+    <rect>
+     <x>929</x>
+     <y>0</y>
+     <width>100</width>
+     <height>147</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>100</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_12">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item alignment="Qt::AlignTop">
+     <widget class="QFrame" name="frame_12">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item alignment="Qt::AlignTop">
+        <widget class="QLabel" name="label_29">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>STDEvents</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignTop">
+        <widget class="QLabel" name="label_34">
+         <property name="text">
+          <string>Cliente</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+        <widget class="QLabel" name="label_33">
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../../Recursos.qrc">:/Files/imagenes/Captura de pantalla 2024-01-02 172038.jpg</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_8">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Logout</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../Recursos.qrc">
+           <normaloff>:/greenicons/icons/greenicons/log-out.svg</normaloff>:/greenicons/icons/greenicons/log-out.svg</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QWidget" name="leftMenu" native="true">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>1031</x>
+     <x>1030</x>
      <y>0</y>
      <width>220</width>
      <height>549</height>
@@ -217,7 +336,7 @@ background:transparent;
                </property>
                <property name="icon">
                 <iconset resource="../../Recursos.qrc">
-                 <normaloff>:/greenicons/icons/greenicons/home.svg</normaloff>:/greenicons/icons/greenicons/home.svg</iconset>
+                 <normaloff>:/whiteicons/icons/whiteicons/home.svg</normaloff>:/whiteicons/icons/whiteicons/home.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -261,6 +380,23 @@ background:transparent;
                </property>
               </widget>
              </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_7">
+               <property name="text">
+                <string>Purchase History</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../../Recursos.qrc">
+                 <normaloff>:/greenicons/icons/greenicons/archive.svg</normaloff>:/greenicons/icons/greenicons/archive.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>24</width>
+                 <height>24</height>
+                </size>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
@@ -275,10 +411,10 @@ background:transparent;
   <widget class="QWidget" name="mainBody" native="true">
    <property name="geometry">
     <rect>
-     <x>1</x>
+     <x>0</x>
      <y>0</y>
-     <width>929</width>
-     <height>549</height>
+     <width>930</width>
+     <height>540</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -338,7 +474,7 @@ background:transparent;
              </font>
             </property>
             <property name="text">
-             <string>Bienvenido</string>
+             <string>Historial de compras</string>
             </property>
            </widget>
           </item>
@@ -396,161 +532,56 @@ background:transparent;
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_12">
        <item>
-        <widget class="QWidget" name="widget_5" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_7">
+        <widget class="QWidget" name="widget_4" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>500</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
-           <widget class="QCalendarWidget" name="calendarWidget"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="font">
-             <font>
-              <pointsize>18</pointsize>
-             </font>
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="text">
-             <string>Selecciona una fecha para ver los eventos de ese día</string>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="font">
-             <font>
-              <pointsize>9</pointsize>
-             </font>
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>16777215</height>
+             </size>
             </property>
-            <property name="text">
-             <string/>
+            <property name="widgetResizable">
+             <bool>true</bool>
             </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_4">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>482</width>
+               <height>436</height>
+              </rect>
+             </property>
+            </widget>
            </widget>
           </item>
          </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="profileCont" native="true">
-   <property name="geometry">
-    <rect>
-     <x>930</x>
-     <y>0</y>
-     <width>100</width>
-     <height>147</height>
-    </rect>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>100</width>
-     <height>16777215</height>
-    </size>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_12">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
-    <item alignment="Qt::AlignTop">
-     <widget class="QFrame" name="frame_12">
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_13">
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item alignment="Qt::AlignTop">
-        <widget class="QLabel" name="label_29">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>STDEvents</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item alignment="Qt::AlignTop">
-        <widget class="QLabel" name="label_34">
-         <property name="text">
-          <string>Cliente</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item alignment="Qt::AlignHCenter|Qt::AlignTop">
-        <widget class="QLabel" name="label_33">
-         <property name="maximumSize">
-          <size>
-           <width>50</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="pixmap">
-          <pixmap resource="../../Recursos.qrc">:/Files/imagenes/Captura de pantalla 2024-01-02 172038.jpg</pixmap>
-         </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_8">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Logout</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../Recursos.qrc">
-           <normaloff>:/greenicons/icons/greenicons/log-out.svg</normaloff>:/greenicons/icons/greenicons/log-out.svg</iconset>
-         </property>
         </widget>
        </item>
       </layout>

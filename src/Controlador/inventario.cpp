@@ -3,7 +3,7 @@
 #include <QSqlQuery>
 #include <QComboBox>
 #include <QLabel>
-
+#include "addproducto.h"
 inventario::inventario(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::inventario)
@@ -18,18 +18,8 @@ inventario::~inventario()
 }
 
 void inventario::mostrarInventario(){
-    int numeroDeFilas = 0;
+
     int cantidad=0;
-    QSqlQuery queryCount;
-    queryCount.prepare("SELECT COUNT(*) FROM eventos");
-
-    if (!queryCount.exec()) {
-        return;
-    }
-
-    if (queryCount.next()) {
-        numeroDeFilas = queryCount.value(0).toInt();
-    }
 
     QVBoxLayout *menuDesp = new QVBoxLayout();
 
@@ -85,6 +75,10 @@ void inventario::mostrarInventario(){
 
 void inventario::on_pushButton_clicked()
 {
-    close();
+    addproducto addproducto;
+    addproducto.setWindowFlags(Qt::FramelessWindowHint);
+    addproducto.setModal(true);
+    hide();
+    addproducto.exec();
 }
 

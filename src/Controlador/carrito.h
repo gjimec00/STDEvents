@@ -2,8 +2,8 @@
 #define CARRITO_H
 
 #include <QDialog>
-#include "cliente.h"
-#include "src/Controlador/evento.h"
+#include "src/Modelo/dao/cliente.h"
+#include "src/Modelo/dao/evento.h"
 
 namespace Ui {
 class carrito;

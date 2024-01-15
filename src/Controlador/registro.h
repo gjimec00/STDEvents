@@ -2,7 +2,7 @@
 #define REGISTRO_H
 
 #include <QDialog>
-#include "src/Modelo/database.h"
+#include "src/Modelo/conexion/database.h"
 
 namespace Ui {
 class registro;
@@ -15,8 +15,8 @@ class registro : public QDialog
 public:
     explicit registro(QWidget *parent = nullptr);
     ~registro();
-    void verificarContrasenas();
-    void verificarDni();
+    bool verificarContrasenas();
+    bool verificarDni();
 
 private slots:
     void on_pushButton_clicked();

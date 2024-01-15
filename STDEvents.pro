@@ -15,19 +15,19 @@ SOURCES += \
     src/Controlador/asientos.cpp \
     src/Controlador/carrito.cpp \
     src/Controlador/addproducto.cpp \
-    src/Controlador/cliente.cpp \
+    src/Modelo/dao/cliente.cpp \
     src/Controlador/clients.cpp \
     src/Controlador/comprascliente.cpp \
-    src/Controlador/evento.cpp \
+    src/Modelo/dao/evento.cpp \
     src/Controlador/eventos.cpp \
     src/Controlador/inventario.cpp \
-    src/Controlador/producto.cpp \
+    src/Modelo/dao/producto.cpp \
     src/Controlador/calendario.cpp \
     src/Controlador/administrador.cpp \
     src/Controlador/registro.cpp \
     src/Controlador/login.cpp \
     src/Controlador/main.cpp \
-    src/Modelo/database.cpp \
+    src/Modelo/conexion/database.cpp \
     src/Controlador/vistacliente.cpp \
 
 HEADERS += \
@@ -35,18 +35,18 @@ HEADERS += \
     src/Controlador/asientos.h \
     src/Controlador/carrito.h \
     src/Controlador/addproducto.h \
-    src/Controlador/cliente.h \
+    src/Modelo/dao/cliente.h \
     src/Controlador/clients.h \
     src/Controlador/calendario.h \
     src/Controlador/administrador.h \
     src/Controlador/comprascliente.h \
-    src/Controlador/evento.h \
+    src/Modelo/dao/evento.h \
     src/Controlador/eventos.h \
     src/Controlador/inventario.h \
-    src/Controlador/producto.h \
+    src/Modelo/dao/producto.h \
     src/Controlador/registro.h \
     src/Controlador/login.h \
-    src/Modelo/database.h \
+    src/Modelo/conexion/database.h \
     src/Controlador/vistacliente.h
 
 FORMS += \

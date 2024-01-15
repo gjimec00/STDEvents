@@ -1,5 +1,5 @@
 #include "login.h"
-#include "cliente.h"
+#include "src/Modelo/dao/cliente.h"
 
 #include <QApplication>
 

@@ -13,6 +13,29 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+
+#abonos{
+background-color: #eff9fe;
+}
+#searchFrame{
+border-radius: 10px;
+border: 2px solid #01ff78;
+}
+
+#pushButton, #pushButton_2, pushButton_3, pushButton_4{
+background-color: #01ff78;
+color: #fff;
+border-radius: 10px;
+}
+#widget{
+background-color: #fefeff;
+border-radius: 20px;
+}
+
+</string>
+  </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
@@ -96,6 +119,11 @@
           <height>50</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #01ff78;
+color: #fff;
+border-radius: 10px;</string>
+        </property>
         <property name="text">
          <string>FONDO NORTE</string>
         </property>
@@ -138,6 +166,11 @@ border-radius: 10px;</string>
           <width>100</width>
           <height>50</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #01ff78;
+color: #fff;
+border-radius: 10px;</string>
         </property>
         <property name="text">
          <string>FONDO SUR</string>

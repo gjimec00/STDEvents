@@ -2,7 +2,7 @@
 #include "registro.h"
 #include "administrador.h"
 #include "vistacliente.h"
-#include "cliente.h"
+#include "src/Modelo/dao/cliente.h"
 #include "src/Controlador/registro.h"
 #include "ui_login.h"
 #include <QMessageBox>

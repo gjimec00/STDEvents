@@ -2,7 +2,7 @@
 #define VISTACLIENTE_H
 
 #include <QDialog>
-#include "cliente.h"
+#include "src/Modelo/dao/cliente.h"
 
 namespace Ui {
 class vistaCliente;

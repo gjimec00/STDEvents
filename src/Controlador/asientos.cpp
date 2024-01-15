@@ -41,31 +41,6 @@ Cliente asientos::getCliente(){
     return cliente;
 }
 
-/*
-QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas) {
-    QSqlQuery asientosQuery;
-    QVector<int> asientosOcupados;
-    QVector<int> asientosGenerados;
-    int numAsiento;
-
-
-    asientosQuery.prepare("SELECT numAsiento FROM asientos");
-    if (asientosQuery.exec()) {
-        while (asientosQuery.next()) {
-            asientosOcupados.append(asientosQuery.value("numAsiento").toInt());
-        }
-    }
-
-    while (asientosGenerados.size() < cantidadEntradas){
-        numAsiento = QRandomGenerator::global()->bounded(min, max);
-
-        if(!asientosGenerados.contains(numAsiento) && !asientosOcupados.contains(numAsiento)){
-            asientosGenerados.append(numAsiento);
-        }
-    }
-    return asientosGenerados;
-
-}*/
 
 // Agrega esta función a tu clase asientos
 void asientos::mostrarMensajeNoAsientosDisponibles() {
@@ -606,6 +581,8 @@ void asientos::on_pushButton_clicked()
 void asientos::on_pushButton_5_clicked()
 {
     comprasCliente volver;
+    cliente.listaEventos.erase(cliente.listaEventos.begin() + 0);
+    volver.setCliente(cliente);
     volver.setWindowFlags(Qt::FramelessWindowHint);
     volver.setModal(true);
     hide();

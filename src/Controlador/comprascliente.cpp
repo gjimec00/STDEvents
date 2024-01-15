@@ -3,9 +3,9 @@
 #include "ui_comprascliente.h"
 #include "qcombobox.h"
 #include "qpropertyanimation.h"
-#include "producto.h"
+#include "src/Modelo/dao/producto.h"
 #include "carrito.h"
-#include "cliente.h"
+#include "src/Modelo/dao/cliente.h"
 #include "asientos.h"
 #include "vistacliente.h"
 #include "abonos.h"
@@ -312,6 +312,7 @@ void comprasCliente::on_pushButton_3_clicked()
 void comprasCliente::on_pushButton_4_clicked()
 {
     vistaCliente vistaC;
+    vistaC.setCliente(cliente);
     vistaC.setWindowFlags(Qt::FramelessWindowHint);
     vistaC.setModal(true);
     hide();

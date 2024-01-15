@@ -2,8 +2,8 @@
 #define COMPRASCLIENTE_H
 
 #include <QDialog>
-#include "cliente.h"
-#include "evento.h"
+#include "src/Modelo/dao/cliente.h"
+#include "src/Modelo/dao/evento.h"
 
 namespace Ui {
 class comprasCliente;

@@ -16,7 +16,7 @@ registro::~registro()
     delete ui;
 }
 
-void registro::verificarContrasenas() {
+bool registro::verificarContrasenas() {
     QString password = ui->lineEdit_6->text();
     QString confirmedPass = ui->lineEdit_7->text();
 
@@ -24,10 +24,12 @@ void registro::verificarContrasenas() {
         QMessageBox::warning(this, "Warning", "The passwords you've entered don't match each other.");
         ui->lineEdit_6->clear();
         ui->lineEdit_7->clear();
+        return false;
     }
+    return true;
 }
 
-void registro::verificarDni() {
+bool registro::verificarDni() {
     QString dni = ui->lineEdit_3->text();
     QString letras[23] = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E" };
     if( dni.length() == 9){
@@ -38,18 +40,20 @@ void registro::verificarDni() {
         if(letras[resto]!=letra){
             QMessageBox::warning(this, "Warning", "El DNI no es correcto");
             ui->lineEdit_3->clear();
+            return false;
         }
     }else{
         QMessageBox::warning(this, "Warning", "El DNI no es correcto");
         ui->lineEdit_3->clear();
+        return false;
     }
+    return true;
 
 }
 
 void registro::on_pushButton_clicked()
 {
-    verificarContrasenas();
-    verificarDni();
+
 
     QSqlQuery query;
     query.prepare("INSERT INTO clientes (dni, nombre, apellidos, telefono, correo, contrasena) VALUES (:dni, :nombre, :apellidos, :telefono, :correo, :contrasena)");
@@ -63,12 +67,12 @@ void registro::on_pushButton_clicked()
 
 
 
-
-    if (query.exec()) {
-        qDebug() << "Datos añadidos con éxito.";
-    } else {
+    if(verificarContrasenas() && verificarDni()){
+        query.exec();
+        close();
+    }else {
         qDebug() << "Error al añadir datos:" << query.lastError().text();
-        QMessageBox::critical(this, "Error de registro", "El usuario ya esta registrado");
+        QMessageBox::critical(this, "Error de registro", "Error");
     }
 
     query.clear();

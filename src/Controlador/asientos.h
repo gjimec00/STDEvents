@@ -2,8 +2,8 @@
 #define ASIENTOS_H
 
 #include <QDialog>
-#include "evento.h"
-#include "cliente.h"
+#include "src/Modelo/dao/evento.h"
+#include "src/Modelo/dao/cliente.h"
 
 namespace Ui {
 class asientos;
