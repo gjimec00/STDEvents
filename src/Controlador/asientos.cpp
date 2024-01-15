@@ -29,9 +29,11 @@ void asientos::setEvento(Evento evento){
 Evento asientos::getEvento(){
     return evento;
 }
+
 int asientos::generarAsientos() {
     QSqlQuery asientosQuery;
     QVector<int> asientosOcupados;
+    int numAsiento;
 
     asientosQuery.prepare("SELECT numAsiento FROM asientos");
     if (asientosQuery.exec()) {
@@ -39,8 +41,6 @@ int asientos::generarAsientos() {
             asientosOcupados.append(asientosQuery.value("numAsiento").toInt());
         }
     }
-
-    int numAsiento;
     do {
         numAsiento = QRandomGenerator::global()->bounded(1, 125);
     } while (asientosOcupados.contains(numAsiento));
@@ -51,7 +51,6 @@ int asientos::generarAsientos() {
 void asientos::on_pushButton_4_clicked()
 {
     int precio = 50;
-    int asiento;
 
     QDialog dialogoEntradas(this);
 
@@ -84,10 +83,14 @@ void asientos::on_pushButton_4_clicked()
         QLabel *labelSector = new QLabel("Sector: Tribuna");
         layoutAsientos->addWidget(labelSector);
 
+        QVector<int> asientosGenerados;
         for (int i = 0; i < cantidadEntradas; ++i) {
-            asiento = generarAsientos();
+            int asiento = generarAsientos();
+
             QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asiento));
             layoutAsientos->addWidget(labelAsiento);
+
+            asientosGenerados.append(asiento);
         }
 
         layoutAsientos->addWidget(labelPrecioTotal);
@@ -112,9 +115,10 @@ void asientos::on_pushButton_4_clicked()
         connect(botonComprar, &QPushButton::clicked, [=]() {
             for (int i = 0; i < cantidadEntradas; ++i) {
                 QSqlQuery insertQuery;
-                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio) VALUES (:numAsiento, :precio)");
-                insertQuery.bindValue(":numAsiento", asiento);
+                insertQuery.prepare("INSERT INTO asientos (numAsiento, precio, idEvento)  VALUES (:numAsiento, :precio, :idEvento)");
+                insertQuery.bindValue(":numAsiento", asientosGenerados.at(i));
                 insertQuery.bindValue(":precio", precio);
+                insertQuery.bindValue(":idEvento", evento.getIdEvento());
 
                 if (insertQuery.exec()) {
                     qDebug() << "Asiento y precio guardados en la base de datos.";
@@ -130,17 +134,17 @@ void asientos::on_pushButton_4_clicked()
         if (nuevaVentana->exec() == QDialog::Accepted) {
             qDebug() << "Compra realizada con éxito.";
         } else {
-            qDebug() << "Se cancelo la compra. No se guardará en la base de datos.";
+            qDebug() << "Se canceló la compra. No se guardará en la base de datos.";
         }
     } else {
         qDebug() << "No se seleccionaron entradas.";
     }
 }
 
+
 void asientos::on_pushButton_3_clicked()
 {
     int precio = 40;
-    int asiento;
 
     QDialog dialogoEntradas(this);
 
@@ -173,10 +177,14 @@ void asientos::on_pushButton_3_clicked()
         QLabel *labelSector = new QLabel("Sector: Preferente");
         layoutAsientos->addWidget(labelSector);
 
+        QVector<int> asientosGenerados;
         for (int i = 0; i < cantidadEntradas; ++i) {
-            asiento = generarAsientos();
+            int asiento = generarAsientos();
+
             QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asiento));
             layoutAsientos->addWidget(labelAsiento);
+
+            asientosGenerados.append(asiento);
         }
 
         layoutAsientos->addWidget(labelPrecioTotal);
@@ -202,7 +210,7 @@ void asientos::on_pushButton_3_clicked()
             for (int i = 0; i < cantidadEntradas; ++i) {
                 QSqlQuery insertQuery;
                 insertQuery.prepare("INSERT INTO asientos (numAsiento, precio) VALUES (:numAsiento, :precio)");
-                insertQuery.bindValue(":numAsiento", asiento);
+                insertQuery.bindValue(":numAsiento", asientosGenerados.at(i));
                 insertQuery.bindValue(":precio", precio);
 
                 if (insertQuery.exec()) {
@@ -219,7 +227,7 @@ void asientos::on_pushButton_3_clicked()
         if (nuevaVentana->exec() == QDialog::Accepted) {
             qDebug() << "Compra realizada con éxito.";
         } else {
-            qDebug() << "Se cancelo la compra. No se guardará en la base de datos.";
+            qDebug() << "Se canceló la compra. No se guardará en la base de datos.";
         }
     } else {
         qDebug() << "No se seleccionaron entradas.";
@@ -234,7 +242,6 @@ void asientos::on_pushButton_3_clicked()
 void asientos::on_pushButton_2_clicked()
 {
     int precio = 25;
-    int asiento;
 
     QDialog dialogoEntradas(this);
 
@@ -267,10 +274,14 @@ void asientos::on_pushButton_2_clicked()
         QLabel *labelSector = new QLabel("Sector: Fondo Norte");
         layoutAsientos->addWidget(labelSector);
 
+        QVector<int> asientosGenerados;
         for (int i = 0; i < cantidadEntradas; ++i) {
-            asiento = generarAsientos();
+            int asiento = generarAsientos();
+
             QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asiento));
             layoutAsientos->addWidget(labelAsiento);
+
+            asientosGenerados.append(asiento);
         }
 
         layoutAsientos->addWidget(labelPrecioTotal);
@@ -296,7 +307,7 @@ void asientos::on_pushButton_2_clicked()
             for (int i = 0; i < cantidadEntradas; ++i) {
                 QSqlQuery insertQuery;
                 insertQuery.prepare("INSERT INTO asientos (numAsiento, precio) VALUES (:numAsiento, :precio)");
-                insertQuery.bindValue(":numAsiento", asiento);
+                insertQuery.bindValue(":numAsiento", asientosGenerados.at(i));
                 insertQuery.bindValue(":precio", precio);
 
                 if (insertQuery.exec()) {
@@ -313,7 +324,7 @@ void asientos::on_pushButton_2_clicked()
         if (nuevaVentana->exec() == QDialog::Accepted) {
             qDebug() << "Compra realizada con éxito.";
         } else {
-            qDebug() << "Se cancelo la compra. No se guardará en la base de datos.";
+            qDebug() << "Se canceló la compra. No se guardará en la base de datos.";
         }
     } else {
         qDebug() << "No se seleccionaron entradas.";
@@ -324,7 +335,6 @@ void asientos::on_pushButton_2_clicked()
 void asientos::on_pushButton_clicked()
 {
     int precio = 25;
-    int asiento;
 
     QDialog dialogoEntradas(this);
 
@@ -357,10 +367,14 @@ void asientos::on_pushButton_clicked()
         QLabel *labelSector = new QLabel("Sector: Fondo Sur");
         layoutAsientos->addWidget(labelSector);
 
+        QVector<int> asientosGenerados;
         for (int i = 0; i < cantidadEntradas; ++i) {
-            asiento = generarAsientos();
+            int asiento = generarAsientos();
+
             QLabel *labelAsiento = new QLabel("Su Número de asiento es el: " + QString::number(asiento));
             layoutAsientos->addWidget(labelAsiento);
+
+            asientosGenerados.append(asiento);
         }
 
         layoutAsientos->addWidget(labelPrecioTotal);
@@ -386,7 +400,7 @@ void asientos::on_pushButton_clicked()
             for (int i = 0; i < cantidadEntradas; ++i) {
                 QSqlQuery insertQuery;
                 insertQuery.prepare("INSERT INTO asientos (numAsiento, precio) VALUES (:numAsiento, :precio)");
-                insertQuery.bindValue(":numAsiento", asiento);
+                insertQuery.bindValue(":numAsiento", asientosGenerados.at(i));
                 insertQuery.bindValue(":precio", precio);
 
                 if (insertQuery.exec()) {
@@ -403,7 +417,7 @@ void asientos::on_pushButton_clicked()
         if (nuevaVentana->exec() == QDialog::Accepted) {
             qDebug() << "Compra realizada con éxito.";
         } else {
-            qDebug() << "Se cancelo la compra. No se guardará en la base de datos.";
+            qDebug() << "Se canceló la compra. No se guardará en la base de datos.";
         }
     } else {
         qDebug() << "No se seleccionaron entradas.";

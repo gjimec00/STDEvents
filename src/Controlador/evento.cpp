@@ -2,8 +2,13 @@
 
 Evento::Evento() {}
 
-Evento::Evento(int idEvento){
+Evento::Evento(int idEvento, QString nombre, QString descripcion, QString fecha, QString hora, QString tipo){
     this->idEvento = idEvento;
+    this->nombre = nombre;
+    this->descripcion = descripcion;
+    this->fecha = fecha;
+    this->hora = hora;
+    this->tipo = tipo;
 }
 
 int Evento::getIdEvento(){

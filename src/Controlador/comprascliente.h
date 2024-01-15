@@ -31,6 +31,7 @@ public:
 private:
     Ui::comprasCliente *ui;
     Cliente cliente;
+    Evento evento;
 
 private slots:
     void on_menuBtn_clicked();
