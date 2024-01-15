@@ -214,7 +214,7 @@ void carrito::on_pushButton_2_clicked()
 
     QDateTime dateTimeActual = QDateTime::currentDateTime();
     QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
-    QString horaActual = dateTimeActual.toString("hh:mm:ss");      // Formato de hora: Hora:Minuto:Segundo
+    QString horaActual = dateTimeActual.toString("hh:mm:ss");     // Formato de hora: Hora:Minuto:Segundo
 
     for(size_t i = 0; i < cliente.listaProductos.size(); i++){
         QSqlQuery insertQuery;
@@ -234,6 +234,24 @@ void carrito::on_pushButton_2_clicked()
         }
     }
 
+
+    for(size_t i = 0; i < cliente.listaProductos.size(); i++){
+        QSqlQuery query;
+        query.prepare("SELECT cantidad FROM productos WHERE idProducto = :idProducto");
+
+        query.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
+
+
+        if (query.exec() && query.next()) {
+            int cantidad = query.value(0).toInt();
+            cantidad -=  cliente.listaProductos[i]->getCantidad();
+            query.prepare("UPDATE productos SET cantidad= :cantidad WHERE idProducto = :idProducto");
+            query.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
+            query.bindValue(":cantidad", cantidad);
+            query.exec();
+        }
+    }
+
     cliente.listaProductos.clear();
 
     QLayout *layout = ui->scrollAreaWidgetContents_4->layout();
@@ -250,6 +268,7 @@ void carrito::on_pushButton_2_clicked()
         // Asignar un nuevo layout vacío al scrollAreaWidgetContents_4
         ui->scrollAreaWidgetContents_4->setLayout(new QVBoxLayout());
     }
+
 
     QDialog dialogoPago(this);
     QLabel *labelPago = new QLabel(" Se han pagado los productos del carrito.");
