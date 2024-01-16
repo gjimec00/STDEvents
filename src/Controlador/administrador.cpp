@@ -8,8 +8,7 @@
 #include "login.h"
 #include <QSqlQuery>
 
-//bool ventanaCerrada = true;
-//bool ventanaCerradaP = true;
+
 administrador::administrador(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::administrador)

@@ -157,16 +157,13 @@ void eventos::on_pushButton_clicked()
     query.prepare("SELECT dni FROM administrador WHERE nombre='admin'");
 
     if (query.exec() && query.next()) {
-        //QChar dniAdmin = query.value(0).toChar();
 
         query.prepare("INSERT INTO eventos (nombre, fecha, hora, descripcion, tipo) VALUES (:nombre, :fecha, :hora, :descripcion, :tipo)");
-
         query.bindValue(":nombre", ui->lineEdit_10->text());
         query.bindValue(":fecha", ui->dateEdit->text());
         query.bindValue(":hora", ui->timeEdit->text());
         query.bindValue(":descripcion", ui->lineEdit_12->text());
         query.bindValue(":tipo", ui->lineEdit_9->text());
-        //query.bindValue(":dniAdmin", dniAdmin);
 
 
 

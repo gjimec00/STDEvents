@@ -236,8 +236,8 @@ void clients::on_pushButton_7_clicked()
         }
 
     } else {
-    qDebug() << "Error al obtener los datos en bbdd:" << query.lastError().text();
-    QMessageBox::critical(this, "Error", "No se pudo obtener el cliente");
+        qDebug() << "Error al obtener los datos en bbdd:" << query.lastError().text();
+        QMessageBox::critical(this, "Error", "No se pudo obtener el cliente");
     }
 
     query.clear();

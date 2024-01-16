@@ -145,7 +145,7 @@ void abonos::on_pushButton_4_clicked()
             }
 
             QDateTime dateTimeActual = QDateTime::currentDateTime();
-            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
+            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");
             QString horaActual = dateTimeActual.toString("hh:mm:ss");
             QSqlQuery insertQuery2;
             insertQuery2.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
@@ -177,11 +177,11 @@ void abonos::on_pushButton_4_clicked()
 
         connect(botonCancelar, &QPushButton::clicked, nuevaVentana, &QDialog::reject);
 
-            if (nuevaVentana->exec() == QDialog::Accepted) {
-                qDebug() << "Compra realizada con éxito.";
-            } else {
-                qDebug() << "Se canceló la compra. No se guardará en la base de datos.";
-            }
+        if (nuevaVentana->exec() == QDialog::Accepted) {
+            qDebug() << "Compra realizada con éxito.";
+        } else {
+            qDebug() << "Se canceló la compra. No se guardará en la base de datos.";
+        }
     } else {
         qDebug() << "No se seleccionaron entradas.";
     }
@@ -278,7 +278,7 @@ void abonos::on_pushButton_3_clicked()
             }
 
             QDateTime dateTimeActual = QDateTime::currentDateTime();
-            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
+            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");
             QString horaActual = dateTimeActual.toString("hh:mm:ss");
             QSqlQuery insertQuery2;
             insertQuery2.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
@@ -548,7 +548,7 @@ void abonos::on_pushButton_clicked()
             }
 
             QDateTime dateTimeActual = QDateTime::currentDateTime();
-            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
+            QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");
             QString horaActual = dateTimeActual.toString("hh:mm:ss");
             QSqlQuery insertQuery2;
             insertQuery2.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");

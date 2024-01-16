@@ -135,17 +135,6 @@ void comprasCliente::on_accountBtn_clicked()
 
 
 void comprasCliente::mostrarVistaEventos(){
-    int numeroDeFilas = 0;
-    QSqlQuery queryCount;
-    queryCount.prepare("SELECT COUNT(*) FROM eventos");
-
-    if (!queryCount.exec()) {
-        return;
-    }
-
-    if (queryCount.next()) {
-        numeroDeFilas = queryCount.value(0).toInt();
-    }
 
     QVBoxLayout *menuDesp = new QVBoxLayout();
 
@@ -201,18 +190,7 @@ void comprasCliente::mostrarVistaEventos(){
 
 
 void comprasCliente::mostrarProductos(){
-    int numeroDeFilas = 0;
     int cantidad=0;
-    QSqlQuery queryCount;
-    queryCount.prepare("SELECT COUNT(*) FROM eventos");
-
-    if (!queryCount.exec()) {
-        return;
-    }
-
-    if (queryCount.next()) {
-        numeroDeFilas = queryCount.value(0).toInt();
-    }
 
     QVBoxLayout *menuDesp = new QVBoxLayout();
 

@@ -183,7 +183,7 @@ void carrito::imprimirCarrito(){
 
 
 
-void carrito::on_pushButton_4_clicked() //implementar metodos para los flags de ventanCerrada
+void carrito::on_pushButton_4_clicked()
 {
     vistaCliente vistaC;
     vistaC.setCliente(cliente);
@@ -196,7 +196,7 @@ void carrito::on_pushButton_4_clicked() //implementar metodos para los flags de 
 }
 
 
-void carrito::on_pushButton_6_clicked() //mismo que anterior
+void carrito::on_pushButton_6_clicked()
 {
     comprasCliente comprasC;
     comprasC.setCliente(cliente);
@@ -212,8 +212,6 @@ void carrito::on_pushButton_6_clicked() //mismo que anterior
 void carrito::on_pushButton_2_clicked()
 {
 
-    //int idPago= 0;
-
     QDateTime dateTimeActual = QDateTime::currentDateTime();
     QString fechaActual = dateTimeActual.toString("yyyy-MM-dd");  // Formato de fecha: Año-Mes-Día
     QString horaActual = dateTimeActual.toString("hh:mm:ss");     // Formato de hora: Hora:Minuto:Segundo
@@ -221,11 +219,9 @@ void carrito::on_pushButton_2_clicked()
     for(size_t i = 0; i < cliente.listaProductos.size(); i++){
         QSqlQuery insertQuery;
         insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
-        //insertQuery.bindValue(":idPago", idPago);
         insertQuery.bindValue(":fecha", fechaActual);
         insertQuery.bindValue(":hora", horaActual);
         insertQuery.bindValue(":dniCliente", cliente.getDNI());
-        //insertQuery.bindValue(":idEvento", "0");
         insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
         insertQuery.bindValue(":precioTotal", cliente.listaProductos[i]->getPrecio() * cliente.listaProductos[i]->getCantidad());
 

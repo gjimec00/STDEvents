@@ -42,7 +42,6 @@ Cliente asientos::getCliente(){
 }
 
 
-// Agrega esta función a tu clase asientos
 void asientos::mostrarMensajeNoAsientosDisponibles() {
     QMessageBox mensaje;
     mensaje.setIcon(QMessageBox::Warning);
@@ -51,7 +50,6 @@ void asientos::mostrarMensajeNoAsientosDisponibles() {
     mensaje.exec();
 }
 
-// Modifica la función generarAsientos para llamar a esta función cuando sea necesario
 QVector<int> asientos::generarAsientos(int min, int max, int cantidadEntradas, int j) {
     QSqlQuery asientosQuery;
     QVector<int> asientosOcupados;
@@ -142,7 +140,6 @@ void asientos::on_pushButton_4_clicked()
         layoutAsientos->addWidget(labelSector);
 
         QVector<int> asientosGenerados;
-        //QVector<int> asientosAnteriores;
 
         QVector<int> asientos = generarAsientos(min,max, cantidadEntradas, j);
         for (int i = 0; i < cantidadEntradas; ++i) {
@@ -191,12 +188,10 @@ void asientos::on_pushButton_4_clicked()
             QString horaActual = dateTimeActual.toString("hh:mm:ss");
             QSqlQuery insertQuery;
             insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
-            //insertQuery.bindValue(":idPago", idPago);
             insertQuery.bindValue(":fecha", fechaActual);
             insertQuery.bindValue(":hora", horaActual);
             insertQuery.bindValue(":dniCliente", cliente.getDNI());
             insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
-            //insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
             insertQuery.bindValue(":precioTotal", precioTotal);
 
             if (insertQuery.exec()) {
@@ -310,12 +305,10 @@ void asientos::on_pushButton_3_clicked()
             QString horaActual = dateTimeActual.toString("hh:mm:ss");
             QSqlQuery insertQuery;
             insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
-            //insertQuery.bindValue(":idPago", idPago);
             insertQuery.bindValue(":fecha", fechaActual);
             insertQuery.bindValue(":hora", horaActual);
             insertQuery.bindValue(":dniCliente", cliente.getDNI());
             insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
-            //insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
             insertQuery.bindValue(":precioTotal", precioTotal);
 
             if (insertQuery.exec()) {
@@ -430,12 +423,10 @@ void asientos::on_pushButton_2_clicked()
             QString horaActual = dateTimeActual.toString("hh:mm:ss");
             QSqlQuery insertQuery;
             insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
-            //insertQuery.bindValue(":idPago", idPago);
             insertQuery.bindValue(":fecha", fechaActual);
             insertQuery.bindValue(":hora", horaActual);
             insertQuery.bindValue(":dniCliente", cliente.getDNI());
             insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
-            //insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
             insertQuery.bindValue(":precioTotal", precioTotal);
 
             if (insertQuery.exec()) {
@@ -547,12 +538,10 @@ void asientos::on_pushButton_clicked()
             QString horaActual = dateTimeActual.toString("hh:mm:ss");
             QSqlQuery insertQuery;
             insertQuery.prepare("INSERT INTO pagos (fecha, hora, dniCliente, idEvento, idProducto, precioTotal) VALUES (:fecha, :hora, :dniCliente, :idEvento, :idProducto, :precioTotal)");
-            //insertQuery.bindValue(":idPago", idPago);
             insertQuery.bindValue(":fecha", fechaActual);
             insertQuery.bindValue(":hora", horaActual);
             insertQuery.bindValue(":dniCliente", cliente.getDNI());
             insertQuery.bindValue(":idEvento", cliente.listaEventos[j]->getIdEvento());
-            //insertQuery.bindValue(":idProducto", cliente.listaProductos[i]->getIdProducto());
             insertQuery.bindValue(":precioTotal", precioTotal);
 
             if (insertQuery.exec()) {

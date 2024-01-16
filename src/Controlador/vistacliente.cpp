@@ -10,8 +10,6 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
-//#include "entradasyabonos.h"
-//#include "compraproductos.h"
 
 bool ventanaCerradaC = true;
 bool ventanaCerradaCP = true;
